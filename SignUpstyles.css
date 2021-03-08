@@ -43,7 +43,7 @@ body {
     background-color: #e58f8f;
     opacity: 0;
     position: relative;
-    top: -90=5px;
+    top: -85px;
 }
 
 #error-msg-second-line {
@@ -77,28 +77,28 @@ body {
     cursor: pointer;
     outline: none;
     position: relative;
-    top: -35px;
+    top: -25px;
 }
 #name-field {
     position: relative;
-    top: -85px;
+    top: -75px;
 }
 
 #number-field {
     position: relative;
-    top: -75px;
+    top: -65px;
 }
 #email-field {
     position: relative;
-    top: -65px;
+    top: -55px;
 }
 #username-field {
     position: relative;
-    top: -55px;
+    top: -45px;
 }
 
 #password-field {
     position: relative;
-    top: -45px;
+    top: -35px;
 }
 
