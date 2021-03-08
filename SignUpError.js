@@ -1,7 +1,7 @@
 const SignUpButton = document.getElementById("signUp-form-submit");
 const SignUpErrorMsg = document.getElementById("SignUp-error-msg");
 const SignUpForm = document.getElementById("SignUp-form");
-loginButton.addEventListener("click", (e) => {
+SignUpButton.addEventListener("click", (e) => {
     e.preventDefault();
     const username = SignUpForm.username.value;
     const password = SignUpForm.password.value;
