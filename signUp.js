@@ -1,0 +1,1 @@
+const loginErrorMsg = document.getElementById("signUp-form-submit");
