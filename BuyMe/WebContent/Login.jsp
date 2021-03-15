@@ -23,27 +23,14 @@
 					<td>Password:</td><td><input type="text" name="password"/></td>
 				</tr>
 				<tr>
+					<td>Staff Member?:</td><td><input type="checkbox" name="staff"></td>
+				</tr>
+				<tr>
 					<td><input type="submit" value="Sign In"></td><td><a href="CreateAccount.jsp">Create Account</a></td>
 				</tr>
 			</table>
 			
 		</form>
-		<%	
-// 		try {
-// 			ApplicationDB db = new ApplicationDB();	
-// 			Connection con = db.getConnection();	
-// 			Statement stmt = con.createStatement();
-// 			String str = "SELECT * FROM Staff";
-// 			ResultSet result = stmt.executeQuery(str);
-// 			while (result.next()) {
-// 				out.println("<p>" + result.getString("name") + "</p>");
-// 			}
-// 			con.close();
-// 		} catch (Exception e) {
-// 			out.println("Error!");
-// 			e.printStackTrace();
-// 		}
-		%>
 
 	</body>
 </html>

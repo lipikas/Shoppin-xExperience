@@ -14,7 +14,36 @@
 		<%	
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			out.println("<p>usr: " + username + " pass: " + password + "</p>");
+			Boolean isStaff = request.getParameter("staff") == null ? false : true;
+	 		try {
+				ApplicationDB db = new ApplicationDB();	
+				Connection con = db.getConnection();	
+				Statement stmt = con.createStatement();
+				String str;
+				if (isStaff){
+					str = "SELECT * FROM Staff WHERE name='" + username + "' AND password='" + password + "';";
+				} else {
+					str = "SELECT * FROM Customers WHERE name='" + username + "' AND password='" + password + "';";;
+				}
+				ResultSet result = stmt.executeQuery(str);
+				
+				if (result.next()){
+					//Valid username and password
+					session.setAttribute("username", username);
+					out.println("Welcome " + username);
+					out.println("<br>");
+					out.println("<a href=\"CustomerHome.jsp\">Continue to Home Page");
+				} else {
+					//Invalid username / password
+					out.println("Invalid username / password combination");
+					out.println("<br>");
+					out.println("<a href=\"Login.jsp\">Back to Login Page");
+				}
+				con.close();
+			} catch (Exception e) {
+				out.println("Error!");
+				e.printStackTrace();
+			}
 		%>
 	</body>
 	
