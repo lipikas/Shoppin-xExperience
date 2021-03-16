@@ -109,7 +109,7 @@ CREATE TABLE `customers` (
   `name` varchar(50) DEFAULT NULL,
   `phone` varchar(13) DEFAULT NULL,
   `login` varchar(50) DEFAULT NULL,
-  `address` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -238,7 +238,7 @@ CREATE TABLE `staff` (
   `name` varchar(50) DEFAULT NULL,
   `phone` varchar(13) DEFAULT NULL,
   `login` varchar(50) DEFAULT NULL,
-  `address` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
   `isAdmin` tinyint(1) DEFAULT NULL,
   `isCustomerRep` tinyint(1) DEFAULT NULL,
@@ -291,4 +291,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-10 20:28:06
+-- Dump completed on 2021-03-16 18:27:59
