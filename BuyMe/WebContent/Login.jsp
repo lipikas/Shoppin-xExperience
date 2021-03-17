@@ -32,8 +32,8 @@
       form {
         margin: 2rem 3.5rem;
       }
-      #user,
-      #pwd {
+      #username,
+      #password {
         margin-bottom: 0.5rem;
         border-color: lightgrey;
         border-style: groove;
@@ -44,9 +44,6 @@
         margin-top: 0;
         margin-bottom: 1.5rem;
         font-size: 15px;
-      }
-      #check {
-        display: inline;
       }
       #submit {
         margin-right: 1rem;
@@ -69,13 +66,13 @@
     <div>
       <form method="POST" action="LoginValidate.jsp">
         <p class="us">
-          Username:<input type="text" name="username" id="user" />
+          Username:<input type="text" name="username" id="username" />
         </p>
         <p class="pd">
-          Password: <input type="password" name="password" id="pwd" />
+          Password: <input type="password" name="password" id="password" />
         </p>
         <p class="staff">
-          Staff <input type="checkbox" name="staff" id="check" />
+          Staff <input type="checkbox" name="staff" id="staff" />
         </p>
 
         <p>
