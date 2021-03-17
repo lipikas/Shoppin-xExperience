@@ -3,34 +3,87 @@
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
 
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>BuyMe - Login</title>
-	</head>
-	
-	<body>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <title>BuyMe - Login</title>
+    <style>
+      body {
+        background-color: #00ffff2e;
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .head {
+        margin-top: 15vh;
+        margin-bottom: 6vh;
+        font-size: 25px;
+      }
+      div {
+        width: 18rem;
+        height: 17rem;
+        background-color: white;
+        border-radius: 10px;
+        align-items: center;
+      }
+      form {
+        margin: 2rem 3.5rem;
+      }
+      #user,
+      #pwd {
+        margin-bottom: 0.5rem;
+        border-color: lightgrey;
+        border-style: groove;
+        border-radius: 6px;
+        font-size: 15px;
+      }
+      .staff {
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+        font-size: 15px;
+      }
+      #check {
+        display: inline;
+      }
+      #submit {
+        margin-right: 1rem;
+      }
+      #submit,
+      #hi {
+        font-size: 15px;
+        border-style: initial;
+        text-decoration: none;
+        background-color: rgb(46, 45, 45);
+        color: rgb(241, 239, 239);
+        border-radius: 15px;
+        padding: 0.2rem 0.5rem;
+      }
+    </style>
+  </head>
 
-		<h2>Login to BuyMe</h2>
-		<form method="POST" action="LoginValidate.jsp">
-			<table>
-				<tr>
-					<td>Username:</td><td><input type="text" name="username"/></td>
-				</tr>
-				<tr>
-					<td>Password:</td><td><input type="text" name="password"/></td>
-				</tr>
-				<tr>
-					<td>Staff Member?:</td><td><input type="checkbox" name="staff"></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="Sign In"></td><td><a href="CreateAccount.jsp">Create Account</a></td>
-				</tr>
-			</table>
-			
-		</form>
+  <body>
+    <p class="head">Welcome to BuyMe!</p>
+    <div>
+      <form method="POST" action="LoginValidate.jsp">
+        <p class="us">
+          Username:<input type="text" name="username" id="user" />
+        </p>
+        <p class="pd">
+          Pwd: <input type="password" name="password" id="pwd" />
+        </p>
+        <p class="staff">
+          Staff <input type="checkbox" name="staff" id="check" />
+        </p>
 
-	</body>
+        <p>
+          <input type="submit" value="Signin" id="submit" />
+
+          <a id="hi" href="CreateAccount.jsp">SignUp</a>
+        </p>
+      </form>
+    </div>
+  </body>
 </html>
