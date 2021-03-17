@@ -72,7 +72,7 @@
           Username:<input type="text" name="username" id="user" />
         </p>
         <p class="pd">
-          Pwd: <input type="password" name="password" id="pwd" />
+          Password: <input type="password" name="password" id="pwd" />
         </p>
         <p class="staff">
           Staff <input type="checkbox" name="staff" id="check" />
