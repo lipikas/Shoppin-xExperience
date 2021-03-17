@@ -51,8 +51,8 @@
       #name,
       #phone,
       #email,
-      #user,
-      #pwd {
+      #username,
+      #password {
         font-size: 14px;
         border-color: lightgrey;
         border-style: groove;
@@ -68,8 +68,8 @@
         <p >Name:<input type="text" name="username" id="name" /></p>
         <p >Phone no: <input type="text" name="password" id="phone" /></p>
         <p >Email: <input type="text" name="password" id="email" /></p>
-        <p >Username <input type="text" name="password" id="user" /></p>
-        <p>Password: <input type="text" name="password" id="pwd" /></p>
+        <p >Username <input type="text" name="password" id="username" /></p>
+        <p>Password: <input type="text" name="password" id="password" /></p>
         <p>
           <input type="submit" value="Signup" id="submit" />
         </p>
