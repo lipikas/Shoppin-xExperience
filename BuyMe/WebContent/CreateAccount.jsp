@@ -2,10 +2,8 @@
     pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
-<%@ page import="java.io.*,java.util.*,java.sql.*"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
   <head>
@@ -64,12 +62,12 @@
   <body>
     <p class="head">Sign Up</p>
     <div>
-      <form method="POST" action="Login.jsp">
-        <p >Name:<input type="text" name="username" id="name" /></p>
-        <p >Phone no: <input type="text" name="password" id="phone" /></p>
-        <p >Email: <input type="text" name="password" id="email" /></p>
-        <p >Username <input type="text" name="password" id="username" /></p>
-        <p>Password: <input type="text" name="password" id="password" /></p>
+      <form method="POST" action="AccountValidate.jsp">
+        <p >Name:<input type="text" name="Name" id="name" /></p>
+        <p >Phone no: <input type="text" name="Phone Number" id="phone" /></p>
+        <p >Email: <input type="text" name="Email" id="email" /></p>
+        <p >Username <input type="text" name="Username" id="username" /></p>
+        <p>Password: <input type="text" name="Password" id="password" /></p>
         <p>
           <input type="submit" value="Signup" id="submit" />
         </p>

@@ -11,14 +11,40 @@
 	</head>
 	
 	<body>
-		<%	
+		<%
 			String username = request.getParameter("Username");
 			String password = request.getParameter("Password");
 			String name = request.getParameter("Name");
 			String number = request.getParameter("Phone Number");
 			String email = request.getParameter("Email");
-			//out.println("<p>usr: " + username + " pass: " + password + "</p>");
 			
+			try{
+				ApplicationDB db = new ApplicationDB();	
+				Connection con = db.getConnection();	
+				Statement stmt = con.createStatement();
+				String str = "SELECT * FROM customers WHERE login='" + username + "'AND password='" + password + "';";
+				ResultSet result = stmt.executeQuery(str);
+				if (result.next()){
+					//user already exist
+					//Invalid username / password
+					out.println("This user already exists");
+					out.println("<br>");
+					out.println("<a href=\"CreateAccount.jsp\">Go Back");
+				} else {
+					//Else start the session	
+					PreparedStatement ps = con.prepareStatement("INSERT INTO customers "+
+						"(name, phone, login, email, password) VALUES ('" + name + "','" + number + "','" + username + "','" + email + "','" + password + "');");
+					ps.executeUpdate();					
+					session.setAttribute("username", username);
+					out.println("Welcome " + username);
+					out.println("<br>");
+					out.println("<a href=\"CustomerHome.jsp\">Continue to Home Page");
+				}
+			con.close();
+		} catch (Exception e) {
+			out.println("Error!");
+			e.printStackTrace();
+		}
 		%>
 	</body>
 	
