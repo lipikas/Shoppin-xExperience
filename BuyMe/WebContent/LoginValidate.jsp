@@ -21,9 +21,9 @@
 				Statement stmt = con.createStatement();
 				String str;
 				if (isStaff){
-					str = "SELECT * FROM Staff WHERE name='" + username + "' AND password='" + password + "';";
+					str = "SELECT * FROM Staff WHERE login='" + username + "' AND password='" + password + "';";
 				} else {
-					str = "SELECT * FROM Customers WHERE name='" + username + "' AND password='" + password + "';";;
+					str = "SELECT * FROM Customers WHERE login='" + username + "' AND password='" + password + "';";;
 				}
 				ResultSet result = stmt.executeQuery(str);
 				
