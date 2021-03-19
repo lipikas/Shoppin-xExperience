@@ -9,7 +9,6 @@
 	<meta charset="ISO-8859-1">
 	<title>BuyMe</title>
 	</head>
-	
 	<body>
 		<%	
 			out.println("Home page of: " + session.getAttribute("username") + "<br>");
