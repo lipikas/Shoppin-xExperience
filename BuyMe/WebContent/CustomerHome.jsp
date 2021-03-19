@@ -120,7 +120,7 @@
 		  <a class="active" href="#home">Home</a>
 		  <a href="#Auction">Create Auction</a>
 		  <a href="#Alerts">Alerts</a>
-		  <a href="ViewAuctions.jsp"> View Available Auctions"</a>
+		  <a href="ViewAuctions.jsp"> View Available Auctions</a>
 		  <input type="text" placeholder="Search..">
 		  <a href="Login.jsp">Logout</a>
 		</div>
