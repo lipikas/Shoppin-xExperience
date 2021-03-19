@@ -122,7 +122,7 @@
 		  <a href="#Alerts">Alerts</a>
 		  <a href="ViewAuctions.jsp"> View Available Auctions</a>
 		  <input type="text" placeholder="Search..">
-		  <a href="Login.jsp">Logout</a>
+		  <a href="Logout.jsp">Logout</a>
 		</div>
 		<div class="container">
 		  <div class="leftpane">

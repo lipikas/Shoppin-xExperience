@@ -32,7 +32,11 @@
 					session.setAttribute("username", username);
 					out.println("Welcome " + username);
 					out.println("<br>");
-					out.println("<a href=\"CustomerHome.jsp\">Continue to Home Page");
+					if (isStaff){
+						out.println("<a href=\"StaffHome.jsp\">Continue to Home Page");
+					} else {
+						out.println("<a href=\"CustomerHome.jsp\">Continue to Home Page");
+					}
 				} else {
 					//Invalid username / password
 					out.println("Invalid username / password combination");
