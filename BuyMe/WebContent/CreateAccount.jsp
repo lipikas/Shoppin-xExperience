@@ -67,7 +67,7 @@
         <p >Phone no: <input type="text" name="Phone Number" id="phone" /></p>
         <p >Email: <input type="text" name="Email" id="email" /></p>
         <p >Username <input type="text" name="Username" id="username" /></p>
-        <p>Password: <input type="text" name="Password" id="password" /></p>
+        <p>Password: <input type="password" name="Password" id="password" /></p>
         <p>
           <input type="submit" value="Signup" id="submit" />
         </p>

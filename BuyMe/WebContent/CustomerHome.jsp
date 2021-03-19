@@ -13,6 +13,8 @@
 	<body>
 		<%	
 			out.println("Home page of: " + session.getAttribute("username") + "<br>");
+			out.println("<a href=\"ViewAuctions.jsp\"> View Available Auctions");
+			out.println("<br>"); 
 			out.println("<a href=\"Logout.jsp\">Logout");
 		%>
 	</body>
