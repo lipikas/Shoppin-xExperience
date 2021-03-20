@@ -119,7 +119,7 @@
 		<div class="topnav">
 		  <a class="active" href="#home">Home</a>
 		  <a href="CreateAuction.jsp">Create Auction</a>
-		  <a href="#Alerts">Alerts</a>
+		  <a href="Alerts.jsp">Alerts</a>
 		  <a href="ViewAuctions.jsp"> View Available Auctions</a>
 		  <input type="text" placeholder="Search..">
 		  <a href="Logout.jsp">Logout</a>

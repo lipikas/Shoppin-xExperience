@@ -63,7 +63,7 @@
     <p class="head">Create Auction</p>
     <div>
       <form method="POST" action="CreateAuctionValidate.jsp">
-      	<p>Auction End Time: <input type="datetime-local" name="endtime" id="password" required/></p>
+      	<p>Auction End Date: <input type="datetime-local" name="endtime" id="password" required/></p>
       	<p>Initial Price: <input type="text" name="initialprice" id="password" required/></p>
         <p>Minimum Price To Sell: <input type=text name="minprice" id="password" required/></p>
         <p>Bid Increment Amount: <input type="text" name="bidinc" id="password" required/></p>
