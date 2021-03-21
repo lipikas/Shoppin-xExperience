@@ -44,13 +44,14 @@
  						"VALUES ('"+ initialprice +"','"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"');");
  				ps.executeUpdate();				
 				con.close();
+				out.println("<h3>Auction created</h3>");
 			} catch (Exception e) {
 				out.println("Error creating auction!");
-				%><a href="CustomerHome.jsp">Back to Homepage</a><%
+			
 				e.printStackTrace();
 			}
 		%>
-		<h3>Auction created</h3>
+		
 		<a href="CustomerHome.jsp">Back to Homepage</a>
 	</body>
 	
