@@ -35,8 +35,7 @@
 						<%out.println("Bid Increment is: " + result.getString("bid_inc"));%>
 						<%out.println("Minimum Price is: " + result.getString("min_price"));%>
 						<%out.println("Item ID is: " + result.getString("item_id"));%>
-						<br>
-						<br>
+						
 					</tr>
 				<%}
 				//close the connection.

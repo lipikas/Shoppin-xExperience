@@ -90,23 +90,23 @@
 		  height: 100%;
 		}
 		
-		.leftpane {
-		    width: 33.33%;
-		    height: 100%;
+		.toppane {
+		    height: 33.33%;
+		  	width: 100%;
 		    float: left;
 		    border-collapse: collapse;
 		}
 		
 		.middlepane {
-		    width: 33.33%;
-		    height: 100%;
+		    height: 33.33%;
+		  	width: 100%;
 		    float: left;
 		    border-collapse: collapse;
 		}
 		
-		.rightpane {
-		  width: 33.33%;
-		  height: 100%;
+		.bottompane {
+		  height: 33.33%;
+		  width: 100%;
 		  position: relative;
 		  float: right;
 		  border-collapse: collapse;
@@ -125,13 +125,13 @@
 		  <a href="Logout.jsp">Logout</a>
 		</div>
 		<div class="container">
-		  <div class="leftpane">
+		  <div class="toppane">
 		    <h1>My Auctions</h1>
 		  </div>
 		  <div class="middlepane">
 		  	<h1>Current Bids</h1>
 		  </div>
-		  <div class="rightpane">
+		  <div class="bottompane">
 		    <h1>Bid History</h1></div>
 		</div>
 
