@@ -44,10 +44,10 @@
  						"VALUES ('"+ initialprice +"','"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"');");
  				ps.executeUpdate();				
 				con.close();
-				out.println("<h3>Auction created</h3>");
+				out.println("Auction created");
 			} catch (Exception e) {
 				out.println("Error creating auction!");
-			
+				
 				e.printStackTrace();
 			}
 		%>
