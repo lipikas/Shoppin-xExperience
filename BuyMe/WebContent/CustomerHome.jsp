@@ -133,17 +133,18 @@ import="javax.servlet.http.*,javax.servlet.*" %>
    			<option value="shoe">Shoes</option>
    		</select>
    		<select name="Color" id="color">
-       	    <option value="red">Red</option>
-   			<option value="blue">Blue</option>
-   			<option value="yellow">Yellow</option>
-   			<option value="orange">Orange</option>
-   			<option value="green">Green</option>
-   			<option value="purple">Purple</option>
-   			<option value="white">White</option>
-   			<option value="black">Black</option>
+	        	<option value="red">Red</option>
+	        	<option value="orange">Orange</option>
+	        	<option value="yellow">Yellow</option>
+	        	<option value="green">Green</option>
+	        	<option value="blue">Blue</option>
+	        	<option value="purple">Purple</option>
+	        	<option value="white">White</option>
+	        	<option value="black">Black</option>
+	        	<option value="gray">Gray</option>
    		</select>
    		<label id = "sizeName"> Size</label>
-   		<input type="text" name="size" id="size" placeholder = "1-20" />
+   		<input type="number" name="size" id = "size" required min="1" max="20" id = "one" required>
         <input type="submit" value="Submit" id="submit" />
        </form>
       
@@ -161,7 +162,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
    				<option value="s_id">Seller id</option>
    			</select>
  
-            <input type="text" name="c_id" id="c_id" />
+            <input type="number" name="c_id" id="c_id" required min="1" />
           	<input type="submit" value="Submit" id="submit" />
         </form>
         
@@ -172,7 +173,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         <form method="POST" action="BidHistory.jsp">
           <p>
             Sort by Auction id:
-            <input type="text" name="auction" id="auction" />
+            <input type="number" name="auction" id="auction" required min="1" />
           	<input type="submit" value="Submit" id="submit" />
           </p>
         </form>
