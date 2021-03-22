@@ -49,7 +49,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
       @media screen and (max-width: 600px) {
         .topnav a,
-        .topnav input[type="text"] {
+        #search {
           float: none;
           display: block;
           text-align: left;
@@ -57,7 +57,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
           margin: 0;
           padding: 14px;
         }
-        .topnav input[type="text"] {
+        #search {
           border: 1px solid ##000000;
         }
       }
@@ -113,6 +113,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         background-color: rgb(46, 45, 45);
         color: rgb(241, 239, 239);
         border-radius: 15px;
+  		margin-left: 10px;
         padding: 0.2rem 0.5rem;
       }
     </style>
