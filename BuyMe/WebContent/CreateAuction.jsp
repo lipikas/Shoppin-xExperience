@@ -60,13 +60,21 @@
 
   <body>
   	<a href="CustomerHome.jsp">Back to Homepage</a>
-    <p class="head">Create Auction</p>
+    <h3>Create Auction</h3>
     <div>
       <form method="POST" action="CreateAuctionValidate.jsp">
-      	<p>Auction End Date: <input type="datetime-local" name="endtime" id="password" required/></p>
-      	<p>Initial Price: <input type="text" name="initialprice" id="password" required/></p>
-        <p>Minimum Price To Sell: <input type=text name="minprice" id="password" required/></p>
-        <p>Bid Increment Amount: <input type="text" name="bidinc" id="password" required/></p>
+      	<p>Auction End Date: 
+      		<input type="datetime-local" name="endtime" required/>
+      	</p>
+      	<p>Initial Price: 
+      		<input type="number" name="initialprice" step="0.01" min="0.00" required/>
+      	</p>
+        <p>Minimum Price To Sell: 
+        	<input type="number" name="minprice" step="0.01" min="0.00" required/>
+        </p>
+        <p>Bid Increment Amount: 
+        	<input type="number" name="bidinc" step="0.01" min="0.00" required/>
+        </p>
         <p>Item Category:</p>
         <input type="radio" name="category" id="shirt" value="shirt"/>
         <label for="shirt">Shirt</label><br>
@@ -74,8 +82,22 @@
         <label for="pants">Pants</label><br>
         <input type="radio" name="category" id="shoes" value="shoes"/>
         <label for="shoes">Shoes</label>
-        <p>Item Color: <input type="text" name="color" id="phone" required/></p>
-        <p>Item Size: <input type="text" name="size" id="email" required/></p>
+        <p> Item Color:
+	        <select name="color">
+	        	<option value="red">Red</option>
+	        	<option value="orange">Orange</option>
+	        	<option value="yellow">Yellow</option>
+	        	<option value="green">Green</option>
+	        	<option value="blue">Blue</option>
+	        	<option value="purple">Purple</option>
+	        	<option value="white">White</option>
+	        	<option value="black">Black</option>
+	        	<option value="gray">Gray</option>
+	        </select>
+        </p>
+        <p> Item Size (1 - 20):
+        	<input type="number" name="size" required min="1" max="20" required>
+        </p>
         <p>Item Description:</p>
         <textarea id="description" name="description" rows="2" cols="50" placeholder="100 character limit"></textarea>
         <p>
