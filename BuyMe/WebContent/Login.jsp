@@ -72,7 +72,7 @@
           Password: <input type="password" name="password" id="password" required  />
         </p>
         <p class="staff">
-          Staff <input type="checkbox" name="staff" id="staff" required />
+          Staff <input type="checkbox" name="staff" id="staff"/>
         </p>
 
         <p>
