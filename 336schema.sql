@@ -18,6 +18,30 @@ USE `336project`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `alerts`
+--
+
+DROP TABLE IF EXISTS `alerts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `alerts` (
+  `c_id` int(11) NOT NULL,
+  `message` varchar(100) NOT NULL,
+  PRIMARY KEY (`c_id`,`message`),
+  CONSTRAINT `alerts_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `alerts`
+--
+
+LOCK TABLES `alerts` WRITE;
+/*!40000 ALTER TABLE `alerts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `alerts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `auctioncontains`
 --
 
@@ -31,9 +55,12 @@ CREATE TABLE `auctioncontains` (
   `bid_inc` float DEFAULT NULL,
   `min_price` float DEFAULT NULL,
   `item_id` int(11) NOT NULL,
+  `creator_id` int(11) NOT NULL,
   PRIMARY KEY (`auction_id`),
+  KEY `creator_id` (`creator_id`),
   KEY `item_id` (`item_id`),
-  CONSTRAINT `auctioncontains_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
+  CONSTRAINT `auctioncontains_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `customers` (`c_id`),
+  CONSTRAINT `auctioncontains_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -81,10 +108,13 @@ DROP TABLE IF EXISTS `bids`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bids` (
   `bid_id` int(11) NOT NULL AUTO_INCREMENT,
+  `creator_id` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   `price` float DEFAULT NULL,
   `upper_limit` float DEFAULT NULL,
-  PRIMARY KEY (`bid_id`)
+  PRIMARY KEY (`bid_id`),
+  KEY `creator_id` (`creator_id`),
+  CONSTRAINT `bids_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `customers` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -203,6 +233,35 @@ LOCK TABLES `place` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `questions`
+--
+
+DROP TABLE IF EXISTS `questions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `questions` (
+  `c_id` int(11) NOT NULL,
+  `staff_id` int(11) DEFAULT NULL,
+  `message` varchar(100) NOT NULL,
+  `answer` varchar(100) DEFAULT NULL,
+  `answered` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`c_id`,`message`),
+  KEY `staff_id` (`staff_id`),
+  CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`),
+  CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`staff_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `questions`
+--
+
+LOCK TABLES `questions` WRITE;
+/*!40000 ALTER TABLE `questions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `questions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `sells`
 --
 
@@ -291,4 +350,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-16 18:27:59
+-- Dump completed on 2021-03-21 21:49:26
