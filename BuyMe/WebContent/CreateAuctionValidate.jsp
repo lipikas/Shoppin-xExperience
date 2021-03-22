@@ -37,17 +37,17 @@
 				while (result.next()){
 					newItemId = (result.getString("max(item_id)"));					
 				}
-				//System.out.println(newItemId);
 				//Insert new auction into auctioncontains				
+				String id = session.getAttribute("id").toString();
+				System.out.println(id);
  				ps = con.prepareStatement("INSERT INTO AuctionContains " +
- 						"(current_price, end_time, bid_inc, min_price, item_id) " +
- 						"VALUES ('"+ initialprice +"','"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"');");
+ 						"(current_price, end_time, bid_inc, min_price, item_id, creator_id) " +
+ 						"VALUES ('"+ initialprice +"','"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"','"+ id +"');");
  				ps.executeUpdate();				
 				con.close();
 				out.println("Auction created");
 			} catch (Exception e) {
 				out.println("Error creating auction!");
-				
 				e.printStackTrace();
 			}
 		%>
