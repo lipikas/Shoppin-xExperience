@@ -66,13 +66,13 @@
     <div>
       <form method="POST" action="LoginValidate.jsp">
         <p class="us">
-          Username:<input type="text" name="username" id="username" />
+          Username:<input type="text" name="username" id="username" required />
         </p>
         <p class="pd">
-          Password: <input type="password" name="password" id="password" />
+          Password: <input type="password" name="password" id="password" required  />
         </p>
         <p class="staff">
-          Staff <input type="checkbox" name="staff" id="staff" />
+          Staff <input type="checkbox" name="staff" id="staff" required />
         </p>
 
         <p>
