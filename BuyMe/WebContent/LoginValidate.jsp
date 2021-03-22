@@ -30,6 +30,12 @@
 				if (result.next()){
 					//Valid username and password
 					session.setAttribute("username", username);
+					//get cid
+					if (isStaff){
+						session.setAttribute("id", result.getString("staff_id"));
+					} else {
+						session.setAttribute("id", result.getString("c_id"));
+					}
 					out.println("Welcome " + username);
 					out.println("<br>");
 					if (isStaff){
