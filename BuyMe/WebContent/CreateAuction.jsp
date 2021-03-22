@@ -10,7 +10,8 @@
     <title>BuyMe - Create Auction</title>
     <style>
       body {
-        background-color: #0000000;
+      	margin:0;
+        background-color: #00ffff2e;
         font-family: Arial, Helvetica, sans-serif;
         display: flex;
         flex-direction: column;
@@ -25,18 +26,18 @@
         font-size: 25px;
       }
       div {
-        width: 16rem;
-        height: 25rem;
+        width: 30rem;
+        height: 36rem;
         background-color: white;
         border-radius: 10px;
         align-items: center;
       }
       form {
-        margin: 2.5rem 2.6rem;
+        margin: 2.5rem 3.8rem;
       }
       #submit {
-        margin-top: 1rem;
-        margin-left: 2.5rem;
+        margin-top: 0.5rem;
+        margin-left: 10rem;
         font-size: 15px;
         border-style: initial;
         text-decoration: none;
@@ -45,35 +46,32 @@
         border-radius: 15px;
         padding: 0.2rem 0.5rem;
       }
-      #name,
-      #phone,
-      #email,
-      #username,
-      #password {
+      #one {
         font-size: 14px;
         border-color: lightgrey;
         border-style: groove;
         border-radius: 6px;
       }
+      
     </style>
   </head>
 
   <body>
-  	<a href="CustomerHome.jsp">Back to Homepage</a>
-    <h3>Create Auction</h3>
+
+    <p class="head">Create Auction</p>
     <div>
       <form method="POST" action="CreateAuctionValidate.jsp">
       	<p>Auction End Date: 
-      		<input type="datetime-local" name="endtime" required/>
+      		<input type="datetime-local" name="endtime" id = "one" required/>
       	</p>
       	<p>Initial Price: 
-      		<input type="number" name="initialprice" step="0.01" min="0.00" required/>
+      		<input type="number" name="initialprice" step="0.01" min="0.00" id = "one" required/>
       	</p>
         <p>Minimum Price To Sell: 
-        	<input type="number" name="minprice" step="0.01" min="0.00" required/>
+        	<input type="number" name="minprice" step="0.01" min="0.00" id = "one" required/>
         </p>
         <p>Bid Increment Amount: 
-        	<input type="number" name="bidinc" step="0.01" min="0.00" required/>
+        	<input type="number" name="bidinc" step="0.01" min="0.00" id = "one" required/>
         </p>
         <p>Item Category:</p>
         <input type="radio" name="category" id="shirt" value="shirt"/>
@@ -83,7 +81,7 @@
         <input type="radio" name="category" id="shoes" value="shoes"/>
         <label for="shoes">Shoes</label>
         <p> Item Color:
-	        <select name="color">
+	        <select name="color" id = "one">
 	        	<option value="red">Red</option>
 	        	<option value="orange">Orange</option>
 	        	<option value="yellow">Yellow</option>
@@ -96,10 +94,10 @@
 	        </select>
         </p>
         <p> Item Size (1 - 20):
-        	<input type="number" name="size" required min="1" max="20" required>
+        	<input type="number" name="size" required min="1" max="20" id = "one" required>
         </p>
         <p>Item Description:</p>
-        <textarea id="description" name="description" rows="2" cols="50" placeholder="100 character limit"></textarea>
+        <textarea  name="description" rows="3" cols="38" placeholder="100 character limit" id = "one"></textarea>
         <p>
           <input type="submit" value="Create" id="submit" />
         </p>
