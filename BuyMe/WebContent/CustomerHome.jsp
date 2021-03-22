@@ -34,14 +34,18 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         color: white;
       }
       /* Style the search box inside the navigation bar */
-      .topnav input[type="text"] {
+      #search {
         float: right;
         padding: 6px;
         border: none;
         margin-top: 8px;
-        margin-right: 16px;
+        margin-right: 30px;
         font-size: 17px;
       }
+      #category, #color, #sizeName, #size{
+      margin-left: 6px;
+      }
+      
       /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
       @media screen and (max-width: 600px) {
         .topnav a,
@@ -61,11 +65,9 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       html {
         height: 100%;
         width: 100%;
-        margin-top:0;
+        margin:0;
       }
-      .topnav{
-      	margin:0;
-      }
+      
       .fullwidth {
         display: flex;
         flex-direction: column;
@@ -77,10 +79,13 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         background-repeat: no-repeat;
         background-position: center center;
       }
+		#size{
+			width: 3rem;
+		}    
       .container {
         width: 100%;
         height: 100%;
-        margin-left: 6px;
+        margin-left: 20px;
       }
       .toppane {
         height: 33.33%;
@@ -119,8 +124,29 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       <a href="CreateAuction.jsp">Create Auction</a>
       <a href="Alerts.jsp">Alerts</a>
       <a href="ViewAuctions.jsp"> View Available Auctions</a>
-      <input type="text" placeholder="Search.." />
       <a href="Logout.jsp">Logout</a>
+      <form id = "search" method="POST" action="ViewItems.jsp">
+      	<label>Search by </label>
+       	<select name="Category" id="category">
+       	    <option value="shirt">Shirts</option>
+   			<option value="pant">Pants</option>
+   			<option value="shoe">Shoes</option>
+   		</select>
+   		<select name="Color" id="color">
+       	    <option value="red">Red</option>
+   			<option value="blue">Blue</option>
+   			<option value="yellow">Yellow</option>
+   			<option value="orange">Orange</option>
+   			<option value="green">Green</option>
+   			<option value="purple">Purple</option>
+   			<option value="white">White</option>
+   			<option value="black">Black</option>
+   		</select>
+   		<label id = "sizeName"> Size</label>
+   		<input type="text" name="size" id="size" placeholder = "1-20" />
+        <input type="submit" value="Submit" id="submit" />
+       </form>
+      
     </div>
     <div class="container">
       <div class="toppane">
@@ -128,6 +154,17 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       </div>
       <div class="middlepane">
         <h2>Auction History</h2>
+        <form method="POST" action="AuctionHistory.jsp">
+          <label>Sort by </label>
+          <select name="dropdown" id="dropdown">
+          	    <option value="b_id">Buyer id</option>
+   				<option value="s_id">Seller id</option>
+   			</select>
+ 
+            <input type="text" name="c_id" id="c_id" />
+          	<input type="submit" value="Submit" id="submit" />
+        </form>
+        
       </div>
       <div class="bottompane">
         <h2>Bid History</h2>
