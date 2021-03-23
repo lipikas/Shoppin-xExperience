@@ -275,7 +275,12 @@ CREATE TABLE `sells` (
   `date` datetime NOT NULL,
   `item_id` int(11) DEFAULT NULL,
   `price` float DEFAULT NULL,
-  PRIMARY KEY (`bc_id`,`sc_id`,`date`)
+  PRIMARY KEY (`bc_id`,`sc_id`,`date`),
+  KEY `sc_id` (`sc_id`),
+  KEY `item_id` (`item_id`),
+  CONSTRAINT `sells_ibfk_1` FOREIGN KEY (`bc_id`) REFERENCES `customers` (`c_id`),
+  CONSTRAINT `sells_ibfk_2` FOREIGN KEY (`sc_id`) REFERENCES `customers` (`c_id`),
+  CONSTRAINT `sells_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -353,4 +358,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-23 11:36:28
+-- Dump completed on 2021-03-23 11:41:03

@@ -32,7 +32,14 @@ CREATE TABLE Customers (
     email varchar(50),
     password varchar(50)
 );
-
+DROP TABLE IF EXISTS Items;
+CREATE TABLE Items (
+	item_id int primary key auto_increment default(0),
+    category varchar(50),
+    color varchar(50),
+    size int,
+    description varchar(100)
+);
 DROP TABLE IF EXISTS Sells;
 CREATE TABLE Sells (
 	bc_id int,
@@ -40,6 +47,9 @@ CREATE TABLE Sells (
     date datetime,
     item_id int,
     price float,
+    foreign key (bc_id) references Customers (c_id),
+    foreign key (sc_id) references Customers (c_id),
+    foreign key (item_id) references Items (item_id),
     primary key (bc_id, sc_id, date)
 );
 
@@ -62,14 +72,7 @@ CREATE TABLE Bids (
     upper_limit float
 );
 
-DROP TABLE IF EXISTS Items;
-CREATE TABLE Items (
-	item_id int primary key auto_increment default(0),
-    category varchar(50),
-    color varchar(50),
-    size int,
-    description varchar(100)
-);
+
 
 DROP TABLE IF EXISTS Alerts;
 CREATE TABLE Alerts (
