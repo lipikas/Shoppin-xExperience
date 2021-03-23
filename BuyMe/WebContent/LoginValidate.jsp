@@ -32,9 +32,11 @@
 					session.setAttribute("username", username);
 					//get cid
 					if (isStaff){
-						session.setAttribute("id", result.getString("staff_id"));
+						String id = result.getString("staff_id");
+						session.setAttribute("id", id);
 					} else {
-						session.setAttribute("id", result.getString("c_id"));
+						String id = result.getString("c_id");
+						session.setAttribute("id", id);
 					}
 					out.println("Welcome " + username);
 					out.println("<br>");
