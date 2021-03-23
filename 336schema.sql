@@ -57,11 +57,14 @@ CREATE TABLE `auctioncontains` (
   `active` tinyint(1) DEFAULT NULL,
   `item_id` int(11) NOT NULL,
   `creator_id` int(11) NOT NULL,
+  `highest_bidder_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`auction_id`),
+  KEY `highest_bidder_id` (`highest_bidder_id`),
   KEY `creator_id` (`creator_id`),
   KEY `item_id` (`item_id`),
-  CONSTRAINT `auctioncontains_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `customers` (`c_id`),
-  CONSTRAINT `auctioncontains_ibfk_2` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
+  CONSTRAINT `auctioncontains_ibfk_1` FOREIGN KEY (`highest_bidder_id`) REFERENCES `customers` (`c_id`),
+  CONSTRAINT `auctioncontains_ibfk_2` FOREIGN KEY (`creator_id`) REFERENCES `customers` (`c_id`),
+  CONSTRAINT `auctioncontains_ibfk_3` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -358,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-23 11:41:03
+-- Dump completed on 2021-03-23 11:48:33

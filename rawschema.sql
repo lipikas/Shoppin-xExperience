@@ -104,6 +104,8 @@ CREATE TABLE AuctionContains (
     active boolean,
     item_id int NOT NULL,
     creator_id int NOT NULL,
+    highest_bidder_id int,
+    foreign key (highest_bidder_id) references Customers(c_id),
     foreign key (creator_id) references Customers(c_id),
     foreign key (item_id) references Items (item_id)
 );
