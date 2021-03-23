@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
-
+<%@ page import="java.util.Date,java.text.SimpleDateFormat,java.text.ParseException"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,7 +11,29 @@
 	</head>
 	
 	<body>	
-		
+		<%
+			long currTime = new Date().getTime();
+			ApplicationDB db0 = new ApplicationDB();
+			Connection con0 = db0.getConnection();
+			Statement stmt0 = con0.createStatement();
+			String q = "SELECT auction_id, end_time FROM AuctionContains WHERE active IS NULL OR active=true";
+			ResultSet rs0 = stmt0.executeQuery(q);
+			while (rs0.next()){
+				String cur = rs0.getString("end_time");
+				SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
+				Date date = fmt.parse(cur);
+				long endms = date.getTime();
+				System.out.println(currTime);
+				System.out.println(endms);
+				if (currTime > endms) {
+					//close the expired auction
+					String curId = rs0.getString("auction_id");
+					PreparedStatement ps = con0.prepareStatement("UPDATE AuctionContains SET active=false WHERE auction_id='"+ curId +"'");
+					ps.executeUpdate();
+				}
+			}
+			con0.close();
+		%>
 		<h2>All Ongoing Auctions</h2>
 		<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid on an Auction</a>"); %>
 		<br>
@@ -20,7 +42,7 @@
 			ApplicationDB db = new ApplicationDB();
 			Connection con = db.getConnection();
 			Statement stmt = con.createStatement();
-			String str = "SELECT * FROM auctioncontains";
+			String str = "SELECT * FROM auctioncontains WHERE active=true;";
 			ResultSet result = stmt.executeQuery(str);
 			%>
 			
