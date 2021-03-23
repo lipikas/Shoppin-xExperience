@@ -13,7 +13,8 @@
 	<body>	
 		
 		<h2>All Ongoing Auctions</h2>
-		
+		<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid on an Auction</a>"); %>
+		<br>
 		 <% try{
 			//get the connection
 			ApplicationDB db = new ApplicationDB();
@@ -23,19 +24,41 @@
 			ResultSet result = stmt.executeQuery(str);
 			%>
 			
-			<table>
-				
+			<table border="1">
+				<tr>
+					<td>Auction ID</td>	<td>Current Bid</td> <td>End Date</td> <td>End Time</td> <td>Bid Increment</td>
+					<td>Item Category</td> <td>Item Color</td> <td>Item Size</td> <td>Item Description</td>
+				</tr>
 				<%
 				//parse out the results
-				while (result.next()){ %>
-					<tr>    
-						<%out.println("Auction ID is: " + result.getString("auction_id"));%>
-						<%out.println("Current Price is: " + result.getString("current_price"));%>
-						<%out.println("End Time is: " + result.getString("end_time")); %>
-						<%out.println("Bid Increment is: " + result.getString("bid_inc"));%>
-						<%out.println("Minimum Price is: " + result.getString("min_price"));%>
-						<%out.println("Item ID is: " + result.getString("item_id"));%>
-						
+				while (result.next()){ 
+					//getting item data
+					String color = "";
+					String size = "";
+					String category = "";
+					String description = "";
+					String itemid = result.getString("item_id");
+					Statement st2 = con.createStatement();
+					String query = "SELECT category, color, size, description FROM Items WHERE item_id='"+ itemid +"';";
+					ResultSet rs = st2.executeQuery(query);
+					while(rs.next()){
+						category = rs.getString("category");
+						color = rs.getString("color");
+						size = rs.getString("size");
+						description = rs.getString("description");
+					}
+					//filling out table row
+				%>
+					<tr>
+						<td><%out.print(result.getString("auction_id"));%></td>
+						<td><%out.print(result.getString("current_price"));%></td>
+						<td><%out.print(result.getString("end_time").split(" ")[0]); %></td>
+						<td><%out.print(result.getString("end_time").split(" ")[1]); %></td>
+						<td><%out.print(result.getString("bid_inc"));%></td>
+						<td><%=category%></td>
+						<td><%=color%></td>
+						<td><%=size%></td>
+						<td><%=description%></td>
 					</tr>
 				<%}
 				//close the connection.
@@ -46,7 +69,7 @@
 			out.print(e);
 			}%>
 			
-			<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid on an Auction"); %>
+			
 			
 		
 	</body>
