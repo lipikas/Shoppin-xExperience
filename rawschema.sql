@@ -38,7 +38,9 @@ CREATE TABLE Sells (
 	bc_id int,
     sc_id int,
     date datetime,
-    primary key (bc_id, sc_id)
+    item_id int,
+    price float,
+    primary key (bc_id, sc_id, date)
 );
 
 DROP TABLE IF EXISTS WantedItems;

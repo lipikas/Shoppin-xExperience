@@ -272,8 +272,10 @@ DROP TABLE IF EXISTS `sells`;
 CREATE TABLE `sells` (
   `bc_id` int(11) NOT NULL,
   `sc_id` int(11) NOT NULL,
-  `date` datetime DEFAULT NULL,
-  PRIMARY KEY (`bc_id`,`sc_id`)
+  `date` datetime NOT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `price` float DEFAULT NULL,
+  PRIMARY KEY (`bc_id`,`sc_id`,`date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -351,4 +353,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-22 21:15:38
+-- Dump completed on 2021-03-23 11:36:28
