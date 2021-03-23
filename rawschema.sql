@@ -96,6 +96,7 @@ CREATE TABLE AuctionContains (
     end_time datetime,
     bid_inc float,
     min_price float,
+    active boolean,
     item_id int NOT NULL,
     creator_id int NOT NULL,
     foreign key (creator_id) references Customers(c_id),

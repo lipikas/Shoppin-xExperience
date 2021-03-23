@@ -54,6 +54,7 @@ CREATE TABLE `auctioncontains` (
   `end_time` datetime DEFAULT NULL,
   `bid_inc` float DEFAULT NULL,
   `min_price` float DEFAULT NULL,
+  `active` tinyint(1) DEFAULT NULL,
   `item_id` int(11) NOT NULL,
   `creator_id` int(11) NOT NULL,
   PRIMARY KEY (`auction_id`),
@@ -350,4 +351,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-21 21:49:26
+-- Dump completed on 2021-03-22 21:15:38
