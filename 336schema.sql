@@ -112,13 +112,13 @@ DROP TABLE IF EXISTS `bids`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bids` (
   `bid_id` int(11) NOT NULL AUTO_INCREMENT,
-  `creator_id` int(11) NOT NULL,
+  `auction_id` int(11) NOT NULL,
   `date` datetime DEFAULT NULL,
   `price` float DEFAULT NULL,
   `upper_limit` float DEFAULT NULL,
   PRIMARY KEY (`bid_id`),
-  KEY `creator_id` (`creator_id`),
-  CONSTRAINT `bids_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `customers` (`c_id`)
+  KEY `auction_id` (`auction_id`),
+  CONSTRAINT `bids_ibfk_1` FOREIGN KEY (`auction_id`) REFERENCES `auctioncontains` (`auction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
