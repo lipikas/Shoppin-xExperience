@@ -8,20 +8,25 @@
 	<meta charset="ISO-8859-1">
 	<title>Place Bids</title>
 	</head>
+	
+	
+	
+	
+	
+	
 	<body>
-		
-		<form method="POST" action="BidValidate.jsp">
-		
-			<label for="AucID">Auction ID:</label><br>
-			<input type="text" id="AucID" name="AucID"><br>
-			<label for="Amnt">Bid Amount:</label><br>
-			<input type="text" id="Amnt" name="Amnt"><br>
-			<input type="submit" value="Submit" id="submit" />
-		
-		
-		</form>
-		
-		
-		
-	</body>
+    <p>Place Bid</p>
+    <div>
+      <form method="POST" action="BidValidate.jsp">
+        <p >Date:<input type="datetime-local" name="Date" id="date" required  /></p>
+        <p >Auction ID: <input type="text" name="Auction ID" id="auc_id" required /></p>
+        <p >Bid Amount: <input type="text" name="Bid Amount" id="amnt" required  /></p>
+        <p >Upper Limit: <input type="text" name="Upper Limit" id="username" required /></p>
+        <p>
+          <input type="submit" value="Place Bid" id="submit" />
+        </p>
+      </form>
+    </div>
+  </body>
+  
 </html>
