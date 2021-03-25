@@ -29,6 +29,8 @@
 						"(auction_id, date, price, upper_limit) " +
 						"VALUES ('"+ auc_id +"','"+ date +"','"+ amount +"','"+ max +"');");
 				out.println("Bid has been placed for $" + amount +" on auction with auction ID " + auc_id);
+				out.println("<br>");
+				%><a href="CustomerHome.jsp">Back to Homepage</a><%
 				ps.executeUpdate();				
 				con.close();
 				
