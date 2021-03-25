@@ -12,7 +12,7 @@
 	
 	<body>
 		<%	
-			String username = session.getAttribute("username").toString();
+			
 			String endtime = request.getParameter("endtime");
 			String initialprice = request.getParameter("initialprice");
 			String minprice = request.getParameter("minprice");
