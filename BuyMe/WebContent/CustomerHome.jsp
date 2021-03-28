@@ -147,7 +147,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 	        	<option value="gray">Gray</option>
    		</select>
    		<label id = "sizeName"> Size</label>
-   		<input type="number" name="size" id = "size" min="1" max="20" id = "one">
+   		<input type="number" name="size" id = "size" required min="1" max="20" id = "one">
         <input type="submit" value="Submit" id="submit" />
        </form>
       
