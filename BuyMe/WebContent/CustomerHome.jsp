@@ -126,7 +126,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       <a href="Alerts.jsp">Alerts</a>
       <a href="ViewAuctions.jsp"> View Available Auctions</a>
       <a href="Logout.jsp">Logout</a>
-      <form id = "search" method="POST" action="ViewItems.jsp">
+      <form id = "search" method="POST" action="ViewItems.jsp"> <!-- //Search by functionality -->
       	<label>Search by </label>
        	<select name="Category" id="category">
        	    <option value="shirt">Shirts</option>
@@ -134,6 +134,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
    			<option value="shoe">Shoes</option>
    		</select>
    		<select name="Color" id="color">
+   				<option value="any">Any</option>
 	        	<option value="red">Red</option>
 	        	<option value="orange">Orange</option>
 	        	<option value="yellow">Yellow</option>
@@ -145,7 +146,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 	        	<option value="gray">Gray</option>
    		</select>
    		<label id = "sizeName"> Size</label>
-   		<input type="number" name="size" id = "size" required min="1" max="20" id = "one" required>
+   		<input type="number" name="size" id = "size" min="1" max="20" id = "one">
         <input type="submit" value="Submit" id="submit" />
        </form>
       

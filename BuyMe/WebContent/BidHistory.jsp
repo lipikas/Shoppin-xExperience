@@ -27,30 +27,37 @@
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
-					String str = "SELECT bid_id FROM bidon WHERE auction_id='" + auction + "';";
+					String str = "SELECT * FROM Bids WHERE auction_id='" + auction + "';";
 					
 					ResultSet result = stmt.executeQuery(str);
 					
 					if (result.next()){
 						//Valid auction_id
-						String str2 = "SELECT * FROM Bidon b, Bids bs WHERE b.auction_id='" + auction + "' AND b.bid_id = bs.bid_id;";
-						ResultSet result2 = stmt.executeQuery(str2);
+						/* String str2 = "SELECT * FROM Bids WHERE auction_id='" + auction + "' ORDER BY date DESC;";
+						ResultSet result2 = stmt.executeQuery(str2); */
 						
 						out.print("<table>");
 						out.print("<tr>");    
 							out.print("<th> Bid_id </th>");  
 							out.print("<th> Price </th>");  
-						out.print("<tr>");  
+						out.print("<tr>"); 
 						
-						while (result2.next()) { 
-							out.print("<tr>");    
-							
+						out.print("<tr>");    
+						out.print("<td>");
+						out.print(result.getString("bid_id"));
+						out.print("</td>");
+						out.print("<td>");
+						out.print(result.getString("price"));
+						out.print("</td>");
+
+						out.print("<tr>");  
+						while (result.next()) { 
+								out.print("<tr>");    
 								out.print("<td>");
-								out.print(result2.getString("bid_id"));
+								out.print(result.getString("bid_id"));
 								out.print("</td>");
-								
 								out.print("<td>");
-								out.print(result2.getString("price"));
+								out.print(result.getString("price"));
 								out.print("</td>");
 	 
 							out.print("<tr>");  
@@ -74,4 +81,3 @@
 		%>
 	    </body>
 	   </html>
-	    
