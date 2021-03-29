@@ -19,8 +19,8 @@
 			String amount = request.getParameter("Bid Amount");	
 			String max = request.getParameter("Upper Limit");
 			
-			int price = Integer.parseInt(amount);
-			int upprice = Integer.parseInt(max);
+			double price = Double.parseDouble(amount);
+			double upprice = Double.parseDouble(max);
 			
 			if(upprice < price){
 				out.println("Please Enter an Upper Limit Greater Than or Equal to Bid Amount");
@@ -36,10 +36,10 @@
 				    Statement st = con.createStatement();
 					String query = "SELECT a.current_price FROM auctioncontains a WHERE a.auction_id ='" + auc_id + "'";
 					ResultSet result = st.executeQuery(query);
-					int currprice = 0;
+					double currprice = 0;
 					while(result.next()){
 						String str = result.getString("a.current_price");
-						currprice = Integer.parseInt(str);
+						currprice = Double.parseDouble(str);
 					}
 					
 				    if(price <= currprice){
