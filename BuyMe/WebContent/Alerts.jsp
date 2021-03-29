@@ -10,51 +10,23 @@
 <title>Alerts</title>
 </head>
 <body>
-
+	<a href=CustomerHome.jsp>Home</a>
 	<%
-	
-	//issue how to match endtime wth respective auction i.e auction 1 ends but auction 2 hasn't
 		try {
-			//connect to database
 			ApplicationDB db = new ApplicationDB();
 			Connection con = db.getConnection();
 			Statement stmt = con.createStatement();
-			
-			//Get endtime and parse it 
-			String endtime = request.getParameter("endtime");
-			SimpleDateFormat expired = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
-		    Date date = new Date(expired.parse(endtime).getTime());
-		    
-		    //Get current time 
-		    Date currTime = new Date();
-		    Timestamp curr = new Timestamp(currTime.getTime());
-		    
-		    //set boolean variable to tell us if acution has ended
-		    boolean auctionEnd = false;
-		    
-		    //Create arraylist to hold alerts
-		    List<String> win_loss = new ArrayList<>();
-		    List<String> similar_item = new ArrayList<>();
-		    
-		    //if statement to check if the auction has ended
-		    if(curr.after(date)){
-		    	auctionEnd = true;
-		    }
-		    
-		    
-		    //This if statement will find the winner of the auction and post an alert in their alerts page
-		    if(auctionEnd = true){
-		    	
-		    	//select the winner --> bunch of sql statement not an issue
-		    	//delete winner on cascade 
-		    }
-		    
+			String id = session.getAttribute("id").toString();
+			ResultSet rs = stmt.executeQuery("SELECT * FROM Alerts WHERE c_id='"+ id +"'");
+			while (rs.next()){
+				out.println("<p>"+rs.getString("message")+"</p>");
+			}
+		    con.close();
 		} 
-		catch (ParseException e) {
+		catch (Exception e) {
 		    e.printStackTrace();
+		    out.println("ERROR");
 		}
-		
 	%>
-
 </body>
 </html>

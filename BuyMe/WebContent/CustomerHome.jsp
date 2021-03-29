@@ -126,6 +126,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       <a href="Alerts.jsp">Alerts</a>
       <a href="ViewAuctions.jsp"> View Available Auctions</a>
       <a href="Questions.jsp"> Ask Questions</a>
+      <a href="WishList.jsp">WishList</a>
       <a href="Logout.jsp">Logout</a>
       <form id = "search" method="POST" action="ViewItems.jsp"> <!-- //Search by functionality -->
       	<label>Search by </label>
