@@ -109,7 +109,7 @@
 						out.print("<tr>");    
 							out.print("<th> Item_id </th>");  
 							out.print("<th> Cuurent Bid Price </th>");  
-					/* 		out.print("<th> Current Highest Bidder Id </th>");   */
+							out.print("<th> Current Highest Bidder Id </th>");  
 							out.print("<th> Auction Id </th>"); 
 							out.print("<th> Item Name </th>"); // same as Item Description?
 						out.print("</tr>");  
@@ -123,9 +123,9 @@
 						out.print("<td>");
 						out.print(result.getString("current_price"));
 						out.print("</td>");
-					/* 	out.print("<td>");
+						out.print("<td>");
 						out.print(result.getString("creater_id"));
-						out.print("</td>"); */
+						out.print("</td>");
 						out.print("<td>");
 						out.print(result.getString("auction_id"));
 						out.print("</td>");
@@ -146,9 +146,9 @@
 								out.print("<td>");
 								out.print(result.getString("current_price"));
 								out.print("</td>");
-/* 								out.print("<td>");
+								out.print("<td>");
 								out.print(result.getString("creater_id"));
-								out.print("</td>"); */
+								out.print("</td>");
 								
 								out.print("<td>");
 								out.print(result.getString("auction_id"));
@@ -171,7 +171,7 @@
 					}
 					con.close();
 				} catch (Exception e) {
-					out.println("Error! ");
+					out.println("Error!");
 					e.printStackTrace();
 				}
 	    out.println("<br>");
