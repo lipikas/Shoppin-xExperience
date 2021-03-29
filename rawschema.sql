@@ -66,13 +66,11 @@ DROP TABLE IF EXISTS Bids;
 CREATE TABLE Bids (
 	bid_id int primary key auto_increment default(0),
     creator_id int NOT NULL,
+    auction_id int NOT NULL,
     foreign key (creator_id) references Customers(c_id),
-    date datetime,
     price float,
     upper_limit float
 );
-
-
 
 DROP TABLE IF EXISTS Alerts;
 CREATE TABLE Alerts (
@@ -110,29 +108,3 @@ CREATE TABLE AuctionContains (
     foreign key (item_id) references Items (item_id)
 );
 
-DROP TABLE IF EXISTS Helps;
-CREATE TABLE Helps (
-	staff_id int,
-    c_id int,
-    primary key (staff_id, c_id),
-    foreign key (staff_id) references Staff (staff_id),
-    foreign key (c_id) references Customers (c_id)
-);
-
-DROP TABLE IF EXISTS Place;
-CREATE TABLE Place (
-	c_id int,
-    bid_id int,
-    primary key (c_id, bid_id),
-    foreign key (c_id) references Customers (c_id),
-    foreign key (bid_id) references Bids (bid_id)
-);
-
-DROP TABLE IF EXISTS BidOn;
-CREATE TABLE BidOn (
-    bid_id int,
-    auction_id int,
-    primary key (bid_id, auction_id),
-    foreign key (bid_id) references Bids (bid_id),
-    foreign key (auction_id) references AuctionContains (auction_id)
-);

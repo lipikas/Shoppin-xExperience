@@ -78,32 +78,6 @@ LOCK TABLES `auctioncontains` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `bidon`
---
-
-DROP TABLE IF EXISTS `bidon`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bidon` (
-  `bid_id` int(11) NOT NULL,
-  `auction_id` int(11) NOT NULL,
-  PRIMARY KEY (`bid_id`,`auction_id`),
-  KEY `auction_id` (`auction_id`),
-  CONSTRAINT `bidon_ibfk_1` FOREIGN KEY (`bid_id`) REFERENCES `bids` (`bid_id`),
-  CONSTRAINT `bidon_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `auctioncontains` (`auction_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `bidon`
---
-
-LOCK TABLES `bidon` WRITE;
-/*!40000 ALTER TABLE `bidon` DISABLE KEYS */;
-/*!40000 ALTER TABLE `bidon` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `bids`
 --
 
@@ -112,13 +86,13 @@ DROP TABLE IF EXISTS `bids`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `bids` (
   `bid_id` int(11) NOT NULL AUTO_INCREMENT,
+  `creator_id` int(11) NOT NULL,
   `auction_id` int(11) NOT NULL,
-  `date` datetime DEFAULT NULL,
   `price` float DEFAULT NULL,
   `upper_limit` float DEFAULT NULL,
   PRIMARY KEY (`bid_id`),
-  KEY `auction_id` (`auction_id`),
-  CONSTRAINT `bids_ibfk_1` FOREIGN KEY (`auction_id`) REFERENCES `auctioncontains` (`auction_id`)
+  KEY `creator_id` (`creator_id`),
+  CONSTRAINT `bids_ibfk_1` FOREIGN KEY (`creator_id`) REFERENCES `customers` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -159,32 +133,6 @@ LOCK TABLES `customers` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `helps`
---
-
-DROP TABLE IF EXISTS `helps`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `helps` (
-  `staff_id` int(11) NOT NULL,
-  `c_id` int(11) NOT NULL,
-  PRIMARY KEY (`staff_id`,`c_id`),
-  KEY `c_id` (`c_id`),
-  CONSTRAINT `helps_ibfk_1` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`staff_id`),
-  CONSTRAINT `helps_ibfk_2` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `helps`
---
-
-LOCK TABLES `helps` WRITE;
-/*!40000 ALTER TABLE `helps` DISABLE KEYS */;
-/*!40000 ALTER TABLE `helps` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `items`
 --
 
@@ -208,32 +156,6 @@ CREATE TABLE `items` (
 LOCK TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `place`
---
-
-DROP TABLE IF EXISTS `place`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `place` (
-  `c_id` int(11) NOT NULL,
-  `bid_id` int(11) NOT NULL,
-  PRIMARY KEY (`c_id`,`bid_id`),
-  KEY `bid_id` (`bid_id`),
-  CONSTRAINT `place_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`),
-  CONSTRAINT `place_ibfk_2` FOREIGN KEY (`bid_id`) REFERENCES `bids` (`bid_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `place`
---
-
-LOCK TABLES `place` WRITE;
-/*!40000 ALTER TABLE `place` DISABLE KEYS */;
-/*!40000 ALTER TABLE `place` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -361,4 +283,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-23 11:48:33
+-- Dump completed on 2021-03-28 20:14:26
