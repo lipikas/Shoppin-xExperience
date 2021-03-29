@@ -61,7 +61,7 @@
 			<div>
 			<h2>Search your Items</h2>
 					 <label>Sort by </label>
-			 <form id = "search" method="POST" action="ViewItems2.jsp">
+			 <form id = "search" method="POST" action="ViewItems.jsp">
 		       	<select name="Sort" id="sort">
 		       	    <option value="inc_price">Decreasing bid price</option>
 		   			<option value="dec_pric">Increasing bid price</option>
@@ -72,19 +72,17 @@
 		      </div>
 			
 			<% 
-			String sort_func = "Decreasing bid price";
-			out.print("Hi");
+			String sort_func = request.getParameter("Sort");
 			String category = request.getParameter("category");
 			String color = request.getParameter("color");
 			String size = request.getParameter("size");
 			String group = "";
-			if(sort_func.compareTo("Decreasing bid price")==0){
+			if(sort_func.compareTo("Increasing bid price")==0){
 				group = group.concat("ASC");
 			}
-			else if(sort_func.compareTo("Increasing bid price")==0){
+			else if(sort_func.compareTo("Decreasing bid price")==0){
 				group = group.concat("DESC");
 			}
-			out.print("Helo");
 			  try {
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
@@ -109,13 +107,11 @@
 						out.print("<tr>");    
 							out.print("<th> Item_id </th>");  
 							out.print("<th> Cuurent Bid Price </th>");  
-					/* 		out.print("<th> Current Highest Bidder Id </th>");   */
+							out.print("<th> Current Highest Bidder Id </th>");  
 							out.print("<th> Auction Id </th>"); 
 							out.print("<th> Item Name </th>"); // same as Item Description?
 						out.print("</tr>");  
 							
-						out.print("Helo");
-						
 						out.print("<tr>");    
 						out.print("<td>");
 						out.print(result.getString("item_id"));// from table
@@ -123,9 +119,9 @@
 						out.print("<td>");
 						out.print(result.getString("current_price"));
 						out.print("</td>");
-					/* 	out.print("<td>");
+						out.print("<td>");
 						out.print(result.getString("creater_id"));
-						out.print("</td>"); */
+						out.print("</td>");
 						out.print("<td>");
 						out.print(result.getString("auction_id"));
 						out.print("</td>");
@@ -133,11 +129,9 @@
 						out.print(result.getString("description"));
 						out.print("</td>");
 						out.print("</tr>");  
-						out.print("3336666");
+						
 						while (result.next()) { 
-							out.print("<tr>");   
-							out.print("wwww");
-							
+							out.print("<tr>");    
 							
 								out.print("<td>");
 								out.print(result.getString("item_id"));// from table
@@ -146,9 +140,9 @@
 								out.print("<td>");
 								out.print(result.getString("current_price"));
 								out.print("</td>");
-/* 								out.print("<td>");
+								out.print("<td>");
 								out.print(result.getString("creater_id"));
-								out.print("</td>"); */
+								out.print("</td>");
 								
 								out.print("<td>");
 								out.print(result.getString("auction_id"));
@@ -171,7 +165,7 @@
 					}
 					con.close();
 				} catch (Exception e) {
-					out.println("Error! ");
+					out.println("Error!");
 					e.printStackTrace();
 				}
 	    out.println("<br>");
