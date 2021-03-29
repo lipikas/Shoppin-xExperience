@@ -43,7 +43,15 @@
  				ps = con.prepareStatement("INSERT INTO AuctionContains " +
  						"(current_price, end_time, bid_inc, min_price, item_id, creator_id, active) " +
  						"VALUES ('"+ initialprice +"','"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"','"+ id +"',TRUE);");
- 				ps.executeUpdate();				
+ 				ps.executeUpdate();
+ 				//Alert users who have the new item as a WishListed item
+ 				Statement alertstmt = con.createStatement();
+ 				ResultSet alertrs = alertstmt.executeQuery("SELECT c_id FROM wanteditems WHERE category='"+category+"' AND color='"+color+"' AND size='"+size+"';");
+ 				while (alertrs.next()){
+ 					PreparedStatement newalertstmt = con.prepareStatement("INSERT INTO alerts (c_id, message) VALUES ('"+alertrs.getString("c_id")+"', '"+
+ 						"New auction opened with WishListed item [ "+category+", "+color+", "+size+" ]');");
+ 					 newalertstmt.executeUpdate();
+ 				}
 				con.close();
 				out.println("Auction created");
 			} catch (Exception e) {
