@@ -10,8 +10,8 @@
 	<title>BuyMe - Auctions</title>
 	</head>
 	
-	<body>	
-		<%
+	<body>
+		<%//START OF AUCTION UPDATING
 			//close old auctions
 			long currTime = new Date().getTime();
 			ApplicationDB db0 = new ApplicationDB();
@@ -24,8 +24,6 @@
 				SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
 				Date date = fmt.parse(cur);
 				long endms = date.getTime();
-				//System.out.println(currTime);
-				//System.out.println(endms);
 				if (endms < currTime) {
 					//close the expired auction
 					String curId = rs0.getString("auction_id");
@@ -33,22 +31,25 @@
 					ps.executeUpdate();
 					//add sold item to Sells table
 					String minPrice = rs0.getString("min_price");
-					
 					String bc_id = rs0.getString("highest_bidder_id");
 					String sc_id = rs0.getString("creator_id");
 					String item_id = rs0.getString("item_id");
 					String finalPrice = rs0.getString("current_price");
 					String endDate = rs0.getString("end_time");
 					//only add item if the highest bid > min price to be sold at and someone actually bidded on it
-					if (Float.valueOf(finalPrice) > Float.valueOf(minPrice) && bc_id != null) {
-						PreparedStatement sellsPS = con0.prepareStatement("INSERT INTO Sells (bc_id, sc_id, date, item_id, price)"
+					if (Float.valueOf(finalPrice) >= Float.valueOf(minPrice) && bc_id != null) {
+						PreparedStatement sellsPS = con0.prepareStatement("INSERT INTO Sells (bc_id, sc_id, date, item_id, price) VALUES"
 								+ "('"+bc_id+"','"+sc_id+"','"+endDate+"','"+item_id+"','"+finalPrice+"');");
+						sellsPS.executeUpdate();
+						//Alert the winner that they won the auction
+						String winmsg = "You won auction:" + curId + " for item:" + item_id;
+						sellsPS = con0.prepareStatement("INSERT INTO Alerts (c_id, message) VALUES ('"+ bc_id +"', '"+ winmsg +"');");
 						sellsPS.executeUpdate();
 					}
 				}
 			}
 			con0.close();
-		%>
+		//END OF AUCTION UPDATING%>
 		<h2>All Ongoing Auctions</h2>
 		<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid on an Auction</a>"); %>
 		<br>
