@@ -9,16 +9,10 @@
 	<title>Place Bids</title>
 	</head>
 	
-	
-	
-	
-	
-	
 	<body>
     <p>Place Bid</p>
     <div>
       <form method="POST" action="BidValidate.jsp">
-        <p >Date:<input type="datetime-local" name="Date" id="date" required  /></p>
         <p >Auction ID: <input type="text" name="Auction ID" id="auc_id" required /></p>
         <p >Bid Amount: <input type="text" name="Bid Amount" id="amnt" required  /></p>
         <p >Upper Limit: <input type="text" name="Upper Limit" id="username" required /></p>
