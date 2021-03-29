@@ -36,10 +36,10 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       /* Style the search box inside the navigation bar */
       #search {
         float: right;
-        padding: 6px;
+        padding: 6px 0.5rem;
         border: none;
         margin-top: 8px;
-        margin-right: 30px;
+        margin-right: 0.5rem;
         font-size: 17px;
       }
       #category, #color, #sizeName, #size{
