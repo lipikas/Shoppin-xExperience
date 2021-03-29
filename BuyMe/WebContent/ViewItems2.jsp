@@ -63,8 +63,8 @@
 					 <label>Sort by </label>
 			 <form id = "search" method="POST" action="ViewItems.jsp">
 		       	<select name="Sort" id="sort">
-		       	    <option value="inc_price">Decreasing bid price</option>
-		   			<option value="dec_pric">Increasing bid price</option>
+		       	    <option value="inc_price">Increasing bid price</option>
+		   			<option value="dec_pric">Decreasing bid price</option>
 		   		<!-- 	<option value="auction">Soonest Auction Closing</option> -->
 		   		</select>
 		        <input type="submit" value="Submit" id="submit" />
