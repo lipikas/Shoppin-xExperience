@@ -55,11 +55,12 @@ CREATE TABLE Sells (
 
 DROP TABLE IF EXISTS WantedItems;
 CREATE TABLE WantedItems (
-	c_id int primary key,
+	c_id int,
     foreign key (c_id) references Customers (c_id),
     category varchar(50),
     color varchar(50),
-    size int
+    size int,
+	primary key (c_id, category, color, size)
 );
 
 DROP TABLE IF EXISTS Bids;
