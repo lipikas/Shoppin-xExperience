@@ -31,6 +31,7 @@
 					
 					ResultSet result = stmt.executeQuery(str);
 					
+					
 					if (result.next()){
 						//Valid auction_id
 						/* String str2 = "SELECT * FROM Bids WHERE auction_id='" + auction + "' ORDER BY date DESC;";
@@ -40,7 +41,7 @@
 						out.print("<tr>");    
 							out.print("<th> Bid_id </th>");  
 							out.print("<th> Price </th>");  
-						out.print("<tr>"); 
+						out.print("</tr>"); 
 						
 						out.print("<tr>");    
 						out.print("<td>");
@@ -49,8 +50,9 @@
 						out.print("<td>");
 						out.print(result.getString("price"));
 						out.print("</td>");
-
-						out.print("<tr>");  
+						out.print("</tr>"); 
+						
+						 
 						while (result.next()) { 
 								out.print("<tr>");    
 								out.print("<td>");
@@ -60,7 +62,7 @@
 								out.print(result.getString("price"));
 								out.print("</td>");
 	 
-							out.print("<tr>");  
+							out.print("</tr>");  
 							
 						}
 						out.print("</table>");
@@ -68,7 +70,7 @@
 						
 					} else {
 						//Invalid auction_id
-						out.println("Invalid auction_id");
+						out.println("Invalid auction_id or No bids have been placed at this time.");
 						out.println("<br>");
 					}
 					con.close();

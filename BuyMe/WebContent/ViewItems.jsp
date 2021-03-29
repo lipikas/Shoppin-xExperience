@@ -74,6 +74,7 @@
 			<% 
 			String sort_func = request.getParameter("sort");
 			if (sort_func== null) sort_func = "".concat("Decreasing bid price");
+			out.print("Hi");
 			String category = request.getParameter("category");
 			String color = request.getParameter("color");
 			String size = request.getParameter("size");
@@ -84,13 +85,20 @@
 			else if(sort_func.compareTo("Increasing bid price")==0){
 				group = group.concat("DESC");
 			}
+			out.print("Helo");
 			  try {
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
-					String str = "SELECT * FROM items, AuctionContains auc WHERE auc.item_id_id=items.item_id AND auc.active IS NULL OR auc.active=true";
-					str = str.concat("AND items.cateogry = '" + category +"AND items.color ="+ color + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';"); 
+					String str = "SELECT * FROM items, AuctionContains auc WHERE auc.item_id=items.item_id AND auc.active IS NULL OR auc.active=true";
 					
+					if(color.compareTo("any")==0){
+						str = str.concat("AND items.cateogry = '" + category + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';");
+					}
+					else{
+						str = str.concat("AND items.cateogry = '" + category +"AND items.color ="+ color + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';");
+					}
+					 
 					ResultSet result = stmt.executeQuery(str);
 					
 					if (result.next()){
@@ -102,10 +110,27 @@
 						out.print("<tr>");    
 							out.print("<th> Item_id </th>");  
 							out.print("<th> Cuurent Bid Price </th>");  
-							out.print("<th> Seller Id </th>");  
-							out.print("<th> Highest bidder Id </th>"); 
+							out.print("<th> Current Highest Bidder Id </th>");  
 							out.print("<th> Auction Id </th>"); 
 							out.print("<th> Item Name </th>"); // same as Item Description?
+						out.print("<tr>");  
+							
+						out.print("<tr>");    
+						out.print("<td>");
+						out.print(result.getString("item_id"));// from table
+						out.print("</td>");
+						out.print("<td>");
+						out.print(result.getString("current_price"));
+						out.print("</td>");
+						out.print("<td>");
+						out.print(result.getString("creater_id"));
+						out.print("</td>");
+						out.print("<td>");
+						out.print(result.getString("auction_id"));
+						out.print("</td>");
+						out.print("<td>");
+						out.print(result.getString("description"));
+						out.print("</td>");
 						out.print("<tr>");  
 						
 						while (result.next()) { 
@@ -120,10 +145,6 @@
 								out.print("</td>");
 								out.print("<td>");
 								out.print(result.getString("creater_id"));
-								out.print("</td>");
-								
-								out.print("<td>");
-								out.print(result.getString("highest_bidder_id"));
 								out.print("</td>");
 								
 								out.print("<td>");
