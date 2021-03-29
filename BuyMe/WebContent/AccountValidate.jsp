@@ -34,11 +34,10 @@
 					//Else start the session	
 					PreparedStatement ps = con.prepareStatement("INSERT INTO customers "+
 						"(name, phone, login, email, password) VALUES ('" + name + "','" + number + "','" + username + "','" + email + "','" + password + "');");
-					ps.executeUpdate();					
-					session.setAttribute("username", username);
+					ps.executeUpdate();
 					out.println("Welcome " + username);
 					out.println("<br>");
-					out.println("<a href=\"CustomerHome.jsp\">Continue to Home Page");
+					out.println("<a href=\"Login.jsp\">Continue to Login");
 				}
 			con.close();
 		} catch (Exception e) {
