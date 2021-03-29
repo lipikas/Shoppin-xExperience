@@ -124,7 +124,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       <a class="active" href="#home">Home</a>
       <a href="CreateAuction.jsp">Create Auction</a>
       <a href="Alerts.jsp">Alerts</a>
-      <a href="ViewAuctions.jsp"> View Available Auctions</a>
+      <a href="ViewAuctions.jsp"> Ongoing Auctions</a>
       <a href="Questions.jsp"> FAQs</a>
       <a href="WishList.jsp">WishList</a>
       <a href="Logout.jsp">Logout</a>
