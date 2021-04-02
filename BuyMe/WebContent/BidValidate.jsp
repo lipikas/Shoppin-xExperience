@@ -42,14 +42,18 @@
 						currprice = Double.parseDouble(str);
 					}
 					
-					//see if auction is still active
+					//see if auction is still active and if bid is valid with bid increment
 					Statement st1 = con.createStatement();
-					String query1 = "SELECT a.active FROM auctioncontains a WHERE a.auction_id = '" + auc_id + "'";
+					String query1 = "SELECT a.active, a.bid_inc FROM auctioncontains a WHERE a.auction_id = '" + auc_id + "'";
 					ResultSet result1 = st1.executeQuery(query1);
 					int isactive = 0;
+					double bidinc = 0;
+					
 					while(result1.next()){
 						String str = result1.getString("a.active");
+						String str1 = result1.getString("a.bid_inc");
 						isactive = Integer.parseInt(str);
+						bidinc = Double.parseDouble(str1);
 					}
 					
 					if(isactive == 0){
@@ -58,12 +62,17 @@
 						
 					}
 					
+					else if(currprice + bidinc > price){ //see if the bid is following bid_inc rules
+						out.println("Bid amount does not follow bid increment rules. Please place higher bid");
+						%><a href="PlaceBid.jsp">Back to Place Bid</a><%
+					}
+					
 					else if(price <= currprice){
 				    	out.println("Bid Amount is Lower Than Current Price. Please Place a Higher Bid");
 				    	%><a href="PlaceBid.jsp">Back to Place Bid</a><%
-				    }
+				    	}
 				    
-				    else{
+				    	else{
 				    	
 				    	//Insert new bid into bids
 						PreparedStatement ps = con.prepareStatement("INSERT INTO bids " +
