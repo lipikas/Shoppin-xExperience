@@ -96,6 +96,7 @@ CREATE TABLE Questions (
 DROP TABLE IF EXISTS AuctionContains;
 CREATE TABLE AuctionContains (
 	auction_id int primary key auto_increment default(0),
+    initial_price float,
     current_price float,
     end_time datetime,
     bid_inc float,
