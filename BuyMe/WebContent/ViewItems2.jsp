@@ -100,7 +100,7 @@
 			else if(sort_func.compareTo("Increasing bid price")==0){
 				group = group.concat("DESC");
 			}
-			out.print("Helo");
+			out.print("Hello from Universe");
 			  try {
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
