@@ -12,7 +12,7 @@
 	 <style>
 	      body{
 			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
-			font-size: 15px;
+			font-size: 16px;
 	        color: rgb(46 45 45 / 85%);
 		  }
 		  h2{
@@ -31,7 +31,6 @@
 	        text-align: center;
 	        padding: 14px 16px;
 	        text-decoration: none;
-	        font-size: 16px;
 	        color: rgb(46 45 45 / 85%);
 	      }
 	      /* Change the color of links on hover */
@@ -51,7 +50,6 @@
 		  border: none;
 		  margin-top: 8px;
 		  margin-right: 16px;
-	      font-size: 16px;
 	      color: rgb(46 45 45 / 85%);
 		}
 		

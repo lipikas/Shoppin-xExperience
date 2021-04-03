@@ -11,12 +11,13 @@ import="javax.servlet.http.*,javax.servlet.*" %>
     <style>
       body{
 		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
-		font-size: 15px;
+		font-size: 16px;
         color: rgb(46 45 45 / 85%);
 	  }
 	  h2{
       	font-size: 20px;
-        font-weight: 500;
+        font-weight: 400;
+        color: rgb(46 45 45 / 85%);
       }
       .topnav {
         overflow: hidden;
@@ -31,7 +32,6 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         padding: 14px 16px;
         text-decoration: none;
         color: rgb(46 45 45 / 85%);
-      	font-size:16px;
       }
       /* Change the color of links on hover */
       .topnav a:hover {
@@ -50,7 +50,6 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         border: none;
         margin-top: 8px;
         margin-right: 0.5rem;
-      	font-size:16px;
       }
       #category, #color, #sizeName, #size{
       margin-left: 6px;
