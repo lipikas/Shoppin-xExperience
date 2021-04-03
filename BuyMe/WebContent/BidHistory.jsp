@@ -14,7 +14,15 @@
 		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 		font-size: 16px;
         color: rgb(46 45 45 / 85%);
+        text-align: center;
+        margin-top: 50px;
 	  }
+	  div{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      }
 	  h2{
       	font-size: 20px;
         font-weight: 500;
@@ -29,6 +37,21 @@
       th{
       	font-weight: 490;
       }
+      a{
+        border-style: initial;
+        text-decoration: none;
+	    background-color: rgb(230 230 230 / 87%);
+	    color: #000000bd;
+        border-radius: 15px;
+        padding: 0.2rem 0.5rem;
+        flex-direction: row; 
+      }
+      
+      a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
 	</style>
 	<body>	
 	
@@ -49,10 +72,10 @@
 						/* String str2 = "SELECT * FROM Bids WHERE auction_id='" + auction + "' ORDER BY date DESC;";
 						ResultSet result2 = stmt.executeQuery(str2); */
 						
-						out.print("<table>");
+						out.print("<div> <table>");
 						out.print("<tr>");    
 							out.print("<th> Bid_id </th>");  
-							out.print("<th> Price </th>");  
+							out.print("<th> Bid Price </th>");  
 						out.print("</tr>"); 
 						
 						out.print("<tr>");    
@@ -77,7 +100,7 @@
 							out.print("</tr>");  
 							
 						}
-						out.print("</table>");
+						out.print("</table> </div>");
 						
 						
 					} else {
@@ -90,7 +113,7 @@
 					out.println("Error!");
 					e.printStackTrace();
 				}
-	    out.println("<br>");
+		out.println("<br><br>");
 		out.println("<a href=\"CustomerHome.jsp\"> Back to Home Page");
 		%>
 	    </body>

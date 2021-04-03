@@ -74,23 +74,23 @@
         	<input type="number" name="bidinc" step="0.01" min="0.00" id = "one" required/>
         </p>
         <p>Item Category:</p>
-        <input type="radio" name="category" id="shirt" value="shirt"/>
+        <input type="radio" name="category" id="shirt" value="Shirt"/>
         <label for="shirt">Shirt</label><br>
-        <input type="radio" name="category" id="pants" value="pants"/>
+        <input type="radio" name="category" id="pants" value="Pants"/>
         <label for="pants">Pants</label><br>
-        <input type="radio" name="category" id="shoes" value="shoes"/>
+        <input type="radio" name="category" id="shoes" value="Shoes"/>
         <label for="shoes">Shoes</label>
         <p> Item Color:
 	        <select name="color" id = "one">
-	        	<option value="red">Red</option>
-	        	<option value="orange">Orange</option>
-	        	<option value="yellow">Yellow</option>
-	        	<option value="green">Green</option>
-	        	<option value="blue">Blue</option>
-	        	<option value="purple">Purple</option>
-	        	<option value="white">White</option>
-	        	<option value="black">Black</option>
-	        	<option value="gray">Gray</option>
+	        	<option value="Red">Red</option>
+	        	<option value="Orange">Orange</option>
+	        	<option value="Yellow">Yellow</option>
+	        	<option value="Green">Green</option>
+	        	<option value="Blue">Blue</option>
+	        	<option value="Purple">Purple</option>
+	        	<option value="White">White</option>
+	        	<option value= "Black">Black</option>
+	        	<option value="Gray">Gray</option>
 	        </select>
         </p>
         <p> Item Size (1 - 20):

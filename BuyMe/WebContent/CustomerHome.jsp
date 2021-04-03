@@ -136,7 +136,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       <a href="Questions.jsp"> FAQs</a>
       <a href="WishList.jsp">WishList</a>
       <a href="Logout.jsp">Logout</a>
-      <form id = "search" method="POST" action="ViewItems.jsp"> <!-- //Search by functionality -->
+      <form id = "search" method="POST" action="SearchItems.jsp"> <!-- //Search by functionality -->
       	<label>Search by </label>
        	<select name="Category" id="category">
        	    <option value="shirt">Shirts</option>
@@ -144,7 +144,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
    			<option value="shoe">Shoes</option>
    		</select>
    		<select name="Color" id="color">
-   				<option value="any">Any</option>
+   				<option value="any">Any Color</option>
 	        	<option value="red">Red</option>
 	        	<option value="orange">Orange</option>
 	        	<option value="yellow">Yellow</option>

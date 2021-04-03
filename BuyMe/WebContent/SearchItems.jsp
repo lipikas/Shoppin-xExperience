@@ -15,6 +15,8 @@
 		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 		font-size: 16px;
         color: rgb(46 45 45 / 85%);
+        text-align: center;
+        margin-top: 50px;
 	  }
 	  h2{
       	font-size: 20px;
@@ -31,6 +33,28 @@
       th{
       	font-weight: 490;
       }
+      div{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      }
+      
+      a{
+        border-style: initial;
+        text-decoration: none;
+	    background-color: rgb(230 230 230 / 87%);
+	    color: #000000bd;
+        border-radius: 15px;
+        padding: 0.2rem 0.5rem;
+        flex-direction: row; 
+      }
+      
+      a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
 	</style>
 	<body>	
 			<%
@@ -84,7 +108,6 @@
 			out.println("Color" + color); 
 			out.println("size" + size); 
 			*/
-
 			if(sort.compareTo("inc_price")==0){
 				group = group.concat("ASC");
 			}
@@ -117,7 +140,7 @@
 					if (result.next()){
 						//Valid query - user inputted data
 						
-						out.print("<table>");
+						out.print("<div><table>");
 						out.print("<tr>");   
 							out.print("<th> Auction_id </th>"); 
 							out.print("<th> Item_id </th>");  
@@ -155,7 +178,7 @@
 							out.print("<td>" + result.getString("highest_bidder_id") +"</td>");
 							out.print("</tr>"); 			
 						}
-						out.print("</table>");
+						out.print("</table></div>");
 						
 						
 					} else {
@@ -171,7 +194,8 @@
 	    out.println("<br><br>");
 		out.println("<a href=\"CustomerHome.jsp\"> Back to Home Page");
 		%>
+		
 	    </body>
 	   </html>
 	   
-	   
+	
