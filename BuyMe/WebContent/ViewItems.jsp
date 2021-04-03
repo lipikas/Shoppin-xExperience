@@ -26,6 +26,7 @@
         padding: 6px;
         border: 2px solid lightgrey;
         border-collapse: collapse;
+        text-align: center;
       }
       th{
       	font-weight: 490;
@@ -70,36 +71,24 @@
 			}
 			con0.close();
 		%>
-			<div>
 			<h2>Search your Items</h2>
-					 <label>Sort by </label>
-			 <form id = "search" method="POST" action="ViewItems2.jsp">
-		       	<select name="Sort" id="sort">
-		       	    <option value="dec_price">Decreasing bid price</option>
-		   			<option value="inc_pric">Increasing bid price</option>
-		   		<!-- 	<option value="auction">Soonest Auction Closing</option> -->
-		   		</select>
-		        <input type="submit" value="Submit" id="submit" />
-		       </form>
-		      </div>
 			
 			<% 
-			String sort_func = "Decreasing bid price";
-/* 			out.print("Hi"); */
 			String category = request.getParameter("Category");
 			String color = request.getParameter("Color");
 			String size = request.getParameter("size");
+			String sort = request.getParameter("Sort");
+			String group = "";
 			
 	/* 		out.println("Category" + category);
 			out.println("Color" + color); 
-			out.println("size" + size);  */
-			
-			
-			String group = "";
-			if(sort_func.compareTo("Decreasing bid price")==0){
+			out.println("size" + size); 
+			*/
+
+			if(sort.compareTo("inc_price")==0){
 				group = group.concat("ASC");
 			}
-			else if(sort_func.compareTo("Increasing bid price")==0){
+			else if(sort.compareTo("dec_price")==0){
 				group = group.concat("DESC");
 			}
 			out.print(" <br>");
@@ -108,42 +97,62 @@
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
-					String str = "SELECT * FROM items, auctioncontains auc WHERE auc.item_id = items.item_id AND (auc.active IS NULL OR auc.active=true) ";
+					String str = "SELECT * FROM items it, auctioncontains auc WHERE auc.item_id = it.item_id AND (auc.active IS NULL OR auc.active=true) ";
 					
-					if(color.compareTo("any")==0){
-						str = str.concat("AND items.cateogry = '" + category + "' AND items.size = '"+ size+ "';");
+					if(color.compareTo("any")==0 && size.compareTo("")==0){ // null size and color
+						str = str.concat("AND it.category = '" + category + "' ORDER BY auc.current_price "+ group +";");
+					}
+					else if(color.compareTo("any")==0){ // null color
+						str = str.concat("AND it.category = '" + category + "' AND it.size = '"+ size+ "' ORDER BY auc.current_price "+ group +";");
+					}
+					else if(size.compareTo("")==0){// null size
+						str = str.concat("AND it.category = '" + category + "' AND it.color = '"+ color + "' ORDER BY auc.current_price "+ group +";");
 					}
 					else{
-						str = str.concat(" AND items.cateogry = '" + category +"' AND items.color = '"+ color + "' AND items.size = '"+ size+ "';");
-						/* out.println("World"); */
+						str = str.concat(" AND it.category = '" + category +"' AND it.color = '"+ color + "' AND it.size = '"+ size+ "' ORDER BY auc.current_price "+ group +";");
 					}
-					out.println(str);
 					ResultSet result = stmt.executeQuery(str);
-					out.println("888");
+			
 					
 					if (result.next()){
 						//Valid query - user inputted data
-						//"SELECT * FROM AuctionContains auc WHERE auc.active IS NULL OR auc.active=true";
 						
 						out.print("<table>");
-						out.print("<tr>");    
+						out.print("<tr>");   
+							out.print("<th> Auction_id </th>"); 
 							out.print("<th> Item_id </th>");  
-							out.print("<th> Cuurent Bid Price </th>"); 
+							out.print("<th> Item Name </th>"); // same as Item Description?
+							out.print("<th> Item Category </th>"); 
+							out.print("<th> Item Color </th>"); 
+							out.print("<th> Item Size </th>"); 
+							out.print("<th> Current Bid Price </th>"); 
 							out.print("<th> Seller Id </th>");  
 							out.print("<th> Current Highest Bidder Id </th>");  
-							out.print("<th> Auction Id </th>"); 
-							out.print("<th> Item Name </th>"); // same as Item Description?
 						out.print("</tr>");  
 						
-			
+						out.print("<tr>");    
+						out.print("<td>" + result.getString("auction_id") +"</td>");
+						out.print("<td>" + result.getString("item_id") +"</td>");
+						out.print("<td>" + result.getString("description") +"</td>");
+						out.print("<td>" + result.getString("category") +"</td>");
+						out.print("<td>" + result.getString("color") +"</td>");
+						out.print("<td>" + result.getString("size") +"</td>");
+						out.print("<td>" + result.getString("current_price") +"</td>");
+						out.print("<td>" + result.getString("creator_id") +"</td>");
+						out.print("<td>" + result.getString("highest_bidder_id") +"</td>");
+						out.print("</tr>"); 
+						
 						while (result.next()) { 
 							out.print("<tr>");    
+							out.print("<td>" + result.getString("auction_id") +"</td>");
 							out.print("<td>" + result.getString("item_id") +"</td>");
+							out.print("<td>" + result.getString("description") +"</td>");
+							out.print("<td>" + result.getString("category") +"</td>");
+							out.print("<td>" + result.getString("color") +"</td>");
+							out.print("<td>" + result.getString("size") +"</td>");
 							out.print("<td>" + result.getString("current_price") +"</td>");
 							out.print("<td>" + result.getString("creator_id") +"</td>");
-							out.print("<td>" + result.getString("higest_bidder_id") +"</td>");
-							out.print("<td>" + result.getString("auction_id") +"</td>");
-							out.print("<td>" + result.getString("description") +"</td>");
+							out.print("<td>" + result.getString("highest_bidder_id") +"</td>");
 							out.print("</tr>"); 			
 						}
 						out.print("</table>");
@@ -156,12 +165,13 @@
 					}
 					con.close();
 				} catch (Exception e) {
-					out.println(e);
+					out.println("<br> <br>" + e);
 					e.printStackTrace();
 				}
-	    out.println("<br>");
+	    out.println("<br><br>");
 		out.println("<a href=\"CustomerHome.jsp\"> Back to Home Page");
 		%>
 	    </body>
 	   </html>
-	    
+	   
+	   

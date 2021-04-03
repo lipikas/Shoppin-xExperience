@@ -97,7 +97,7 @@
         	<input type="number" name="size" required min="1" max="20" id = "one" required>
         </p>
         <p>Item Description:</p>
-        <textarea  name="description" rows="3" cols="38" placeholder="100 character limit" id = "one"></textarea>
+        <textarea  name="description" rows="3" cols="38" placeholder="100 character limit" id = "one" required></textarea>
         <p>
           <input type="submit" value="Create" id="submit" />
         </p>

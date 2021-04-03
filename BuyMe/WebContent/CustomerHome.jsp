@@ -7,7 +7,6 @@ import="javax.servlet.http.*,javax.servlet.*" %>
   <head>
     <meta charset="ISO-8859-1" />
     <title>BuyMe</title>
-    <link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
     <style>
       body{
 		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
@@ -157,7 +156,13 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 	        	<option value="gray">Gray</option>
    		</select>
    		<label id = "sizeName"> Size</label>
-   		<input type="number" name="size" required min="1" max="20" id = "one">
+   		<input type="number" name="size" min="1" max="20" id = "one">
+   		<label>Sort by </label>
+		<select name="Sort" id="sort">
+		    	<option value="dec_price">Decreasing price</option>
+		   		<option value="inc_pric">Increasing price</option>
+		   		<!-- 	<option value="auction">Soonest Auction Closing</option> -->
+		</select>
         <input type="submit" value="Submit" id="submit" />
        </form>
       
