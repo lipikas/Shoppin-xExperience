@@ -122,7 +122,6 @@
 						//Valid query - user inputted data
 						//"SELECT * FROM AuctionContains auc WHERE auc.active IS NULL OR auc.active=true";
 						
-						
 						out.print("<table>");
 						out.print("<tr>");    
 							out.print("<th> Item_id </th>");  
@@ -132,55 +131,25 @@
 							out.print("<th> Item Name </th>"); // same as Item Description?
 						out.print("</tr>");  
 							
-						out.print("Helo");
-						
 						out.print("<tr>");    
-						out.print("<td>");
-						out.print(result.getString("item_id"));// from table
-						out.print("</td>");
-						out.print("<td>");
-						out.print(result.getString("current_price"));
-						out.print("</td>");
-						out.print("<td>");
-						out.print(result.getString("creater_id"));
-						out.print("</td>");
-						out.print("<td>");
-						out.print(result.getString("auction_id"));
-						out.print("</td>");
-						out.print("<td>");
-						out.print(result.getString("description"));
-						out.print("</td>");
-						out.print("</tr>");  
-						out.print("3336666");
-						while (result.next()) { 
-							out.print("<tr>");   
-							out.print("wwww");
-							
-							
-								out.print("<td>");
-								out.print(result.getString("item_id"));// from table
-								out.print("</td>");
-								
-								out.print("<td>");
-								out.print(result.getString("current_price"));
-								out.print("</td>");
-								out.print("<td>");
-								out.print(result.getString("creater_id"));
-								out.print("</td>");
-								
-								out.print("<td>");
-								out.print(result.getString("auction_id"));
-								out.print("</td>");
-								
-								out.print("<td>");
-								out.print(result.getString("description"));
-								out.print("</td>");
-	 
-							out.print("</tr>");  
-							
-						}
-						out.print("</table>");
+						out.print("<td>" + result.getString("item_id") +"</td>");
+						out.print("<td>" + result.getString("current_price") +"</td>");
+						out.print("<td>" + result.getString("creater_id") +"</td>");
+						out.print("<td>" + result.getString("auction_id") +"</td>");
+						out.print("<td>" + result.getString("description") +"</td>");
+						out.print("</tr>"); 
 						
+			
+						while (result.next()) { 
+							out.print("<tr>");    
+							out.print("<td>" + result.getString("item_id") +"</td>");
+							out.print("<td>" + result.getString("current_price") +"</td>");
+							out.print("<td>" + result.getString("creater_id") +"</td>");
+							out.print("<td>" + result.getString("auction_id") +"</td>");
+							out.print("<td>" + result.getString("description") +"</td>");
+							out.print("</tr>"); 			
+						}
+						out.print("</table>");		
 						
 					} else {
 						//InValid query
