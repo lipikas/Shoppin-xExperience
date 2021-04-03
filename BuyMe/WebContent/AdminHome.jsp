@@ -88,7 +88,7 @@
 		  <a href="Logout.jsp">Logout</a> 
 		</div>
 	<div>
-      <form method="POST" action="AccountValidate.jsp">
+      <form method="POST" action="CustomerRepValidate.jsp">
         <p >Name:<input type="text" name="Name" id="name" required  /></p>
         <p >Phone no: <input type="text" name="Phone Number" id="phone" required /></p>
         <p >Email: <input type="text" name="Email" id="email" required  /></p>

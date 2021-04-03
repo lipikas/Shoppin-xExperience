@@ -128,26 +128,20 @@
 						out.print("<table>");
 						out.print("<tr>");    
 							out.print("<th> Item_id </th>");  
-							out.print("<th> Cuurent Bid Price </th>");  
+							out.print("<th> Cuurent Bid Price </th>"); 
+							out.print("<th> Seller Id </th>");  
 							out.print("<th> Current Highest Bidder Id </th>");  
 							out.print("<th> Auction Id </th>"); 
 							out.print("<th> Item Name </th>"); // same as Item Description?
 						out.print("</tr>");  
-							
-						out.print("<tr>");    
-						out.print("<td>" + result.getString("item_id") +"</td>");
-						out.print("<td>" + result.getString("current_price") +"</td>");
-						out.print("<td>" + result.getString("creater_id") +"</td>");
-						out.print("<td>" + result.getString("auction_id") +"</td>");
-						out.print("<td>" + result.getString("description") +"</td>");
-						out.print("</tr>"); 
 						
 			
 						while (result.next()) { 
 							out.print("<tr>");    
 							out.print("<td>" + result.getString("item_id") +"</td>");
 							out.print("<td>" + result.getString("current_price") +"</td>");
-							out.print("<td>" + result.getString("creater_id") +"</td>");
+							out.print("<td>" + result.getString("creator_id") +"</td>");
+							out.print("<td>" + result.getString("higest_bidder_id") +"</td>");
 							out.print("<td>" + result.getString("auction_id") +"</td>");
 							out.print("<td>" + result.getString("description") +"</td>");
 							out.print("</tr>"); 			
@@ -162,7 +156,7 @@
 					}
 					con.close();
 				} catch (Exception e) {
-					out.println("Error!");
+					out.println(e);
 					e.printStackTrace();
 				}
 	    out.println("<br>");
