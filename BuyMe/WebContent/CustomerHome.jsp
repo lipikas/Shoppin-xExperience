@@ -7,8 +7,17 @@ import="javax.servlet.http.*,javax.servlet.*" %>
   <head>
     <meta charset="ISO-8859-1" />
     <title>BuyMe</title>
+    <link href='https://fonts.googleapis.com/css?family=Heebo' rel='stylesheet'>
     <style>
-    	
+      body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+		font-size: 15px;
+        color: rgb(46 45 45 / 85%);
+	  }
+	  h2{
+      	font-size: 20px;
+        font-weight: 500;
+      }
       .topnav {
         overflow: hidden;
         background-color: white;
@@ -21,7 +30,8 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
-        font-size: 17px;
+        color: rgb(46 45 45 / 85%);
+      	font-size:16px;
       }
       /* Change the color of links on hover */
       .topnav a:hover {
@@ -40,7 +50,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         border: none;
         margin-top: 8px;
         margin-right: 0.5rem;
-        font-size: 17px;
+      	font-size:16px;
       }
       #category, #color, #sizeName, #size{
       margin-left: 6px;

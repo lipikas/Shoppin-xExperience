@@ -10,10 +10,15 @@
 	<title>BuyMe - Auctions</title>
 	</head>
 	<style>
-	  body{
-		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-		font-size:16px;
+      body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+		font-size: 15px;
+        color: rgb(46 45 45 / 85%);
 	  }
+	  h2{
+      	font-size: 20px;
+        font-weight: 500;
+      }
 	  table,
       th,
       td {
@@ -22,10 +27,7 @@
         border-collapse: collapse;
       }
       th{
-      	font-weight: 520;
-      }
-      h2{
-      	font-weight: 500;
+      	font-weight: 490;
       }
 	</style>
 	<body>

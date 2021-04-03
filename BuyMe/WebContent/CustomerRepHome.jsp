@@ -10,6 +10,15 @@
 	<title>BuyMe</title>
 	</head>
 	 <style>
+	      body{
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+			font-size: 15px;
+	        color: rgb(46 45 45 / 85%);
+		  }
+		  h2{
+	      	font-size: 20px;
+	        font-weight: 500;
+	      }
 	      .topnav {
 	        overflow: hidden;
 	        background-color: white;
@@ -22,7 +31,8 @@
 	        text-align: center;
 	        padding: 14px 16px;
 	        text-decoration: none;
-	        font-size: 17px;
+	        font-size: 16px;
+	        color: rgb(46 45 45 / 85%);
 	      }
 	      /* Change the color of links on hover */
 	      .topnav a:hover {
@@ -41,7 +51,8 @@
 		  border: none;
 		  margin-top: 8px;
 		  margin-right: 16px;
-		  font-size: 17px;
+	      font-size: 16px;
+	      color: rgb(46 45 45 / 85%);
 		}
 		
 		/* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */

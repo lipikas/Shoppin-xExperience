@@ -11,10 +11,15 @@
 	<title>Search Items</title>
 	</head>
 	<style>
-	  body{
-		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-		font-size:16px;
+      body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+		font-size: 15px;
+        color: rgb(46 45 45 / 85%);
 	  }
+	  h2{
+      	font-size: 20px;
+        font-weight: 500;
+      }
 	  table,
       th,
       td {
@@ -23,10 +28,7 @@
         border-collapse: collapse;
       }
       th{
-      	font-weight: 520;
-      }
-      h2{
-      	font-weight: 500;
+      	font-weight: 490;
       }
 	</style>
 	<body>	
@@ -100,21 +102,22 @@
 			else if(sort_func.compareTo("Increasing bid price")==0){
 				group = group.concat("DESC");
 			}
-			out.print("Helo");
+			out.print(" <br>");
+			
 			  try {
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
-					String str = "SELECT * FROM items, auctioncontains auc WHERE auc.item_id=items.item_id AND (auc.active IS NULL OR auc.active=true) ";
+					String str = "SELECT * FROM items, auctioncontains auc WHERE auc.item_id = items.item_id AND (auc.active IS NULL OR auc.active=true) ";
 					
 					if(color.compareTo("any")==0){
-						str = str.concat("AND items.cateogry = '" + category + "AND items.size ="+ size+ "';");
+						str = str.concat("AND items.cateogry = '" + category + "' AND items.size = '"+ size+ "';");
 					}
 					else{
-						str = str.concat("SELECT * FROM items, auctioncontains auc WHERE auc.item_id=items.item_id AND (auc.active IS NULL OR auc.active=true) AND items.cateogry = '" + category +"AND items.color ="+ color + "AND items.size ="+ size+ "';");
-						out.println("World");
+						str = str.concat(" AND items.cateogry = '" + category +"' AND items.color = '"+ color + "' AND items.size = '"+ size+ "';");
+						/* out.println("World"); */
 					}
-					out.println("55");
+					out.println(str);
 					ResultSet result = stmt.executeQuery(str);
 					out.println("888");
 					
