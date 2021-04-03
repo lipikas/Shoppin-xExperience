@@ -41,8 +41,8 @@
 				//Insert new auction into auctioncontains
 				String id = session.getAttribute("id").toString();
  				ps = con.prepareStatement("INSERT INTO AuctionContains " +
- 						"(current_price, end_time, bid_inc, min_price, item_id, creator_id, active) " +
- 						"VALUES ('"+ initialprice +"','"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"','"+ id +"',TRUE);");
+ 						"(initial_price, current_price, end_time, bid_inc, min_price, item_id, creator_id, active) " +
+ 						"VALUES ('"+ initialprice +"','" + initialprice+"','"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"','"+ id +"',TRUE);");
  				ps.executeUpdate();
  				//Alert users who have the new item as a WishListed item
  				Statement alertstmt = con.createStatement();
