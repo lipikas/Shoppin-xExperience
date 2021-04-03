@@ -10,12 +10,22 @@
 	<title>Bid History</title>
 	</head>
 	<style>
+	  body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+		font-size:16px;
+	  }
 	  table,
       th,
       td {
         padding: 6px;
         border: 2px solid lightgrey;
         border-collapse: collapse;
+      }
+      th{
+      	font-weight: 520;
+      }
+      h2{
+      	font-weight: 500;
       }
 	</style>
 	<body>	

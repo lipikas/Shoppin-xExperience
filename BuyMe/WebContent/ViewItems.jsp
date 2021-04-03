@@ -8,15 +8,25 @@
 <html>
 	<head>
 	<meta charset="ISO-8859-1">
-	<title>Bid History</title>
+	<title>Search Items</title>
 	</head>
 	<style>
+	  body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+		font-size:16px;
+	  }
 	  table,
       th,
       td {
         padding: 6px;
         border: 2px solid lightgrey;
         border-collapse: collapse;
+      }
+      th{
+      	font-weight: 520;
+      }
+      h2{
+      	font-weight: 500;
       }
 	</style>
 	<body>	
@@ -73,10 +83,16 @@
 			
 			<% 
 			String sort_func = "Decreasing bid price";
-			out.print("Hi");
-			String category = request.getParameter("category");
-			String color = request.getParameter("color");
+/* 			out.print("Hi"); */
+			String category = request.getParameter("Category");
+			String color = request.getParameter("Color");
 			String size = request.getParameter("size");
+			
+	/* 		out.println("Category" + category);
+			out.println("Color" + color); 
+			out.println("size" + size);  */
+			
+			
 			String group = "";
 			if(sort_func.compareTo("Decreasing bid price")==0){
 				group = group.concat("ASC");
@@ -89,8 +105,8 @@
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
-					String str = "SELECT * FROM items, AuctionContains auc WHERE auc.item_id=items.item_id AND auc.active IS NULL OR auc.active=true";
-					
+					String str = "SELECT * FROM items, auctioncontains auc WHERE auc.item_id=items.item_id AND (auc.active IS NULL OR auc.active=true) ";
+					out.println("55");
 					if(color.compareTo("any")==0){
 						str = str.concat("AND items.cateogry = '" + category + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';");
 					}
@@ -99,6 +115,7 @@
 					}
 					 
 					ResultSet result = stmt.executeQuery(str);
+					out.println("888");
 					
 					if (result.next()){
 						//Valid query - user inputted data

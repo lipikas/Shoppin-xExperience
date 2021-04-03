@@ -8,15 +8,25 @@
 <html>
 	<head>
 	<meta charset="ISO-8859-1">
-	<title>Bid History</title>
+	<title>Search Items</title>
 	</head>
 	<style>
+	  body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+		font-size:16px;
+	  }
 	  table,
       th,
       td {
         padding: 6px;
         border: 2px solid lightgrey;
         border-collapse: collapse;
+      }
+      th{
+      	font-weight: 520;
+      }
+      h2{
+      	font-weight: 500;
       }
 	</style>
 	<body>	
@@ -61,10 +71,10 @@
 			<div>
 			<h2>Search your Items</h2>
 					 <label>Sort by </label>
-			 <form id = "search" method="POST" action="ViewItems.jsp">
+			 <form id = "search" method="POST" action="ViewItems2.jsp">
 		       	<select name="Sort" id="sort">
-		       	    <option value="inc_price">Increasing bid price</option>
-		   			<option value="dec_pric">Decreasing bid price</option>
+		       	    <option value="inc_price">Decreasing bid price</option>
+		   			<option value="dec_pric">Increasing bid price</option>
 		   		<!-- 	<option value="auction">Soonest Auction Closing</option> -->
 		   		</select>
 		        <input type="submit" value="Submit" id="submit" />
@@ -72,23 +82,31 @@
 		      </div>
 			
 			<% 
-			String sort_func = request.getParameter("Sort");
-			String category = request.getParameter("category");
-			String color = request.getParameter("color");
+			String sort_func = "Decreasing bid price";
+/* 			out.print("Hi"); */
+			String category = request.getParameter("Category");
+			String color = request.getParameter("Color");
 			String size = request.getParameter("size");
+			
+	/* 		out.println("Category" + category);
+			out.println("Color" + color); 
+			out.println("size" + size);  */
+			
+			
 			String group = "";
-			if(sort_func.compareTo("Increasing bid price")==0){
+			if(sort_func.compareTo("Decreasing bid price")==0){
 				group = group.concat("ASC");
 			}
-			else if(sort_func.compareTo("Decreasing bid price")==0){
+			else if(sort_func.compareTo("Increasing bid price")==0){
 				group = group.concat("DESC");
 			}
+			out.print("Helo");
 			  try {
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
-					String str = "SELECT * FROM items, AuctionContains auc WHERE auc.item_id=items.item_id AND auc.active IS NULL OR auc.active=true";
-					
+					String str = "SELECT * FROM items, auctioncontains auc WHERE auc.item_id=items.item_id AND (auc.active IS NULL OR auc.active=true) ";
+					out.println("55");
 					if(color.compareTo("any")==0){
 						str = str.concat("AND items.cateogry = '" + category + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';");
 					}
@@ -97,6 +115,7 @@
 					}
 					 
 					ResultSet result = stmt.executeQuery(str);
+					out.println("888");
 					
 					if (result.next()){
 						//Valid query - user inputted data
@@ -112,6 +131,8 @@
 							out.print("<th> Item Name </th>"); // same as Item Description?
 						out.print("</tr>");  
 							
+						out.print("Helo");
+						
 						out.print("<tr>");    
 						out.print("<td>");
 						out.print(result.getString("item_id"));// from table
@@ -129,9 +150,11 @@
 						out.print(result.getString("description"));
 						out.print("</td>");
 						out.print("</tr>");  
-						
+						out.print("3336666");
 						while (result.next()) { 
-							out.print("<tr>");    
+							out.print("<tr>");   
+							out.print("wwww");
+							
 							
 								out.print("<td>");
 								out.print(result.getString("item_id"));// from table
