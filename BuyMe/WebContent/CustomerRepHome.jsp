@@ -62,8 +62,8 @@
 
 		<div class="topnav">
 	      <a href="Messages.jsp">Messages</a>
-	      <a href="ManageAcoounts.jsp">Manage User Accounts</a>
-	      <a href="ManageAcoounts.jsp">Manage Auctions</a>
+	      <a href="ManageAccounts.jsp">Manage User Accounts</a>
+	      <a href="ManageAuctions.jsp">Manage Auctions</a>
 	      <input type="text" placeholder="Search..">
 	      <a href="Logout.jsp">Logout</a>	      
 	    </div>
