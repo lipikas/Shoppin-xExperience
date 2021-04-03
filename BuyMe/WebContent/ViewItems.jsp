@@ -73,8 +73,8 @@
 					 <label>Sort by </label>
 			 <form id = "search" method="POST" action="ViewItems2.jsp">
 		       	<select name="Sort" id="sort">
-		       	    <option value="inc_price">Decreasing bid price</option>
-		   			<option value="dec_pric">Increasing bid price</option>
+		       	    <option value="dec_price">Decreasing bid price</option>
+		   			<option value="inc_pric">Increasing bid price</option>
 		   		<!-- 	<option value="auction">Soonest Auction Closing</option> -->
 		   		</select>
 		        <input type="submit" value="Submit" id="submit" />
@@ -106,21 +106,21 @@
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
 					String str = "SELECT * FROM items, auctioncontains auc WHERE auc.item_id=items.item_id AND (auc.active IS NULL OR auc.active=true) ";
-					out.println("55");
+					
 					if(color.compareTo("any")==0){
-						str = str.concat("AND items.cateogry = '" + category + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';");
+						str = str.concat("AND items.cateogry = '" + category + "AND items.size ="+ size+ "';");
 					}
 					else{
-						str = str.concat("AND items.cateogry = '" + category +"AND items.color ="+ color + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';");
+						str = str.concat("SELECT * FROM items, auctioncontains auc WHERE auc.item_id=items.item_id AND (auc.active IS NULL OR auc.active=true) AND items.cateogry = '" + category +"AND items.color ="+ color + "AND items.size ="+ size+ "';");
+						out.println("World");
 					}
-					 
+					out.println("55");
 					ResultSet result = stmt.executeQuery(str);
 					out.println("888");
 					
 					if (result.next()){
 						//Valid query - user inputted data
 						//"SELECT * FROM AuctionContains auc WHERE auc.active IS NULL OR auc.active=true";
-						
 						
 						out.print("<table>");
 						out.print("<tr>");    
@@ -131,52 +131,23 @@
 							out.print("<th> Item Name </th>"); // same as Item Description?
 						out.print("</tr>");  
 							
-						out.print("Helo");
-						
 						out.print("<tr>");    
-						out.print("<td>");
-						out.print(result.getString("item_id"));// from table
-						out.print("</td>");
-						out.print("<td>");
-						out.print(result.getString("current_price"));
-						out.print("</td>");
-						out.print("<td>");
-						out.print(result.getString("creater_id"));
-						out.print("</td>");
-						out.print("<td>");
-						out.print(result.getString("auction_id"));
-						out.print("</td>");
-						out.print("<td>");
-						out.print(result.getString("description"));
-						out.print("</td>");
-						out.print("</tr>");  
-						out.print("3336666");
+						out.print("<td>" + result.getString("item_id") +"</td>");
+						out.print("<td>" + result.getString("current_price") +"</td>");
+						out.print("<td>" + result.getString("creater_id") +"</td>");
+						out.print("<td>" + result.getString("auction_id") +"</td>");
+						out.print("<td>" + result.getString("description") +"</td>");
+						out.print("</tr>"); 
+						
+			
 						while (result.next()) { 
-							out.print("<tr>");   
-							out.print("wwww");
-							
-							
-								out.print("<td>");
-								out.print(result.getString("item_id"));// from table
-								out.print("</td>");
-								
-								out.print("<td>");
-								out.print(result.getString("current_price"));
-								out.print("</td>");
-								out.print("<td>");
-								out.print(result.getString("creater_id"));
-								out.print("</td>");
-								
-								out.print("<td>");
-								out.print(result.getString("auction_id"));
-								out.print("</td>");
-								
-								out.print("<td>");
-								out.print(result.getString("description"));
-								out.print("</td>");
-	 
-							out.print("</tr>");  
-							
+							out.print("<tr>");    
+							out.print("<td>" + result.getString("item_id") +"</td>");
+							out.print("<td>" + result.getString("current_price") +"</td>");
+							out.print("<td>" + result.getString("creater_id") +"</td>");
+							out.print("<td>" + result.getString("auction_id") +"</td>");
+							out.print("<td>" + result.getString("description") +"</td>");
+							out.print("</tr>"); 			
 						}
 						out.print("</table>");
 						

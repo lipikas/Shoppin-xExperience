@@ -71,10 +71,10 @@
 			<div>
 			<h2>Search your Items</h2>
 					 <label>Sort by </label>
-			 <form id = "search" method="POST" action="ViewItems2.jsp">
+			 <form id = "search" method="POST" action="ViewItems.jsp">
 		       	<select name="Sort" id="sort">
-		       	    <option value="inc_price">Decreasing bid price</option>
-		   			<option value="dec_pric">Increasing bid price</option>
+		       	    <option value="inc_price" >Increasing bid price</option>
+		   			<option value="dec_pric">Decreasing bid price</option>
 		   		<!-- 	<option value="auction">Soonest Auction Closing</option> -->
 		   		</select>
 		        <input type="submit" value="Submit" id="submit" />
@@ -106,14 +106,15 @@
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
 					String str = "SELECT * FROM items, auctioncontains auc WHERE auc.item_id=items.item_id AND (auc.active IS NULL OR auc.active=true) ";
-					out.println("55");
+					
 					if(color.compareTo("any")==0){
-						str = str.concat("AND items.cateogry = '" + category + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';");
+						str = str.concat("AND items.cateogry = '" + category + "AND items.size ="+ size+ "ORDER BY current_price "+ group+"';");
 					}
 					else{
-						str = str.concat("AND items.cateogry = '" + category +"AND items.color ="+ color + "AND items.size ="+ size+ "ORDER BY auc.current_price ="+ group+"';");
+						str = str.concat("AND items.cateogry = '" + category +"AND items.color ="+ color + "AND items.size ="+ size+ "ORDER BY current_price "+ group+"';");
+						out.println("World");
 					}
-					 
+					out.println("55");
 					ResultSet result = stmt.executeQuery(str);
 					out.println("888");
 					
