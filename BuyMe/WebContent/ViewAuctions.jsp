@@ -10,12 +10,22 @@
 	<title>BuyMe - Auctions</title>
 	</head>
 	<style>
+	  body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+		font-size:16px;
+	  }
 	  table,
       th,
       td {
         padding: 6px;
         border: 2px solid lightgrey;
         border-collapse: collapse;
+      }
+      th{
+      	font-weight: 520;
+      }
+      h2{
+      	font-weight: 500;
       }
 	</style>
 	<body>
@@ -71,10 +81,10 @@
 			ResultSet result = stmt.executeQuery(str);
 			%>
 			
-			<table border="1">
+			<table>
 				<tr>
-					<td>Auction ID</td>	<td>Current Bid</td> <td>End Date</td> <td>End Time</td>
-					<td>Item Category</td> <td>Item Color</td> <td>Item Size</td> <td>Item Description</td>
+					<th>Auction ID</th>	<th>Current Bid</th> <th>End Date</th> <th>End Time</th>
+					<th>Item Category</th> <th>Item Color</th> <th>Item Size</th> <th>Item Description</th>
 				</tr>
 				<%
 				//parse out the results

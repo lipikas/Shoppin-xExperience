@@ -161,10 +161,10 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         <h2>Auction History</h2>
         <form method="POST" action="AuctionHistory.jsp">
           <label>Sort by </label>
-          <select name="dropdown" id="dropdown">
-          	    <option value="b_id">Buyer id</option>
-   				<option value="s_id">Seller id</option>
-   			</select>
+          <select name = "auction_history">
+          	    <option value="bc_id">Buyer id</option>
+   				<option value="sc_id">Seller id</option>
+   		  </select>
  
             <input type="number" name="c_id" id="c_id" required min="1" />
           	<input type="submit" value="Submit" id="submit" />
