@@ -9,7 +9,15 @@
 	<meta charset="ISO-8859-1">
 	<title>BuyMe - Auctions</title>
 	</head>
-	
+	<style>
+	  table,
+      th,
+      td {
+        padding: 6px;
+        border: 2px solid lightgrey;
+        border-collapse: collapse;
+      }
+	</style>
 	<body>
 		<%//START OF AUCTION UPDATING
 			//close old auctions
@@ -53,6 +61,7 @@
 		<h2>All Ongoing Auctions</h2>
 		<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid on an Auction</a>"); %>
 		<br>
+		<br>
 		 <% try{
 			//get the connection
 			ApplicationDB db = new ApplicationDB();
@@ -64,7 +73,7 @@
 			
 			<table border="1">
 				<tr>
-					<td>Auction ID</td>	<td>Current Bid</td> <td>End Date</td> <td>End Time</td> <td>Bid Increment</td>
+					<td>Auction ID</td>	<td>Current Bid</td> <td>End Date</td> <td>End Time</td>
 					<td>Item Category</td> <td>Item Color</td> <td>Item Size</td> <td>Item Description</td>
 				</tr>
 				<%
@@ -92,7 +101,6 @@
 						<td><%out.print(result.getString("current_price"));%></td>
 						<td><%out.print(result.getString("end_time").split(" ")[0]); %></td>
 						<td><%out.print(result.getString("end_time").split(" ")[1]); %></td>
-						<td><%out.print(result.getString("bid_inc"));%></td>
 						<td><%=category%></td>
 						<td><%=color%></td>
 						<td><%=size%></td>
