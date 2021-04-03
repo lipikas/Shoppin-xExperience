@@ -20,6 +20,16 @@
 		 		ApplicationDB db = new ApplicationDB();
 				Connection con = db.getConnection();
 				
+				//get item id to delete from item
+				
+				Statement st = con.createStatement();
+				String query = "SELECT item_id FROM auctioncontains WHERE auction_id ='" + aucid + "'";
+				ResultSet result = st.executeQuery(query);
+				int itemid = 0;
+				while(result.next()){
+					String str = result.getString("item_id");
+					itemid = Integer.parseInt(str);
+				}
 				
 				//delete from auctioncontains
 				PreparedStatement ps = con.prepareStatement("DELETE FROM auctioncontains WHERE auction_id='"+aucid+"';");;
@@ -28,6 +38,10 @@
 				//delete all bids pertaining to this auction
 				PreparedStatement ps1 = con.prepareStatement("DELETE FROM bids WHERE auction_id = '" + aucid + "';");;
 				ps1.executeUpdate();
+				
+				//delete item from items
+				PreparedStatement ps2 = con.prepareStatement("DELETE FROM items WHERE item_id = '" + itemid + "';");;
+				ps2.executeUpdate();
 				
 			
 				out.println("Auction and all pertaining bids have been removed");
