@@ -71,7 +71,9 @@
 			con0.close();
 		//END OF AUCTION UPDATING%>
 		<h2>All Ongoing Auctions</h2>
-		<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid on an Auction</a>"); %>
+		<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid</a>"); %>
+		<br>
+		<% out.println("<a href=\"AutoBid.jsp\">Click Here to Start AutoBiding</a>"); %>
 		<br>
 		<br>
 		 <% try{
