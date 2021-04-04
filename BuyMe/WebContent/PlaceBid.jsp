@@ -15,7 +15,6 @@
       <form method="POST" action="BidValidate.jsp">
         <p >Auction ID: <input type="text" name="Auction ID" id="auc_id" required /></p>
         <p >Bid Amount: <input type="text" name="Bid Amount" id="amnt" required  /></p>
-        <p >Upper Limit: <input type="text" name="Upper Limit" id="username" required /></p>
         <p>
           <input type="submit" value="Place Bid" id="submit" />
         </p>
