@@ -17,18 +17,12 @@
 			String id = session.getAttribute("id").toString();
 			String auc_id = request.getParameter("Auction ID");	
 			String amount = request.getParameter("Bid Amount");	
-			String max = request.getParameter("Upper Limit");
 			
 			double price = Double.parseDouble(amount);
-			double upprice = Double.parseDouble(max);
 			
-			if(upprice < price){
-				out.println("Please Enter an Upper Limit Greater Than or Equal to Bid Amount");
-				%><a href="PlaceBid.jsp">Back to Place Bid</a><%
-				
-			}
-			else{
-				try {
+			
+			
+			try {
 		 		    ApplicationDB db = new ApplicationDB();
 				    Connection con = db.getConnection();
 				    
@@ -76,8 +70,8 @@
 				    	
 				    	//Insert new bid into bids
 						PreparedStatement ps = con.prepareStatement("INSERT INTO bids " +
-								"(creator_id, auction_id, price, upper_limit) " +
-								"VALUES ('"+ id +"','"+ auc_id +"','"+ amount +"','"+ max +"');");
+								"(creator_id, auction_id, price) " +
+								"VALUES ('"+ id +"','"+ auc_id +"','"+ amount +"');");
 						ps.executeUpdate();
 						out.println("Bid has been placed for $" + amount +" on auction with auction ID " + auc_id);
 						out.println("<br>");
