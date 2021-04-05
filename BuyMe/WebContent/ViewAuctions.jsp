@@ -87,7 +87,7 @@
 			
 			<table>
 				<tr>
-					<th>Auction ID</th>	<th>Current Bid</th> <th>End Date</th> <th>End Time</th>
+					<th>Auction ID</th>	<th>Current Bid</th> <th>Minimum Bid Increment</th> <th>End Date</th> <th>End Time</th>
 					<th>Item Category</th> <th>Item Color</th> <th>Item Size</th> <th>Item Description</th>
 				</tr>
 				<%
@@ -113,6 +113,7 @@
 					<tr>
 						<td><%out.print(result.getString("auction_id"));%></td>
 						<td><%out.print(result.getString("current_price"));%></td>
+						<td><%out.print(result.getString("bid_inc"));%></td>
 						<td><%out.print(result.getString("end_time").split(" ")[0]); %></td>
 						<td><%out.print(result.getString("end_time").split(" ")[1]); %></td>
 						<td><%=category%></td>
