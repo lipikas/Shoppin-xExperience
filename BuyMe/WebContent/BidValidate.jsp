@@ -68,6 +68,7 @@
 				    
 				    	else{
 				    	
+				    		
 				    	//Insert new bid into bids
 						PreparedStatement ps = con.prepareStatement("INSERT INTO bids " +
 								"(creator_id, auction_id, price) " +
@@ -83,6 +84,19 @@
 						preps.executeUpdate();	
 						PreparedStatement prep1 = con.prepareStatement("UPDATE auctioncontains SET highest_bidder_id = '" + id +"' WHERE auction_id='" + auc_id+"'");
 						prep1.executeUpdate();
+						
+						//alert previous bidders of the auction that a higher bid has been placed
+				    	Statement alert_statement = con.createStatement();
+				    	ResultSet alert_rs = alert_statement.executeQuery("SELECT  DISTINCT creator_id FROM bids WHERE auction_id='"+auc_id+"';");
+				    	while (alert_rs.next()) {
+				    		String alert_id = alert_rs.getString("creator_id");
+				    		String alert_str = "INSERT INTO alerts (c_id, message) VALUES ('"+alert_id+"', '"+"New highest bid " +
+				    				"placed for auction: "+auc_id+" new price: "+price+"');";
+				    		//System.out.println(alert_str);
+				    		PreparedStatement alert_ps = con.prepareStatement(alert_str);
+				    		alert_ps.executeUpdate();		
+				    	}
+				    	
 				    }
 					
 					con.close();
@@ -90,9 +104,9 @@
 				} catch (Exception e) {
 					out.println("Error placing bid!");
 					%><a href="CustomerHome.jsp">Back to Homepage</a><%
-					e.printStackTrace();
+					//e.printStackTrace();
 				}	
-			}
+			
 			
 		%>
 		
