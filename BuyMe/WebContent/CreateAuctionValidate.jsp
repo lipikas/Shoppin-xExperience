@@ -2,6 +2,8 @@
     pageEncoding="ISO-8859-1" import="com.cs336.pkg.*"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*" %>
+<%@ page import="java.time.format.DateTimeFormatter"%>
+<%@ page import="java.time.LocalDateTime"%>
 <!DOCTYPE html>
 <html>
 
@@ -12,7 +14,9 @@
 	
 	<body>
 		<%	
-			
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+			LocalDateTime now = LocalDateTime.now(); 
+		    String curTime = now.toString().split("T")[0];
 			String endtime = request.getParameter("endtime");
 			String initialprice = request.getParameter("initialprice");
 			String minprice = request.getParameter("minprice");
@@ -41,8 +45,8 @@
 				//Insert new auction into auctioncontains
 				String id = session.getAttribute("id").toString();
  				ps = con.prepareStatement("INSERT INTO AuctionContains " +
- 						"(initial_price, current_price, end_time, bid_inc, min_price, item_id, creator_id, active) " +
- 						"VALUES ('"+ initialprice +"','" + initialprice+"','"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"','"+ id +"',TRUE);");
+ 						"(initial_price, current_price, startdate, end_time, bid_inc, min_price, item_id, creator_id, active) " +
+ 						"VALUES ('"+ initialprice +"','" + initialprice+"', '"+curTime+"' ,'"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"','"+ id +"',TRUE);");
  				ps.executeUpdate();
  				//Alert users who have the new item as a WishListed item
  				Statement alertstmt = con.createStatement();
