@@ -52,6 +52,7 @@ CREATE TABLE `auctioncontains` (
   `auction_id` int(11) NOT NULL AUTO_INCREMENT,
   `initial_price` float DEFAULT NULL,
   `current_price` float DEFAULT NULL,
+  `startdate` date DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
   `bid_inc` float DEFAULT NULL,
   `min_price` float DEFAULT NULL,
