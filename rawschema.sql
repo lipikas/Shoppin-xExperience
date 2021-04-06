@@ -111,3 +111,4 @@ CREATE TABLE AuctionContains (
     foreign key (item_id) references Items (item_id)
 );
 
+
