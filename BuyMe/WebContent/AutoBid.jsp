@@ -17,6 +17,7 @@
         <p >Auction ID: <input type="text" name="Auction ID" id="auc_id" required /></p>
         <p >Bid Amount: <input type="text" name="Bid Amount" id="amnt" required  /></p>
         <p >Upper Limit: <input type="text" name="Upper Limit" id="upper" required  /></p>
+	<p >Increment AutoBid by: <input type="text" name="Auto Inc" id="autoinc" required  /></p>
         <p>
           <input type="submit" value="Place AutoBid" id="submit" />
         </p>
