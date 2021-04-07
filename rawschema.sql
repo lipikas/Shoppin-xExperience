@@ -84,12 +84,13 @@ CREATE TABLE Alerts (
 
 DROP TABLE IF EXISTS Questions;
 CREATE TABLE Questions (
+	b_id int,
 	c_id int,
     staff_id int,
     message varchar(100),
     answer varchar(100),
     answered boolean,
-    primary key (c_id, message),
+    primary key (b_id),
     foreign key (c_id) references Customers (c_id),
     foreign key (staff_id) references Staff (staff_id)
 );
