@@ -70,7 +70,8 @@ CREATE TABLE Bids (
     auction_id int NOT NULL,
     foreign key (creator_id) references Customers(c_id),
     price float,
-    upper_limit float
+    upper_limit float,
+	auto_inc float
 );
 
 DROP TABLE IF EXISTS Alerts;
