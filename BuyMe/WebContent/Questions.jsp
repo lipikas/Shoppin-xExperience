@@ -33,6 +33,13 @@
 	<body>
 	
 		<h2>Questions</h2>
+		
+		<p>Enter Keyword to Search Questions</p>
+		<form method="POST" action="SearchQuestions.jsp">
+  			<input type="text" placeholder="Search.." name="search">
+  			
+		</form>
+		<br>
 		<% out.println("<a href=\"PostQuestions.jsp\">Click Here to Post a Question</a>"); %>
 		<br>
 		<br>
