@@ -16,7 +16,7 @@
 		    
 			
 			String searched = request.getParameter("search");	
-			searched = searched.toLowerCase();
+			searched = searched.replaceAll("\\p{Punct}", "").toLowerCase();
 			
 			try {
 		 		    ApplicationDB db = new ApplicationDB();
