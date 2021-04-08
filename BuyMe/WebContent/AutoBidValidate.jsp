@@ -117,24 +117,26 @@
 				    		while (true) {
 				    			if (lastBidder == 0) {
 				    				if (cur + competitor_inc <= competitor_upper_limit) {
+				    					//competitor places bid
 				    					cur += competitor_inc;
 				    					System.out.println("comp bid: " + cur);
 				    					lastBidder = 1;
 				    					continue;
 				    				} else {
-				    					//user bids once more and is the winner
+				    					//user could not bid once more, so the competitor wins
 				    					System.out.println("user won");
 				    					winner_id = id;
 				    					loser_id = competitor_id;
 					    				loser_upper_limit = competitor_upper_limit;
 					    				winner_upper_limit = user_upper_limit;
 					    				winner_inc = user_inc;
-					    				winner_cur = price;
+					    				winner_cur = cur;
 					    				break;
 				    				}
 				    			}
 			    				if (lastBidder == 1) {
 				    				if (cur + user_inc <= user_upper_limit) {
+				    					//user places bid
 				    					cur += user_inc;
 				    					System.out.println("user bid: " + cur);
 				    					lastBidder = 0;
@@ -147,7 +149,7 @@
 					    				loser_upper_limit = user_upper_limit;
 					    				winner_upper_limit = competitor_upper_limit;
 					    				winner_inc = competitor_inc;
-					    				winner_cur = competitor_curr;
+					    				winner_cur = cur;
 					    				break;
 				    				}
 				    			}
@@ -160,10 +162,15 @@
 										"(creator_id, auction_id, price, upper_limit, auto_inc) " +
 										"VALUES ('"+ winner_id +"','"+ auc_id +"','"+ cur +"', '"+winner_upper_limit+"', '"+winner_inc+"');");
 				    			bidwar_ps.executeUpdate();
-				    			//alert the loser that they have been out-bidded
-				    			bidwar_ps = con.prepareStatement("INSERT INTO alerts (c_id, message) VALUES ('"+
-				    				loser_id+"',  'New highest bid placed for auction: "+auc_id+" new price: "+cur+"');");
-				    			bidwar_ps.executeUpdate();
+				    			//alert previous bidders of the new highest bid
+				    			alert_rs = alert_statement.executeQuery("SELECT  DISTINCT creator_id FROM bids WHERE auction_id='"+auc_id+"';");
+						    	while (alert_rs.next()) {
+						    		String alert_id = alert_rs.getString("creator_id");
+						    		String alert_str = "INSERT INTO alerts (c_id, message) VALUES ('"+alert_id+"', '"+"New highest bid " +
+						    				"placed for auction: "+auc_id+" new price: "+cur+"');";
+						    		PreparedStatement alert_ps = con.prepareStatement(alert_str);
+						    		alert_ps.executeUpdate();		
+						    	}
 				    	}
 				    	//END OF AUTO BIDDING
 				    }
