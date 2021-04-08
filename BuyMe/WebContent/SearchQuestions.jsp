@@ -36,6 +36,9 @@
 							if(searched.equals(word)){
 								count++;
 								String answer = result.getString("answer");
+								if(answer == null){
+									answer = "Not yet answered. A customer Rep will answer this question soon.";
+								}
 								if(printed == false){
 									out.println("Match Found!");
 									out.println("<br>");
