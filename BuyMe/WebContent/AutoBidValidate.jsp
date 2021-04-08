@@ -14,6 +14,8 @@
 			String auc_id = request.getParameter("Auction ID");	
 			String amount = request.getParameter("Bid Amount");	
 			String upper_limit = request.getParameter("Upper Limit");
+			String bid_inc = request.getParameter("Auto Inc");
+			double oldPrice = 0f;
 			double price = Double.parseDouble(amount);
 			try {
 		 		    ApplicationDB db = new ApplicationDB();
@@ -26,6 +28,7 @@
 					while(result.next()){
 						String str = result.getString("a.current_price");
 						currprice = Double.parseDouble(str);
+						oldPrice = currprice;
 					}
 					//see if auction is still active and if bid is valid with bid increment
 					Statement st1 = con.createStatement();
@@ -47,6 +50,9 @@
 					else if(currprice + bidinc > price){ //see if the bid is following bid_inc rules
 						out.println("Bid amount does not follow bid increment rules. Please place higher bid");
 						%><a href="AutoBid.jsp">Back to Place Bid</a><%
+					} else if (Float.parseFloat(bid_inc) < bidinc){
+						out.println("AutoBid increment is lower than the bid increment of the auction");
+						%><a href="AutoBid.jsp">Back to Place Bid</a><%
 					}
 					else if(price <= currprice){
 				    	out.println("Bid Amount is Lower Than Current Price. Please Place a Higher Bid");
@@ -55,8 +61,8 @@
 				    else{
 				    	//Insert new bid into bids
 						PreparedStatement ps = con.prepareStatement("INSERT INTO bids " +
-								"(creator_id, auction_id, price, upper_limit) " +
-								"VALUES ('"+ id +"','"+ auc_id +"','"+ amount +"', '"+upper_limit+"');");
+								"(creator_id, auction_id, price, upper_limit, auto_inc) " +
+								"VALUES ('"+ id +"','"+ auc_id +"','"+ amount +"', '"+upper_limit+"', '"+bid_inc+"');");
 						ps.executeUpdate();
 						out.println("AutoBid has been placed for $" + amount +" on auction with auction ID " + auc_id);
 						out.println("<br>");
@@ -78,68 +84,95 @@
 				    	}
 				    	//AUTO BIDDING
 				    	//check if there is another autobidder whos upper_limit has not been reached on this auction, there can only be one at a time
-				    	System.out.println(1);
 				    	Statement autobid_stmt = con.createStatement();
-				    	ResultSet autobid_rs = autobid_stmt.executeQuery("SELECT DISTINCT creator_id, upper_limit FROM bids WHERE auction_id='"+auc_id
+				    	ResultSet autobid_rs = autobid_stmt.executeQuery("SELECT DISTINCT creator_id, upper_limit, auto_inc FROM bids WHERE auction_id='"+auc_id
 				    			+"' AND upper_limit > "+price+" AND creator_id <> '"+id+"' ;");
 				    	String competitor_id = null;
 				    	double competitor_upper_limit = 0f;
+				    	double competitor_inc = 0f;
 				    	double user_upper_limit = Float.parseFloat(upper_limit);
-				    	System.out.println(2);
+				    	double user_inc = Float.parseFloat(bid_inc);
 				    	while (autobid_rs.next()) {
 				    		competitor_id = autobid_rs.getString("creator_id");
 				    		competitor_upper_limit = autobid_rs.getFloat("upper_limit");
+				    		competitor_inc = autobid_rs.getFloat("auto_inc");
 				    		if (competitor_id.compareTo(id) == 0) {
 				    			competitor_id = null;
 				    		}
 				    		System.out.println("comp_id: "+competitor_id);
 				    		System.out.println("comp_upper: "+competitor_upper_limit);
+				    		System.out.println("comp_inc: "+competitor_inc);
 				    	}
-				    	System.out.println(3);
 				    	String winner_id = null;
 				    	String loser_id = null;
 				    	double loser_upper_limit = 0f;
 				    	double winner_upper_limit = 0f;
-				    	//make sure there is a competitor and that the difference of upperlimits can be surpassed by a single bid
-				    	if (competitor_id != null && Math.abs(competitor_upper_limit - user_upper_limit) >= bidinc){
-				    		System.out.println(4);
-				    			if (competitor_upper_limit > user_upper_limit) {
-				    				winner_id = competitor_id;
-				    				loser_id = id;
-				    				loser_upper_limit = user_upper_limit;
-				    				winner_upper_limit = competitor_upper_limit;
-				    			} else {
-				    				winner_id = id;
-				    				loser_id = competitor_id;
-				    				loser_upper_limit = competitor_upper_limit;
-				    				winner_upper_limit = user_upper_limit;
+				    	double winner_inc = 0f;
+				    	double winner_cur = 0f;
+				    	double cur = oldPrice;
+				    	//make sure there is a competitor
+				    	if (competitor_id != null ){
+				    		double competitor_curr = oldPrice;
+				    		short lastBidder = 0;//0 for user, 1 for competitor
+				    		while (true) {
+				    			if (lastBidder == 0) {
+				    				if (cur + competitor_inc <= competitor_upper_limit) {
+				    					cur += competitor_inc;
+				    					System.out.println("comp bid: " + cur);
+				    					lastBidder = 1;
+				    					continue;
+				    				} else {
+				    					//user bids once more and is the winner
+				    					System.out.println("user won");
+				    					winner_id = id;
+				    					loser_id = competitor_id;
+					    				loser_upper_limit = competitor_upper_limit;
+					    				winner_upper_limit = user_upper_limit;
+					    				winner_inc = user_inc;
+					    				winner_cur = price;
+					    				break;
+				    				}
 				    			}
-				    			//calculate new highest bid by incrementing the current price by bid_inc until we pass the upper_limit of the loser
-				    			double new_highest_bid = price;
-				    			while (new_highest_bid <= loser_upper_limit){
-				    				new_highest_bid += bidinc;
+			    				if (lastBidder == 1) {
+				    				if (cur + user_inc <= user_upper_limit) {
+				    					cur += user_inc;
+				    					System.out.println("user bid: " + cur);
+				    					lastBidder = 0;
+				    					continue;
+				    				} else {
+				    					//competitor is the winner
+				    					System.out.println("comp won");
+				    					winner_id = competitor_id;
+					    				loser_id = id;
+					    				loser_upper_limit = user_upper_limit;
+					    				winner_upper_limit = competitor_upper_limit;
+					    				winner_inc = competitor_inc;
+					    				winner_cur = competitor_curr;
+					    				break;
+				    				}
 				    			}
+				    		}
 				    			//update with the new highest bid
 				    			PreparedStatement bidwar_ps = con.prepareStatement("UPDATE auctioncontains SET current_price = '"+
-				    			new_highest_bid +"', highest_bidder_id='"+winner_id+"' WHERE auction_id='"+ auc_id +"'");
+				    			cur +"', highest_bidder_id='"+winner_id+"' WHERE auction_id='"+ auc_id +"'");
 				    			bidwar_ps.executeUpdate();	
 				    			bidwar_ps = con.prepareStatement("INSERT INTO bids " +
-										"(creator_id, auction_id, price, upper_limit) " +
-										"VALUES ('"+ winner_id +"','"+ auc_id +"','"+ new_highest_bid +"', '"+winner_upper_limit+"');");
+										"(creator_id, auction_id, price, upper_limit, auto_inc) " +
+										"VALUES ('"+ winner_id +"','"+ auc_id +"','"+ cur +"', '"+winner_upper_limit+"', '"+winner_inc+"');");
 				    			bidwar_ps.executeUpdate();
 				    			//alert the loser that they have been out-bidded
 				    			bidwar_ps = con.prepareStatement("INSERT INTO alerts (c_id, message) VALUES ('"+
-				    				loser_id+"',  'New highest bid placed for auction: "+auc_id+" new price: "+new_highest_bid+"');");
+				    				loser_id+"',  'New highest bid placed for auction: "+auc_id+" new price: "+cur+"');");
 				    			bidwar_ps.executeUpdate();
 				    	}
 				    	//END OF AUTO BIDDING
 				    }
 					con.close();
-				} catch (Exception e) {
+				    } catch (Exception e) {
 					out.println("Error placing bid!");
 					%><a href="CustomerHome.jsp">Back to Homepage</a><%
 					//e.printStackTrace();
-				}	
+				}
 		%>
 	</body>
 </html>
