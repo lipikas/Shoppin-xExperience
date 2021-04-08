@@ -169,12 +169,13 @@ DROP TABLE IF EXISTS `questions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `questions` (
+	`q_id` int(11) NOT NULL AUTO_INCREMENT,
   `c_id` int(11) NOT NULL,
   `staff_id` int(11) DEFAULT NULL,
   `message` varchar(100) NOT NULL,
   `answer` varchar(100) DEFAULT NULL,
   `answered` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`c_id`,`message`),
+  PRIMARY KEY (`q_id`),
   KEY `staff_id` (`staff_id`),
   CONSTRAINT `questions_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`),
   CONSTRAINT `questions_ibfk_2` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`staff_id`)
