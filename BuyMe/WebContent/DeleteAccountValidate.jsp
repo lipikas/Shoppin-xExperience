@@ -20,8 +20,9 @@
 				Connection con = db.getConnection();
 /* 				
 				//delete from customers table
-				PreparedStatement prep1 = con.prepareStatement("DELETE FROM customers WHERE c_id='"+cid+"';");;
-				prep1.executeUpdate(); */
+				PreparedStatement prep1 = con.prepareStatement("UPDATE customers SET login = NULL WHERE c_id='"+cid+"';");;
+				prep1.executeUpdate();
+				
 				
 				//see if they placed any bids
 				Statement state = con.createStatement();
