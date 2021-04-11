@@ -9,10 +9,16 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<style>
 		body {
-		  font-family: Arial, Helvetica, sans-serif;
+		  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 		  margin: 0;
+		  font-size: 15px;
 		}
-		
+		.forum1{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      	}
 		.navbar {
 		  overflow: hidden;
 		  background-color: #333; 
@@ -43,15 +49,15 @@
 		  margin: 0;
 		}
 		
-		.navbar a:hover, .subnav:hover .subnavbtn {
+		/* .navbar a:hover, .subnav:hover .subnavbtn {
 		  background-color: red;
-		}
+		} */
 		
 		.subnav-content {
 		  display: none;
 		  position: absolute;
 		  left: 0;
-		  background-color: red;
+		  background-color: white;
 		  width: 100%;
 		  z-index: 1;
 		}
@@ -64,12 +70,30 @@
 		
 		.subnav-content a:hover {
 		  background-color: #eee;
-		  color: white;
+		  color: black;
 		}
 		
 		.subnav:hover .subnav-content {
 		  display: block;
 		}
+		#submit{
+        border-style: initial;
+        text-decoration: none;
+        background-color: rgb(46, 45, 45);
+        color: rgb(241, 239, 239);
+        border-radius: 15px;
+  		margin-left: 10px;
+        padding: 0.2rem 0.5rem;
+        font-size: 14px;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+      }
+      #username, #name, #phone, #email, #password {
+        margin-bottom: 0.5rem;
+        border-color: lightgrey;
+        border-style: groove;
+        border-radius: 6px;
+        font-size: 15px;
+      }
 		</style>
 		</head>
 		<body>
@@ -87,7 +111,8 @@
 		  </div>
 		  <a href="Logout.jsp">Logout</a> 
 		</div>
-	<div>
+	<br>
+	<div class = "forum1">
       <form method="POST" action="CustomerRepValidate.jsp">
         <p >Name:<input type="text" name="Name" id="name" required  /></p>
         <p >Phone no: <input type="text" name="Phone Number" id="phone" required /></p>
@@ -97,6 +122,7 @@
         <p>
           <input type="submit" value="Create Account" id="submit" />
         </p>
+        
       </form>
     </div>
 		
