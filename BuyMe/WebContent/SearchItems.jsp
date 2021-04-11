@@ -190,11 +190,11 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 					} else {
 						//InValid query
 						out.println("We have no items available at this time with the matching search requirements.");
-						out.println("<br><br>");
+						out.println("<br><br><br>");
 					}
 					con.close();
 				} catch (Exception e) {
-					out.println("<br> <br>" + e);
+					out.println("<br><br>" + e);
 					e.printStackTrace();
 				}
 			  
@@ -254,7 +254,7 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 						}
 						out.print("</table></div>");
 						}
-						else out.println("No similar items exists in the past month.");
+						else out.println("</br>No similar items exists in the past month.<br>");
 			
 						con.close();
 				} catch (Exception e) {
