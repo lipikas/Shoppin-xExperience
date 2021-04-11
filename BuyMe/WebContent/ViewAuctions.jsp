@@ -99,33 +99,34 @@
 			ApplicationDB db = new ApplicationDB();
 			Connection con = db.getConnection();
 			Statement stmt = con.createStatement();
-			String str = "SELECT * FROM auctioncontains WHERE active=true;";
+			String str = "SELECT * FROM items it, auctioncontains auc WHERE auc.item_id = it.item_id AND (auc.active IS NULL OR auc.active=true) ";
 			ResultSet result = stmt.executeQuery(str);
+			
+			if (result.next()){
 			%>
+			
 			<div>
 			<table>
 				<tr>
 					<th>Auction ID</th>	<th>Current Bid</th> <th>Highest Bidder Id</th> <th>Min Bid Increment</th> <th>End Date</th> <th>End Time</th>
 					<th>Item Category</th> <th>Item Color</th> <th>Item Size</th> <th>Item Description</th>
 				</tr>
-				<%
-				//parse out the results
-				while (result.next()){ 
-					//getting item data
-					String color = "";
-					String size = "";
-					String category = "";
-					String description = "";
-					String itemid = result.getString("item_id");
-					Statement st2 = con.createStatement();
-					String query = "SELECT category, color, size, description FROM Items WHERE item_id='"+ itemid +"';";
-					ResultSet rs = st2.executeQuery(query);
-					while(rs.next()){
-						category = rs.getString("category");
-						color = rs.getString("color");
-						size = rs.getString("size");
-						description = rs.getString("description");
-					}
+				
+				<!-- parse out the results -->
+					<!-- //getting item data -->
+					<tr>
+						<td><%out.print(result.getString("auction_id"));%></td>
+						<td><%out.print(result.getString("current_price"));%></td>
+						<td><%out.print(result.getString("highest_bidder_id"));%></td>
+						<td><%out.print(result.getString("bid_inc"));%></td>
+						<td><%out.print(result.getString("end_time").split(" ")[0]); %></td>
+						<td><%out.print(result.getString("end_time").split(" ")[1]); %></td>
+						<td><%out.print(result.getString("category"));%></td>
+						<td><%out.print(result.getString("color"));%></td>
+						<td><%out.print(result.getString("size"));%></td>
+						<td><%out.print(result.getString("description"));%></td>
+					</tr><%
+					while(result.next()){
 					//filling out table row
 				%>
 					<tr>
@@ -135,17 +136,22 @@
 						<td><%out.print(result.getString("bid_inc"));%></td>
 						<td><%out.print(result.getString("end_time").split(" ")[0]); %></td>
 						<td><%out.print(result.getString("end_time").split(" ")[1]); %></td>
-						<td><%=category%></td>
-						<td><%=color%></td>
-						<td><%=size%></td>
-						<td><%=description%></td>
+						<td><%out.print(result.getString("category"));%></td>
+						<td><%out.print(result.getString("color"));%></td>
+						<td><%out.print(result.getString("size"));%></td>
+						<td><%out.print(result.getString("description"));%></td>
 					</tr>
 				<%}
 				//close the connection.
+			
 				db.closeConnection(con);
 				%>
 			</table> </div>
-			<%} catch (Exception e) {
+			<%}
+			else{
+				out.println("No auctions present at this time.<br>");
+			}
+			} catch (Exception e) {
 			out.print(e);
 			}%>
 		<br> <br>
