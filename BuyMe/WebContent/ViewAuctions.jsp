@@ -14,7 +14,15 @@
 		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 		font-size: 16px;
         color: rgb(46 45 45 / 85%);
+        text-align: center;
+        margin-top: 50px;
 	  }
+	  div{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      }
 	  h2{
       	font-size: 20px;
         font-weight: 500;
@@ -29,6 +37,20 @@
       th{
       	font-weight: 490;
       }
+      	a{
+        border-style: initial;
+        text-decoration: none;
+	    background-color: rgb(230 230 230 / 87%);
+	    color: #000000bd;
+        border-radius: 15px;
+        padding: 0.2rem 0.5rem;
+        flex-direction: row; 
+     }
+      
+     a:hover {
+        background-color: #ddd;
+        color: black;
+     }
 	</style>
 	<body>
 		<%//START OF AUCTION UPDATING
@@ -71,10 +93,6 @@
 			con0.close();
 		//END OF AUCTION UPDATING%>
 		<h2>All Ongoing Auctions</h2>
-		<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid</a>"); %>
-		<br>
-		<% out.println("<a href=\"AutoBid.jsp\">Click Here to Start AutoBiding</a>"); %>
-		<br>
 		<br>
 		 <% try{
 			//get the connection
@@ -84,7 +102,7 @@
 			String str = "SELECT * FROM auctioncontains WHERE active=true;";
 			ResultSet result = stmt.executeQuery(str);
 			%>
-			
+			<div>
 			<table>
 				<tr>
 					<th>Auction ID</th>	<th>Current Bid</th> <th>Highest Bidder Id</th> <th>Min Bid Increment</th> <th>End Date</th> <th>End Time</th>
@@ -126,11 +144,15 @@
 				//close the connection.
 				db.closeConnection(con);
 				%>
-			</table>
+			</table> </div>
 			<%} catch (Exception e) {
 			out.print(e);
 			}%>
-			
+		<br> <br>
+		<% out.println("<a href=\"PlaceBid.jsp\">Click Here to Place a Bid</a>"); %>
+		<br><br>
+		<% out.println("<a href=\"AutoBid.jsp\">Click Here to Start AutoBiding</a>"); %>
+		<br>
 			
 			
 		
