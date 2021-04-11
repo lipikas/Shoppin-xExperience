@@ -43,8 +43,13 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         color: white;
       }
       /* Style the search box inside the navigation bar */
+      .search_box{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      }
       #search {
-        float: right;
         padding: 6px 0.5rem;
         border: none;
         margin-top: 8px;
@@ -136,7 +141,11 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       <a href="Questions.jsp"> FAQs</a>
       <a href="WishList.jsp">WishList</a>
       <a href="Logout.jsp">Logout</a>
-      <form id = "search" method="POST" action="SearchItems.jsp"> <!-- //Search by functionality -->
+      
+    </div>
+    <br> <br>
+    <div class = "search_box">
+    	<form id = "search" method="POST" action="SearchItems.jsp"> <!-- //Search by functionality -->
       	<label>Search by </label>
        	<select name="Category" id="category">
        	    <option value="shirt">Shirts</option>
@@ -165,7 +174,6 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		</select>
         <input type="submit" value="Submit" id="submit" />
        </form>
-      
     </div>
     <div class="container">
       <div class="toppane">
