@@ -12,6 +12,7 @@
 	<body>
 	
 		<%	
+			
 			String id = session.getAttribute("id").toString();
 			String auc_id = request.getParameter("Auction ID");	
 			String amount = request.getParameter("Bid Amount");	
