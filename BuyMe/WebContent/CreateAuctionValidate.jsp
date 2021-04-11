@@ -14,10 +14,13 @@
 	
 	<body>
 		<%	
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
 			LocalDateTime now = LocalDateTime.now(); 
 		    String curTime = now.toString().split("T")[0];
 			String endtime = request.getParameter("endtime");
+			
+			String time = endtime.split("T")[0];
+		    String nextday = (now.plusDays(1)).toString().split("T")[0];
+			
 			String initialprice = request.getParameter("initialprice");
 			String minprice = request.getParameter("minprice");
 			String bidinc = request.getParameter("bidinc");
@@ -25,8 +28,12 @@
 			String color = request.getParameter("color");
 			String size = request.getParameter("size");
 			String description = request.getParameter("description");
+			
+			
 	 		try {
-	 			
+	 			/* if ((now.isAfter(date2))){ */
+	 				
+	 			if (Double.parseDouble(initialprice) <  Double.parseDouble(minprice) && time.compareTo(nextday) >=0){
 				ApplicationDB db = new ApplicationDB();	
 				Connection con = db.getConnection();	
 				//Insert new item into items
@@ -58,6 +65,10 @@
  				}
 				con.close();
 				out.println("Auction created");
+	 			}
+	 			else{
+	 				out.println("Insert an auction end date later than today's date or insert intital price < min price");
+	 			} 
 			} catch (Exception e) {
 				out.println("Error creating auction!");
 				//e.printStackTrace();

@@ -201,8 +201,7 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 			  try {
 						ApplicationDB db = new ApplicationDB();	
 						Connection con = db.getConnection();	
-						Statement stmt = con.createStatement();
-						DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");  
+						Statement stmt = con.createStatement(); 
 						LocalDateTime now = LocalDateTime.now(); 
 					    String curTime = now.toString().split("T")[0];
 					    LocalDateTime day = now.minusMonths(1);
