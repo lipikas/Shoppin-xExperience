@@ -123,10 +123,7 @@
 	</tr></table> </div>
 	<br>
 	<h2>WishList</h2>
-	<div><table>
-			<tr>
-				<td>Category</td>	<td>Color</td> <td>Size</td>
-			</tr>
+	
 	<%
 		try {
 			ApplicationDB db = new ApplicationDB();
@@ -134,9 +131,20 @@
 			Statement stmt = con.createStatement();
 			String id = session.getAttribute("id").toString();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM WantedItems WHERE c_id='"+ id +"';");
-			while (rs.next()){
-				%>
-				<tr>
+			if(rs.next()){
+			%>
+			<div><table>
+			<tr>
+				<td>Category</td>	<td>Color</td> <td>Size</td>
+			</tr>
+			<tr>
+			<td><%out.print(rs.getString("category"));%></td>
+			<td><%out.print(rs.getString("color"));%></td>
+			<td><%out.print(rs.getString("size"));%></td>
+			</tr>
+			<%
+			while (rs.next()){%>
+					<tr>
 						<td><%out.print(rs.getString("category"));%></td>
 						<td><%out.print(rs.getString("color"));%></td>
 						<td><%out.print(rs.getString("size"));%></td>
@@ -146,6 +154,8 @@
 			%>
 			</table></div><%
 			con.close();
+			}
+			else out.println("No items are currently in WishList.");
 		} 
 		catch (Exception e) {
 		    e.printStackTrace();

@@ -14,9 +14,11 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         color: rgb(46 45 45 / 85%);
 	  }
 	  h2{
+      	display: block;
       	font-size: 20px;
         font-weight: 400;
         color: rgb(46 45 45 / 85%);
+        text-align: center;
       }
       .topnav {
         overflow: hidden;
@@ -50,10 +52,8 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       	align-content: center;
       }
       #search {
-        padding: 6px 0.5rem;
         border: none;
         margin-top: 8px;
-        margin-right: 0.5rem;
       }
       #category, #color, #sizeName, #size{
       margin-left: 6px;
@@ -67,7 +67,6 @@ import="javax.servlet.http.*,javax.servlet.*" %>
           display: block;
           text-align: left;
           width: 100%;
-          margin: 0;
           padding: 14px;
         }
         #search {
@@ -96,30 +95,14 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 			width: 3rem;
 		}    
       .container {
-        width: 100%;
-        height: 100%;
-        margin-left: 20px;
-      }
-      .toppane {
-        height: 33.33%;
-        width: 100%;
-        float: left;
-        border-collapse: collapse;
-      }
-      .middlepane {
-        height: 33.33%;
-        width: 100%;
-        float: left;
-        border-collapse: collapse;
-      }
-      .bottompane {
-        height: 33.33%;
-        width: 100%;
-        position: relative;
-        float: right;
-        border-collapse: collapse;
-      }
-
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+	}
+	.middlepane, .bottompane{
+		padding: 1rem 2rem;
+	}
       #submit {
         font-size: 12.2px;
         border-style: initial;
@@ -145,8 +128,10 @@ import="javax.servlet.http.*,javax.servlet.*" %>
     </div>
     <br> <br>
     <div class = "search_box">
+    	<div>
+    	<h2> Search by</h2> 
     	<form id = "search" method="POST" action="SearchItems.jsp"> <!-- //Search by functionality -->
-      	<label>Search by </label>
+      	<label> Category </label>
        	<select name="Category" id="category">
        	    <option value="shirt">Shirts</option>
    			<option value="pant">Pants</option>
@@ -174,12 +159,10 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		</select>
         <input type="submit" value="Submit" id="submit" />
        </form>
+       </div>
     </div>
     <br>
     <div class="container">
-      <div class="toppane">
-        <h2>My Auctions</h2>
-      </div>
       <div class="middlepane">
         <h2>Auction History</h2>
         <form method="POST" action="AuctionHistory.jsp">
