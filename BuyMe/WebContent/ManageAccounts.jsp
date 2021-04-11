@@ -8,16 +8,40 @@
 	<head>
 	<meta charset="ISO-8859-1">
 	<title>BuyMe</title>
+		<style>
+      body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+		font-size: 16px;
+        color: rgb(46 45 45 / 85%);
+        text-align: center;
+        margin-top: 50px;
+	  }
+      a{
+        border-style: initial;
+        text-decoration: none;
+	    background-color: rgb(230 230 230 / 87%);
+	    color: #000000bd;
+        border-radius: 15px;
+        padding: 0.2rem 0.5rem;
+        flex-direction: row; 
+      }
+      
+      a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+	</style>
 	</head>
 	<body>
 	
 		<%	
 		
-		%><a href="EditInfo.jsp">Click Here to Edit Customer Account Details</a><%
+		%><a href="EditInfo.jsp">Edit Customer Account Details</a><%
 			
-		out.println("<br>");
+		out.println("<br><br> <br>");
 		
-		%><a href="DeleteAccount.jsp">Click Here to Delete Customer Account</a><%
+		%><a href="DeleteAccount.jsp"> Delete Customer Account</a><%
 			
 		%>
 		

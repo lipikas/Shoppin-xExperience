@@ -121,13 +121,13 @@ import="javax.servlet.http.*,javax.servlet.*" %>
       }
 
       #submit {
+        font-size: 12.2px;
         border-style: initial;
         text-decoration: none;
         background-color: rgb(46, 45, 45);
         color: rgb(241, 239, 239);
         border-radius: 15px;
-  		margin-left: 10px;
-        padding: 0.2rem 0.5rem;
+        padding: 0.15rem 0.25rem;
       }
     </style>
   </head>
@@ -175,6 +175,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
         <input type="submit" value="Submit" id="submit" />
        </form>
     </div>
+    <br>
     <div class="container">
       <div class="toppane">
         <h2>My Auctions</h2>

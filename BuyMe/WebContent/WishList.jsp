@@ -7,12 +7,63 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>WishList</title>
+	<style>
+	body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+		font-size: 16px;
+        color: rgb(46 45 45 / 85%);
+        text-align: center;
+        margin-top: 50px;
+	  }
+	  h2{
+      	font-size: 20px;
+        font-weight: 500;
+      }
+	  table,
+      th,
+      td {
+        padding: 10px;
+        border: 2px solid lightgrey;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      th{
+      	font-weight: 490;
+      }
+      div{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      }
+      
+      a{
+        border-style: initial;
+        text-decoration: none;
+	    background-color: rgb(230 230 230 / 87%);
+	    color: #000000bd;
+        border-radius: 15px;
+        padding: 0.2rem 0.5rem;
+        flex-direction: row; 
+      }
+      
+      a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+	</style>
 </head>
 <body>
-	<a href=CustomerHome.jsp>Home</a>
+	<h2> My WishList</h2>
+	<br>
+	<a href=CustomerHome.jsp>Back to Home Page</a>
+	<br> <br>
+	<br>
+	
+	<div>
 	<table border="1"><tr>
 	<td>
-	<p><b>Add Item</b></p>
+	<h2>Add Item</h2>
 	<form method=POST action=WishListAdd.jsp>
 		 <p>Item Category:</p>
         <input type="radio" name="category" id="shirt" value="shirt"/>
@@ -41,7 +92,7 @@
 	</form>
 	</td>
 	<td>
-	<p><b>Remove Item</b></p>
+	<h2>Remove Item</h2>
 	<form method=POST action=WishListRemove.jsp>
 		 <p>Item Category:</p>
         <input type="radio" name="category" id="shirt" value="shirt"/>
@@ -69,10 +120,10 @@
         <input type="submit" value="Remove">
 	</form>
 	</td>
-	</tr></table>
-	<hr>
-	<p><b>WishList</b></p>
-	<table border="1">
+	</tr></table> </div>
+	<br>
+	<h2>WishList</h2>
+	<div><table>
 			<tr>
 				<td>Category</td>	<td>Color</td> <td>Size</td>
 			</tr>
@@ -93,7 +144,7 @@
 				<%
 			}
 			%>
-			</table><%
+			</table></div><%
 			con.close();
 		} 
 		catch (Exception e) {
