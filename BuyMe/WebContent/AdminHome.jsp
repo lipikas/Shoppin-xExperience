@@ -79,10 +79,10 @@
 		  <div class="subnav">
 		    <button class="subnavbtn">View Sales Report <i class="fa fa-caret-down"></i></button>
 		    <div class="subnav-content">
-		      <a href="#??">Total Earnings</a>
-		      <a href="#??">Look Up</a>
-		      <a href="#??">Best Sellers</a>
-		      <a href="#??">Best Buyers</a>
+		      <a href="TotalEarnings.jsp">Total Earnings</a>
+		      <a href="LookUp.jsp">Look Up</a>
+		      <a href="BestSeller.jsp">Best Sellers</a>
+		      <a href="BestBuyer.jsp">Best Buyers</a>
 		    </div>
 		  </div>
 		  <a href="Logout.jsp">Logout</a> 
