@@ -13,14 +13,14 @@
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
-		String str = "SELECT SUM(price) FROM sells;";
+		String str = "SELECT SUM(price) total FROM sells;";
 		ResultSet result = stmt.executeQuery(str);
 		
 	%>
 	<h1> Total Earnings:</h1>
 	 <% 
 	 while(result.next()){
-	 	out.println(result.getString("price")); 
+	 	out.println(result.getString("total")); 
 	 }
 	 	
 		con.close();
