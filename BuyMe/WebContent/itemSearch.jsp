@@ -14,7 +14,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
 		String id = request.getParameter("item_id");
-		String str = "SELECT * FROM items WHERE item_id = " + id + ";";
+		String str = "SELECT * FROM items it, auctioncontains au WHERE it.item_id ='" + id + "'AND au.item_id ='" + id + "';";
 		ResultSet result = stmt.executeQuery(str);
 		%>
 		<h1> Item: </h1>
@@ -40,6 +40,9 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		out.print("<td>");
 		out.print("description");
 		out.print("</td>");
+		out.print("<td>");
+		out.print("Current Price");
+		out.print("</td>");
 		out.print("</tr>");	
 		while(result.next()){
 			//make a row
@@ -64,6 +67,9 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 			out.print("<td>");
 			//Print out current beer name:
 			out.print(result.getString("description"));
+			out.print("</td>");
+			out.print("<td>");
+			out.print("current_price");
 			out.print("</td>");
 			out.print("</tr>");
 		}
