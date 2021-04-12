@@ -15,11 +15,40 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		Statement stmt = con.createStatement();
 		String id = request.getParameter("user_id");
 		String name = request.getParameter("user_name");
-		String str = "select Sum(price) total, bc_id from sells, customers WHERE bc_id=" +id+ "AND name =" + name + "group by(bc_id) order by total desc limit 3;";
+		String str = "select Sum(price) total, bc_id from sells, customers WHERE bc_id='" +id+ "'AND name ='" + name + "';";
 		ResultSet result = stmt.executeQuery(str);
 		%>
-		<h1> User Report: <% out.println(result.next()); %></h1>
+		<h1> User Report: </h1>
 	<% 
+		out.print("<table>");
+		//make a row
+		out.print("<tr>");
+		//make a column
+		out.print("<td>");
+		//print out column header
+		out.print("Customer ID");
+		out.print("</td>");
+		//make a column
+		out.print("<td>");
+		out.print("Total Amount Spent");
+		out.print("</td>");
+		out.print("</tr>");	
+		while(result.next()){
+			//make a row
+			out.print("<tr>");
+			//make a column
+			out.print("<td>");
+			//Print out current bar name:
+			out.print(result.getString("bc_id"));
+			out.print("</td>");
+			out.print("<td>");
+			//Print out current beer name:
+			out.print(result.getString("total"));
+			out.print("</td>");
+			out.print("<td>");
+			out.print("</tr>");
+		}
+		out.print("<table>");
 		con.close();
 	%>
 	
