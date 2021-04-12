@@ -13,12 +13,61 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
-		String id = request.getParameter("id");
-		String str = "SELECT * FROM items WHERE item_id" + id + ";";
+		String id = request.getParameter("item_id");
+		String str = "SELECT * FROM items WHERE item_id = " + id + ";";
 		ResultSet result = stmt.executeQuery(str);
 		%>
-		<h1> Item: <% out.println(result.next()); %></h1>
-	<% 
+		<h1> Item: </h1>
+		<% 
+		out.print("<table>");
+		//make a row
+		out.print("<tr>");
+		//make a column
+		out.print("<td>");
+		//print out column header
+		out.print("item_id");
+		out.print("</td>");
+		//make a column
+		out.print("<td>");
+		out.print("category");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("color");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("size");
+		out.print("</td>");
+		out.print("<td>");
+		out.print("description");
+		out.print("</td>");
+		out.print("</tr>");	
+		while(result.next()){
+			//make a row
+			out.print("<tr>");
+			//make a column
+			out.print("<td>");
+			//Print out current bar name:
+			out.print(result.getString("item_id"));
+			out.print("</td>");
+			out.print("<td>");
+			//Print out current beer name:
+			out.print(result.getString("category"));
+			out.print("</td>");
+			out.print("<td>");
+			//Print out current beer name:
+			out.print(result.getString("color"));
+			out.print("</td>");
+			out.print("<td>");
+			//Print out current beer name:
+			out.print(result.getString("size"));
+			out.print("</td>");
+			out.print("<td>");
+			//Print out current beer name:
+			out.print(result.getString("description"));
+			out.print("</td>");
+			out.print("</tr>");
+		}
+		out.print("</table>");
 		con.close();
 	%>
 	
