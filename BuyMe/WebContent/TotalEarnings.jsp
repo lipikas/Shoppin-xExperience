@@ -17,8 +17,12 @@
 		ResultSet result = stmt.executeQuery(str);
 		
 	%>
-	<h1> Total Earnings: <% out.println(result.next()); %></h1>
-	<% 
+	<h1> Total Earnings:</h1>
+	 <% 
+	 while(result.next()){
+	 	out.println(result.getString("price")); 
+	 }
+	 	
 		con.close();
 	%>
 	

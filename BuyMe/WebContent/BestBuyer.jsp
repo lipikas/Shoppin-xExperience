@@ -18,8 +18,11 @@
 		
 	%>
 	<h1> Best Sellers:</h1>
-	<% out.println(result.next()); %>
 	<% 
+		while(result.next()){
+			out.println(result.getString("price")); 
+		}
+	
 		con.close();
 	%>
 	
