@@ -19,9 +19,37 @@
 	%>
 	<h1> Best Sellers:</h1>
 	<% 
-		while(result.next()){
-			out.println(result.getString("price")); 
+		out.print("<table>");
+	
+		//make a row
+		out.print("<tr>");
+		//make a column
+		out.print("<td>");
+		//print out column header
+		out.print("price total");
+		out.print("</td>");
+		//make a column
+		out.print("<td>");
+		out.print("customer id");
+		out.print("</td>");
+		out.print("</tr>");	
+		while (result.next()) {
+			//make a row
+			out.print("<tr>");
+			//make a column
+			out.print("<td>");
+			//Print out current bar name:
+			out.print(result.getString("price"));
+			out.print("</td>");
+			out.print("<td>");
+			//Print out current beer name:
+			out.print(result.getString("bc_id"));
+			out.print("</td>");
+			out.print("<td>");
+			out.print("</tr>");
+
 		}
+		out.print("</table>");
 	
 		con.close();
 	%>
