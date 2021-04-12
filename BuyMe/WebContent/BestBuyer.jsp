@@ -17,7 +17,7 @@
 		ResultSet result = stmt.executeQuery(str);
 		
 	%>
-	<h1> Best Sellers:</h1>
+	<h1> Best Buyers:</h1>
 	<% 
 		out.print("<table>");
 	
