@@ -48,7 +48,7 @@
       </div>
       <div class="middlepane">
         <h2>Search Item Type</h2>
-        <form id = "search" method="POST" action="SearchItems.jsp"> <!-- //Search by functionality -->
+        <form id = "search" method="POST" action="SearchItemsAdmin.jsp"> <!-- //Search by functionality -->
 		<p>
 			Select Category:
 	       	<select name="Category" id="category">
@@ -93,13 +93,12 @@
           <p>
           	Enter User id:
             <input type="number" name="user_id" id="user_id" required min="1" />
-          	<input type="submit" value="Submit" id="submit" />
           </p>
           <p>
           	Enter Username:
             <input type="text" name="user_name" id="user_name" required min="1" />
-          	<input type="submit" value="Submit" id="submit" />
           </p>
+          <input type="submit" value="Submit" id="submit" />
         </form>
       </div>
     </div>
