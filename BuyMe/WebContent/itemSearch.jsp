@@ -14,8 +14,11 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
 		String id = request.getParameter("item_id");
-		String str = "SELECT * FROM items it, auctioncontains au WHERE it.item_id ='" + id + "'AND au.item_id ='" + id + "';";
+		String str = "SELECT * FROM items it, sells au WHERE it.item_id ='" + id + "'AND au.bc_id ='" + id + "';";
 		ResultSet result = stmt.executeQuery(str);
+		
+		String str2 = "SELECT sum( FROM items it, sells au WHERE it.item_id ='" + id + "'AND au.sc_id ='" + id + "';";
+		ResultSet result2 = stmt.executeQuery(str);
 		%>
 		<h1> Item: </h1>
 		<% 
@@ -69,7 +72,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 			out.print(result.getString("description"));
 			out.print("</td>");
 			out.print("<td>");
-			out.print("current_price");
+			out.print(result.getString("current_price"));
 			out.print("</td>");
 			out.print("</tr>");
 		}

@@ -60,6 +60,47 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 
 	</style>
 	<body>	
+			<%
+			//close old auctions
+			long currTime = new Date().getTime();
+			ApplicationDB db0 = new ApplicationDB();
+			Connection con0 = db0.getConnection();
+			Statement stmt0 = con0.createStatement();
+			String q = "SELECT * FROM AuctionContains WHERE active IS NULL OR active=true";
+			ResultSet rs0 = stmt0.executeQuery(q);
+			while (rs0.next()){
+				String cur = rs0.getString("end_time");
+				SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
+				Date date = fmt.parse(cur);
+				long endms = date.getTime();
+				/* out.println(currTime); */
+				if (endms < currTime) {
+					
+					//close the expired auction
+					String curId = rs0.getString("auction_id");
+					PreparedStatement ps = con0.prepareStatement("UPDATE AuctionContains SET active=false WHERE auction_id='"+ curId +"'");
+					ps.executeUpdate();
+					//add sold item to Sells table
+					String minPrice = rs0.getString("min_price");
+					String bc_id = rs0.getString("highest_bidder_id");
+					String sc_id = rs0.getString("creator_id");
+					String item_id = rs0.getString("item_id");
+					String finalPrice = rs0.getString("current_price");
+					String endDate = rs0.getString("end_time");
+					//only add item if the highest bid > min price to be sold at and someone actually bidded on it
+					if (Float.valueOf(finalPrice) >= Float.valueOf(minPrice) && bc_id != null) {
+						PreparedStatement sellsPS = con0.prepareStatement("INSERT INTO Sells (bc_id, sc_id, date, item_id, price) VALUES"
+								+ "('"+bc_id+"','"+sc_id+"','"+endDate+"','"+item_id+"','"+finalPrice+"');");
+						sellsPS.executeUpdate();
+						//Alert the winner that they won the auction
+						String winmsg = "You won auction:" + curId + " for item:" + item_id;
+						sellsPS = con0.prepareStatement("INSERT INTO Alerts (c_id, message) VALUES ('"+ bc_id +"', '"+ winmsg +"');");
+						sellsPS.executeUpdate();
+					}
+				}
+			}
+			con0.close();
+		%>
 			<h2>Search your Items</h2>
 			
 			<% 
@@ -85,7 +126,7 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 					ApplicationDB db = new ApplicationDB();	
 					Connection con = db.getConnection();	
 					Statement stmt = con.createStatement();
-					String str = "SELECT * FROM items it, auctioncontains auc WHERE auc.item_id = it.item_id";
+					String str = "SELECT * FROM items it, auctioncontains auc WHERE auc.item_id = it.item_id AND (auc.active IS NULL OR auc.active=true) ";
 					
 					if(color.compareTo("any")==0 && size.compareTo("")==0){ // null size and color
 						str = str.concat("AND it.category = '" + category + "' ORDER BY auc.current_price "+ group +";");
@@ -157,7 +198,6 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 					e.printStackTrace();
 				}
 			  
-
 			  
  	    out.println("<br><br>");
 		out.println("<a href=\"AdminHome.jsp\"> Back to Home Page");

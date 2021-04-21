@@ -26,7 +26,7 @@
 		//make a column
 		out.print("<td>");
 		//print out column header
-		out.print("desciption");
+		out.print("description");
 		out.print("</td>");
 		//make a column
 		out.print("<td>");
@@ -39,7 +39,7 @@
 			//make a column
 			out.print("<td>");
 			//Print out current bar name:
-			out.print(result.getString("desciption"));
+			out.print(result.getString("description"));
 			out.print("</td>");
 			out.print("<td>");
 			//Print out current beer name:
