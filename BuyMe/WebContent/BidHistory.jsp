@@ -76,6 +76,7 @@
 						out.print("<tr>");    
 							out.print("<th> Bid_id </th>");  
 							out.print("<th> Bid Price </th>");  
+							out.print("<th> Bidder Id </th>");
 						out.print("</tr>"); 
 						
 						out.print("<tr>");    
@@ -84,6 +85,9 @@
 						out.print("</td>");
 						out.print("<td>");
 						out.print(result.getString("price"));
+						out.print("</td>");
+						out.print("<td>");
+						out.print(result.getString("creator_id"));
 						out.print("</td>");
 						out.print("</tr>"); 
 						
@@ -95,6 +99,9 @@
 								out.print("</td>");
 								out.print("<td>");
 								out.print(result.getString("price"));
+								out.print("</td>");
+								out.print("<td>");
+								out.print(result.getString("creator_id"));
 								out.print("</td>");
 	 
 							out.print("</tr>");  

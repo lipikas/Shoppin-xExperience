@@ -68,32 +68,41 @@
 					String str;
 				
 					if(auction_history.compareTo("bc_id")==0){
-						str = "SELECT * FROM bids WHERE creator_id = '" + id + "';";
+						//out.print("Buyer"+id);
+						str = "SELECT * FROM auctioncontains auc WHERE auc.creator_id != '" + id +"' AND auc.auction_id = ( SELECT DISTINCT bids.auction_id FROM bids, auctioncontains au WHERE bids.creator_id = '" + id +"' AND bids.auction_id = auc.auction_id);";
 					}
-					else str = "SELECT * FROM auctioncontains WHERE creator_id = '" + id + "';";
+					else {
+						//out.print("Seller"+id);
+						str = "SELECT * FROM auctioncontains auc WHERE auc.creator_id = '" + id + "';";
+					}
 
 					ResultSet result = stmt.executeQuery(str);
 					
 					if (result.next()){
 						//Valid buyer/seller id
-						if(auction_history.compareTo("bc_id")==0){
-							str = "SELECT * FROM 336project.bids b, 336project.auctioncontains auc WHERE b.creator_id = '" + id +"' AND b.auction_id = auc.auction_id ;";
-						}
+					
 						
-						result = stmt.executeQuery(str);
-						
-						out.print("<div> <table>");
-						out.print("<tr>");    
-							out.print("<th> Auction_id </th>");  
-							out.print("<th> Current Bid Price </th>");  
-							out.print("<th> End Date </th>");  
-							out.print("<th> End Time </th>"); 
-							out.print("<th> Item_id </th>");
-							out.print("<th> Seller_id </th>");
-							out.print("<th> Highest Bidder_id </th>");
-						out.print("</tr>"); 
-						 
+						 out.print("<div> <table>");
+							out.print("<tr>");    
+								out.print("<th> Auction_id </th>");  
+								out.print("<th> Current Bid Price </th>");  
+								out.print("<th> End Date </th>");  
+								out.print("<th> End Time </th>"); 
+								out.print("<th> Item_id </th>");
+								out.print("<th> Seller_id </th>");
+								out.print("<th> Highest Bidder_id </th>");
+							out.print("</tr>"); 
+							out.print("<tr>");    
+							out.print("<td>" + result.getString("auction_id") +"</td>");
+							out.print("<td>" + result.getString("current_price") +"</td>");
+							out.print("<td>" + result.getString("end_time").split(" ")[0] +"</td>");
+							out.print("<td>" + result.getString("end_time").split(" ")[1] +"</td>");
+							out.print("<td>" + result.getString("item_id") +"</td>");
+							out.print("<td>" + result.getString("creator_id") +"</td>");
+							out.print("<td>" + result.getString("highest_bidder_id") +"</td>");
+							out.print("</tr>");  
 						while (result.next()) { 
+								
 								out.print("<tr>");    
 								out.print("<td>" + result.getString("auction_id") +"</td>");
 								out.print("<td>" + result.getString("current_price") +"</td>");
