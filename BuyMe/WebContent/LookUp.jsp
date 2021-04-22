@@ -101,15 +101,15 @@
         
       </div>
       <div class="rightpane">
-        <h2>Bidder username/ Buyer ID</h2>
+        <h2>Bidder username/ID</h2>
 	
         <form method="POST" action="SearchUser.jsp">
           <p>
-          	Enter Buyer id:
+          	Enter Bidder id:
             <input type="number" name="user_id" id="user_id" required min="1" />
           </p>
           <p>
-          	Enter Buyer username:
+          	Enter Bidder username:
             <input type="text" name="user_name" id="user_name" required min="1" />
           </p>
           <input type="submit" value="Submit" id="submit" />
