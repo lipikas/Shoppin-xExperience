@@ -16,6 +16,22 @@
         text-align: center;
         margin-top: 50px;
 	  }
+	  div{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      }
+       table,
+      th,
+      td {
+        padding: 6px;
+        border: 2px solid lightgrey;
+        border-collapse: collapse;
+      }
+      th{
+      	font-weight: 490;
+      }
       a{
         border-style: initial;
         text-decoration: none;
