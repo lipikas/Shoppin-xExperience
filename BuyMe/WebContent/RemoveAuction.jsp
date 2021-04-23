@@ -19,5 +19,45 @@
         </p>
       </form>
     </div>
+    
+     <% try{
+			 
+			//get the connection
+			ApplicationDB db = new ApplicationDB();
+			Connection con = db.getConnection();
+			Statement stmt = con.createStatement();
+			String str = "SELECT auction_id, creator_id FROM auctioncontains WHERE active = 1";
+			ResultSet result = stmt.executeQuery(str);
+			%>
+			<div>
+			<table>
+				<tr>
+					<th>Auction ID </th> <th>Auction Creator ID</th>
+				</tr>
+				<%
+				//parse out the results
+				while (result.next()){ 
+					//getting item data
+					String aid = result.getString("auction_id");
+					String cid = result.getString("creator_id");
+					
+					
+					
+					//filling out table row
+				%>
+					<tr>
+						<td><%out.print(aid);%></td>
+						<td><%out.print(cid);%></td>
+					</tr>
+				<%}
+				//close the connection.
+				db.closeConnection(con);
+				%>
+			</table></div>
+			<%} catch (Exception e) {
+			out.print(e);
+			}%>
+			
+			
   </body>
 </html>
