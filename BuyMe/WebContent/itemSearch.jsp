@@ -120,6 +120,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 			out.print("</tr>");
 		}
 		out.print("</table>");
+		out.println("<a href=\"AdminHome.jsp\"> Back to Home Page");
 		con.close();
 	%>
 	
