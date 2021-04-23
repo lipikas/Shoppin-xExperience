@@ -14,8 +14,8 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
 		String id = request.getParameter("user_id");
-		String name = request.getParameter("user_name");
-		String str = "select Sum(price) total, bc_id from sells, customers WHERE bc_id='" +id+ "'AND name ='" + name + "';";
+		/* String name = request.getParameter("user_name"); */
+		String str = "select sum(price) as total, bc_id from sells WHERE bc_id='" +id+ "';";
 		ResultSet result = stmt.executeQuery(str);
 		%>
 		<h1> User Report: </h1>
@@ -45,7 +45,6 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 			//Print out current beer name:
 			out.print(result.getString("total"));
 			out.print("</td>");
-			out.print("<td>");
 			out.print("</tr>");
 		}
 		out.print("<table>");

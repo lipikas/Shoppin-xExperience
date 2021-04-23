@@ -9,6 +9,46 @@
 	<meta charset="ISO-8859-1">
 	<title>BuyMe</title>
 	</head>
+	<style>
+	body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+		font-size: 16px;
+        color: rgb(46 45 45 / 85%);
+        text-align: center;
+        margin-top: 50px;
+	  }
+	  div{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      }
+	  h2{
+      	font-size: 20px;
+        font-weight: 500;
+      }
+	  table,
+      th,
+      td {
+        padding: 6px;
+        border: 2px solid lightgrey;
+        border-collapse: collapse;
+      }
+      th{
+      	font-weight: 490;
+      }
+            #submit {
+        font-size: 12.2px;
+        border-style: initial;
+        text-decoration: none;
+        background-color: rgb(46, 45, 45);
+        color: rgb(241, 239, 239);
+        border-radius: 15px;
+        padding: 0.15rem 0.25rem;
+      }
+	
+	
+	</style>
 	<body>
     <p>Remove Bid</p>
     <div>

@@ -60,7 +60,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
 		String id = request.getParameter("item_id");
-		String str = "SELECT * FROM items it, sells s WHERE it.item_id ='" + id + "'AND s.sc_id ='" + id + "';";
+		String str = "SELECT * FROM sells WHERE item_id ='" + id + "';";
 		ResultSet result = stmt.executeQuery(str);
 		%>
 		<h1> Item: </h1>
@@ -75,16 +75,10 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		out.print("</td>");
 		//make a column
 		out.print("<td>");
-		out.print("category");
+		out.print("Highest Bidder ID");
 		out.print("</td>");
 		out.print("<td>");
-		out.print("color");
-		out.print("</td>");
-		out.print("<td>");
-		out.print("size");
-		out.print("</td>");
-		out.print("<td>");
-		out.print("description");
+		out.print("Seller ID");
 		out.print("</td>");
 		out.print("<td>");
 		out.print("Total made");
@@ -95,24 +89,13 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 			out.print("<tr>");
 			//make a column
 			out.print("<td>");
-			//Print out current bar name:
 			out.print(result.getString("item_id"));
 			out.print("</td>");
 			out.print("<td>");
-			//Print out current beer name:
-			out.print(result.getString("category"));
+			out.print(result.getString("bc_id"));
 			out.print("</td>");
 			out.print("<td>");
-			//Print out current beer name:
-			out.print(result.getString("color"));
-			out.print("</td>");
-			out.print("<td>");
-			//Print out current beer name:
-			out.print(result.getString("size"));
-			out.print("</td>");
-			out.print("<td>");
-			//Print out current beer name:
-			out.print(result.getString("description"));
+			out.print(result.getString("sc_id"));
 			out.print("</td>");
 			out.print("<td>");
 			out.print(result.getString("price"));
