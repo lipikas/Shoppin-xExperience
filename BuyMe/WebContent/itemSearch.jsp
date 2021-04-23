@@ -8,17 +8,60 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 <meta charset="ISO-8859-1">
 <title>Buy Me</title>
 <head>
+	<style>
+      body{
+		font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+		font-size: 16px;
+        color: rgb(46 45 45 / 85%);
+        text-align: center;
+        margin-top: 50px;
+	  }
+	  h2{
+      	font-size: 20px;
+        font-weight: 500;
+      }
+	  table,
+      th,
+      td {
+        padding: 6px;
+        border: 2px solid lightgrey;
+        border-collapse: collapse;
+        text-align: center;
+      }
+      th{
+      	font-weight: 490;
+      }
+      div{
+      	display: flex;
+      	flex-direction: row;
+      	justify-content: center;
+      	align-content: center;
+      }
+      
+      a{
+        border-style: initial;
+        text-decoration: none;
+	    background-color: rgb(230 230 230 / 87%);
+	    color: #000000bd;
+        border-radius: 15px;
+        padding: 0.2rem 0.5rem;
+        flex-direction: row; 
+      }
+      
+      a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+	</style>
 	<body>
 		<%
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
 		String id = request.getParameter("item_id");
-		String str = "SELECT * FROM items it, sells au WHERE it.item_id ='" + id + "'AND au.bc_id ='" + id + "';";
+		String str = "SELECT * FROM items it, sells s WHERE it.item_id ='" + id + "'AND s.sc_id ='" + id + "';";
 		ResultSet result = stmt.executeQuery(str);
-		
-		String str2 = "SELECT sum( FROM items it, sells au WHERE it.item_id ='" + id + "'AND au.sc_id ='" + id + "';";
-		ResultSet result2 = stmt.executeQuery(str);
 		%>
 		<h1> Item: </h1>
 		<% 
@@ -44,7 +87,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		out.print("description");
 		out.print("</td>");
 		out.print("<td>");
-		out.print("Current Price");
+		out.print("Total made");
 		out.print("</td>");
 		out.print("</tr>");	
 		while(result.next()){
@@ -72,7 +115,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 			out.print(result.getString("description"));
 			out.print("</td>");
 			out.print("<td>");
-			out.print(result.getString("current_price"));
+			out.print(result.getString("price"));
 			out.print("</td>");
 			out.print("</tr>");
 		}
