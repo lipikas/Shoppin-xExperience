@@ -20,5 +20,46 @@
         </p>
       </form>
     </div>
+    
+    <% try{
+			 
+			//get the connection
+			ApplicationDB db = new ApplicationDB();
+			Connection con = db.getConnection();
+			Statement stmt = con.createStatement();
+			String str = "SELECT bid_id, auction_id, creator_id FROM bids";
+			ResultSet result = stmt.executeQuery(str);
+			%>
+			<div>
+			<table>
+				<tr>
+					<th>Bid ID </th> <th>Auction ID</th>	<th>Bid Creator ID</th> 
+				</tr>
+				<%
+				//parse out the results
+				while (result.next()){ 
+					//getting item data
+					String bid = result.getString("bid_id");
+					String aid = result.getString("auction_id");
+					String cid = result.getString("creator_id");
+					
+					
+					
+					//filling out table row
+				%>
+					<tr>
+						<td><%out.print(bid);%></td>
+						<td><%out.print(aid);%></td>
+						<td><%out.print(cid);%></td>
+					</tr>
+				<%}
+				//close the connection.
+				db.closeConnection(con);
+				%>
+			</table></div>
+			<%} catch (Exception e) {
+			out.print(e);
+			}%>
+		
   </body>
 </html>
