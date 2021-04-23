@@ -99,6 +99,7 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 				out.print("</tr>");
 			}
 			out.print("<table>");
+			out.println("<a href=\"AdminHome.jsp\"> Back to Home Page");
 			con.close();
 		%>
 		
