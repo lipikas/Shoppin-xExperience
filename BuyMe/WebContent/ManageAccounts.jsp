@@ -30,7 +30,6 @@
         background-color: #ddd;
         color: black;
       }
-
 	</style>
 	</head>
 	<body>
@@ -42,8 +41,50 @@
 		out.println("<br><br> <br>");
 		
 		%><a href="DeleteAccount.jsp"> Delete Customer Account</a><%
+				
+		out.println("<br> <br><br> <br>");
 			
 		%>
+		
+		 <% try{
+			 
+			//get the connection
+			ApplicationDB db = new ApplicationDB();
+			Connection con = db.getConnection();
+			Statement stmt = con.createStatement();
+			String str = "SELECT c_id, name, login FROM customers WHERE login != 'NULL'";
+			ResultSet result = stmt.executeQuery(str);
+			%>
+			<div>
+			<table>
+				<tr>
+					<th>Customer ID </th> <th>Name</th>	<th>Login</th> 
+				</tr>
+				<%
+				//parse out the results
+				while (result.next()){ 
+					//getting item data
+					String cid = result.getString("c_id");
+					String name = result.getString("name");
+					String login = result.getString("login");
+					
+					
+					
+					//filling out table row
+				%>
+					<tr>
+						<td><%out.print(cid);%></td>
+						<td><%out.print(name);%></td>
+						<td><%out.print(login);%></td>
+					</tr>
+				<%}
+				//close the connection.
+				db.closeConnection(con);
+				%>
+			</table></div>
+			<%} catch (Exception e) {
+			out.print(e);
+			}%>
 		
 	</body>
 </html>
