@@ -62,9 +62,10 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		String str = "SELECT * FROM sells ORDER BY item_id DESC;";
 		ResultSet result = stmt.executeQuery(str);
 		%>
-		<h1> Item: </h1>
+		<h2> Item: </h2>
 		<% 
-		out.print("<table>");
+		
+		out.print("<div><table>");
 		//make a row
 		out.print("<tr>");
 		//make a column
@@ -101,9 +102,10 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 			out.print("</td>");
 			out.print("</tr>");
 		}
-		out.print("</table>");
-		out.println("<a href=\"AdminHome.jsp\"> Back to Home Page");
+		out.print("</table></div><br><br>");
+		
 		con.close();
+		out.println("<br><a href=\"AdminHome.jsp\"> Back to Home Page");
 	%>
 	
 	</body>

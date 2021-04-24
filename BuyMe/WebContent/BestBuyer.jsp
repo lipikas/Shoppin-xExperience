@@ -8,6 +8,37 @@
 <meta charset="ISO-8859-1">
 <title>Buy Me</title>
 </head>
+	<style>
+	      body{
+			font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+			font-size: 16px;
+	        color: rgb(46 45 45 / 85%);
+	        text-align: center;
+	        margin-top: 50px;
+		  }
+		  h2{
+	      	font-size: 20px;
+	        font-weight: 500;
+	      }
+		  table,
+	      th,
+	      td {
+	        padding: 6px;
+	        border: 2px solid lightgrey;
+	        border-collapse: collapse;
+	        text-align: center;
+	      }
+	      th{
+	      	font-weight: 490;
+	      }
+	      div{
+	      	display: flex;
+	      	flex-direction: row;
+	      	justify-content: center;
+	      	align-content: center;
+	      }
+
+		</style>
 	<body>
 	<%
 		ApplicationDB db = new ApplicationDB();
@@ -17,9 +48,9 @@
 		ResultSet result = stmt.executeQuery(str);
 		
 	%>
-	<h1> Best Buyers:</h1>
+	<h2> Best Buyers:</h2>
 	<% 
-		out.print("<table>");
+		out.print("<div><table>");
 	
 		//make a row
 		out.print("<tr>");
@@ -45,11 +76,10 @@
 			//Print out current beer name:
 			out.print(result.getString("total"));
 			out.print("</td>");
-			out.print("<td>");
 			out.print("</tr>");
 
 		}
-		out.print("</table>");
+		out.print("</table></div>");
 	
 		con.close();
 	%>

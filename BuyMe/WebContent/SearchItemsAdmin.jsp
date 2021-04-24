@@ -57,7 +57,6 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
         background-color: #ddd;
         color: black;
       }
-
 	</style>
 	<body>	
 		<%
@@ -68,9 +67,9 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 		String str = "select Sum(price) total, category from sells s, items it WHERE it.item_id = s.item_id group by category;";
 		ResultSet result = stmt.executeQuery(str);
 		%>
-		<h1> Results: </h1>
+		<h2> Results: </h2>
 		<% 
-			out.print("<table>");
+			out.print("<div><table>");
 			//make a row
 			out.print("<tr>");
 			//make a column
@@ -95,11 +94,11 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 				//Print out current beer name:
 				out.print(result.getString("total"));
 				out.print("</td>");
-				out.print("<td>");
 				out.print("</tr>");
 			}
-			out.print("<table>");
-			out.println("<a href=\"AdminHome.jsp\"> Back to Home Page");
+			out.print("</table></div><br> <br>");
+			
+			out.print("<a href=\"AdminHome.jsp\"> Back to Home Page");
 			con.close();
 		%>
 		
