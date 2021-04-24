@@ -21,6 +21,18 @@
 		 		    ApplicationDB db = new ApplicationDB();
 				    Connection con = db.getConnection();
 				    //compare curr price with bid
+				    Statement s = con.createStatement();
+				    String q = "SELECT creator_id FROM auctioncontains WHERE auction_id = '" +auc_id+"'";
+				    ResultSet r = s.executeQuery(q);
+				    String creator = "";
+				    while(r.next()){
+				    	creator = r.getString("creator_id");   	
+				    }
+				    if(id.equals(creator)){
+				    	out.println("Auction Creator Cannot Bid on This Auction");
+				    	%><a href="PlaceBid.jsp">Back to Place Bid</a><%
+				    }
+				    else{
 				    Statement st = con.createStatement();
 					String query = "SELECT a.current_price FROM auctioncontains a WHERE a.auction_id ='" + auc_id + "'";
 					ResultSet result = st.executeQuery(query);
@@ -173,6 +185,7 @@
 						    	}
 				    	}
 				    	//END OF AUTO BIDDING
+				    }
 				    }
 					con.close();
 				    } catch (Exception e) {

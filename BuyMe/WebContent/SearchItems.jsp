@@ -60,7 +60,7 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 
 	</style>
 	<body>	
-			<%
+	<%//START OF AUCTION UPDATING
 			//close old auctions
 			long currTime = new Date().getTime();
 			ApplicationDB db0 = new ApplicationDB();
@@ -73,9 +73,7 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 				SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault());
 				Date date = fmt.parse(cur);
 				long endms = date.getTime();
-				/* out.println(currTime); */
 				if (endms < currTime) {
-					
 					//close the expired auction
 					String curId = rs0.getString("auction_id");
 					PreparedStatement ps = con0.prepareStatement("UPDATE AuctionContains SET active=false WHERE auction_id='"+ curId +"'");
@@ -100,7 +98,7 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 				}
 			}
 			con0.close();
-		%>
+		//END OF AUCTION UPDATING%>
 			<h2>Search your Items</h2>
 			
 			<% 
