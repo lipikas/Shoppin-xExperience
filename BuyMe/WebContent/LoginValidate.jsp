@@ -15,7 +15,7 @@
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
 			Boolean isStaff = request.getParameter("staff") == null ? false : true;
-	 		try {
+	 	/* 	try { */
 				ApplicationDB db = new ApplicationDB();	
 				Connection con = db.getConnection();	
 				Statement stmt = con.createStatement();
@@ -27,20 +27,38 @@
 					ResultSet resulta = stmt.executeQuery(str1);
 					if(resulta.next()){
 						String id = resulta.getString("staff_id");
-						session.setAttribute("id", id);
-						out.println("Welcome " + username);
-						out.println("<br>");
-						out.println("<a href=\"AdminHome.jsp\">Continue to Home Page");
+						String name = resulta.getString("login");
+						String pwd = resulta.getString("password");
+						if (name.compareTo(username)==0 && pwd.compareTo(password)==0){
+							session.setAttribute("id", id);
+							out.println("Welcome " + username);
+							out.println("<br>");
+							out.println("<a href=\"AdminHome.jsp\">Continue to Home Page");
+						}
+						else {
+							out.println("Invalid username / password combination");
+							out.println("<br>");
+							out.println("<a href=\"Login.jsp\">Back to Login Page");
+						}
 					}
 					else{
 						str2 = "SELECT * FROM Staff WHERE isCustomerRep='" + "1" + "' AND login='" + username +"' AND password='" + password +"';";
 						ResultSet resultb = stmt.executeQuery(str2);
 						if(resultb.next()){
 							String id = resultb.getString("staff_id");
-							session.setAttribute("id", id);
-							out.println("Welcome " + username);
-							out.println("<br>");
-							out.println("<a href=\"CustomerRepHome.jsp\">Continue to Home Page");
+							String name = resultb.getString("login");
+							String pwd = resultb.getString("password");
+							if (name.compareTo(username)==0 && pwd.compareTo(password)==0){
+								session.setAttribute("id", id);
+								out.println("Welcome " + username);
+								out.println("<br>");
+								out.println("<a href=\"CustomerRepHome.jsp\">Continue to Home Page");
+							}
+							else {
+								out.println("Invalid username / password combination");
+								out.println("<br>");
+								out.println("<a href=\"Login.jsp\">Back to Login Page");
+							}
 						}
 						else {
 							//Invalid username / password
@@ -60,10 +78,18 @@
 						//get cid
 						String id = resultc.getString("c_id");
 						session.setAttribute("id", id);
-						
-						out.println("Welcome " + username);
-						out.println("<br>");
-						out.println("<a href=\"CustomerHome.jsp\">Continue to Home Page");						
+						String pwd = resultc.getString("password");
+						String name = resultc.getString("login");
+						if (name.compareTo(username)==0 && pwd.compareTo(password)==0){
+							out.println("Welcome " + username);
+							out.println("<br>");
+							out.println("<a href=\"CustomerHome.jsp\">Continue to Home Page");
+						}
+						else {
+							out.println("Invalid username / password combination");
+							out.println("<br>");
+							out.println("<a href=\"Login.jsp\">Back to Login Page");
+						}						
 						
 					} 
 					else {
@@ -74,10 +100,10 @@
 					}
 				}
 				con.close();
-			} catch (Exception e) {
+			/* } catch (Exception e) {
 				out.println("Error!");
 				e.printStackTrace();
-			}
+			} */
 		%>
 	</body>
 	

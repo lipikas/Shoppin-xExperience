@@ -83,6 +83,7 @@
 			while (rs.next()){
 				out.println("<p>"+rs.getString("message")+"</p>");
 			}
+			
 		    con.close();
 		} 
 		catch (Exception e) {

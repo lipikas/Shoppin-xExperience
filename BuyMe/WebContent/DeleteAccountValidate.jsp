@@ -19,9 +19,9 @@
 	 			ApplicationDB db = new ApplicationDB();	
 				Connection con = db.getConnection();
  				
-				//delete from customers table
-				PreparedStatement prep1 = con.prepareStatement("UPDATE customers SET login = NULL WHERE c_id='"+cid+"';");;
-				prep1.executeUpdate();
+				
+				/* PreparedStatement prep1 = con.prepareStatement("UPDATE customers SET login = NULL WHERE c_id='"+cid+"';");;
+				prep1.executeUpdate(); */
 				
 				//see if they placed any bids
 				Statement state = con.createStatement();
@@ -156,7 +156,24 @@
 					ps.executeUpdate();
 				}	
 				
+				//delete from customers and setting other attributes to null
+				PreparedStatement preps2 = con.prepareStatement("UPDATE alerts SET c_id = NULL WHERE c_id='"+ cid +"';");
+				preps2.executeUpdate();	
 				
+				PreparedStatement preps3 = con.prepareStatement("UPDATE questions SET c_id = NULL WHERE c_id='"+ cid +"';");
+				preps3.executeUpdate();	
+				
+				PreparedStatement preps4 = con.prepareStatement("UPDATE sells SET bc_id = NULL WHERE bc_id='"+ cid +"';");
+				preps4.executeUpdate();
+				
+				PreparedStatement prep5 = con.prepareStatement("UPDATE sells SET sc_id = NULL WHERE sc_id='"+ cid +"';");
+				prep5.executeUpdate();
+				
+				PreparedStatement preps7 = con.prepareStatement("UPDATE wanteditems SET c_id = NULL WHERE c_id='"+ cid +"';");
+				preps7.executeUpdate();
+				
+				PreparedStatement ps6 = con.prepareStatement("DELETE FROM customers WHERE c_id='"+cid+"';");;
+				ps6.executeUpdate();
 				
 				out.println("<p>Account Deleted</p>");
 				con.close(); 
