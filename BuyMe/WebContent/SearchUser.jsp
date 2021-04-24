@@ -76,7 +76,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		out.print("</td>");
 		//make a column
 		out.print("<td>");
-		out.print("Total Amount Spent");
+		out.print("Total Amount Earned");
 		out.print("</td>");
 		out.print("</tr>");	
 		while(result.next()){
