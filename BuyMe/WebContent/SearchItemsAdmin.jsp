@@ -65,7 +65,7 @@ java.text.DateFormat, java.text.SimpleDateFormat, java.util.Date"%>
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
 		String c = request.getParameter("category");
-		String str = "select Sum(price) total, category from sells s, items it WHERE  it.item_id = s.item_id  AND category='" + c +"';";
+		String str = "select Sum(price) total, category from sells s, items it WHERE it.item_id = s.item_id group by category;";
 		ResultSet result = stmt.executeQuery(str);
 		%>
 		<h1> Results: </h1>

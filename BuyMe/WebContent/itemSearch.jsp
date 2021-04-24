@@ -59,8 +59,7 @@ import="javax.servlet.http.*,javax.servlet.*" %>
 		ApplicationDB db = new ApplicationDB();
 		Connection con = db.getConnection();
 		Statement stmt = con.createStatement();
-		String id = request.getParameter("item_id");
-		String str = "SELECT * FROM sells WHERE item_id ='" + id + "';";
+		String str = "SELECT * FROM sells ORDER BY item_id DESC;";
 		ResultSet result = stmt.executeQuery(str);
 		%>
 		<h1> Item: </h1>

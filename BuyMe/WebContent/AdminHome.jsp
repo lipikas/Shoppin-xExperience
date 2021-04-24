@@ -104,7 +104,9 @@
 		    <button class="subnavbtn">View Sales Report <i class="fa fa-caret-down"></i></button>
 		    <div class="subnav-content">
 		      <a href="TotalEarnings.jsp">Total Earnings</a>
-		      <a href="LookUp.jsp">Sort Earning by</a>
+		      <a href="itemSearch.jsp">Sort Earning by Item</a>
+		      <a href="SearchItemsAdmin.jsp">Sort Earning by Item Type</a>
+		      <a href="SearchUser.jsp">Sort Earning by User</a>
 		      <a href="BestSeller.jsp">Best Sellers</a>
 		      <a href="BestBuyer.jsp">Best Buyers</a>
 		    </div>
