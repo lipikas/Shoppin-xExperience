@@ -4,7 +4,7 @@ USE 336project;
 
 DROP TABLE IF EXISTS Staff;
 CREATE TABLE Staff (
-	staff_id int primary key auto_increment default (0),
+	staff_id int primary key NOT NULL AUTO_INCREMENT,
     name varchar(50),
     phone varchar(13),
     login varchar(50),
@@ -25,16 +25,17 @@ INSERT INTO Staff (name, login, password, isAdmin, isCustomerRep) VALUES
 
 DROP TABLE IF EXISTS Customers;
 CREATE TABLE Customers (
-	c_id int primary key auto_increment default(0),
+	c_id int auto_increment,
     name varchar(50),
     phone varchar(13),
     login varchar(50),
     email varchar(50),
-    password varchar(50)
+    password varchar(50),
+    UNIQUE(c_id)
 );
 DROP TABLE IF EXISTS Items;
 CREATE TABLE Items (
-	item_id int primary key auto_increment default(0),
+	item_id int primary key NOT NULL AUTO_INCREMENT,
     category varchar(50),
     color varchar(50),
     size int,
@@ -42,32 +43,32 @@ CREATE TABLE Items (
 );
 DROP TABLE IF EXISTS Sells;
 CREATE TABLE Sells (
-	bc_id int,
-    sc_id int,
+	bc_id int NULL,
+    sc_id int NULL,
     date datetime,
     item_id int,
     price float,
     foreign key (bc_id) references Customers (c_id),
     foreign key (sc_id) references Customers (c_id),
     foreign key (item_id) references Items (item_id),
-    primary key (bc_id, sc_id, date)
+    UNIQUE (bc_id, sc_id, date)
 );
 
 DROP TABLE IF EXISTS WantedItems;
 CREATE TABLE WantedItems (
-	c_id int,
+	c_id int NULL,
     foreign key (c_id) references Customers (c_id),
     category varchar(50),
     color varchar(50),
     size int,
-	primary key (c_id, category, color, size)
+	UNIQUE  (c_id, category, color, size)
 );
 
 DROP TABLE IF EXISTS Bids;
 CREATE TABLE Bids (
-	bid_id int primary key auto_increment default(0),
-    creator_id int NOT NULL,
-    auction_id int NOT NULL,
+	bid_id int primary key NOT NULL AUTO_INCREMENT,
+    creator_id int NULL,
+    auction_id int NULL,
     foreign key (creator_id) references Customers(c_id),
     price float,
     upper_limit float,
@@ -76,28 +77,28 @@ CREATE TABLE Bids (
 
 DROP TABLE IF EXISTS Alerts;
 CREATE TABLE Alerts (
-	c_id int,
+	c_id int NULL,
     message varchar(100),
-    primary key (c_id, message),
+    UNIQUE  (c_id, message),
     foreign key (c_id) references Customers (c_id)
 );
 
 DROP TABLE IF EXISTS Questions;
 CREATE TABLE Questions (
-	b_id int,
+	q_id int NOT NULL AUTO_INCREMENT,
 	c_id int,
     staff_id int,
-    message varchar(100),
-    answer varchar(100),
-    answered boolean,
-    primary key (b_id),
+    message varchar(100) NOT NULL,
+    answer varchar(100) DEFAULT NULL,
+    answered boolean DEFAULT NULL,
+    primary key (q_id),
     foreign key (c_id) references Customers (c_id),
     foreign key (staff_id) references Staff (staff_id)
 );
 
 DROP TABLE IF EXISTS AuctionContains;
 CREATE TABLE AuctionContains (
-	auction_id int primary key auto_increment default(0),
+	auction_id int primary key NOT NULL AUTO_INCREMENT,
     initial_price float,
     current_price float,
     startdate date,
@@ -106,11 +107,9 @@ CREATE TABLE AuctionContains (
     min_price float,
     active boolean,
     item_id int NOT NULL,
-    creator_id int NOT NULL,
-    highest_bidder_id int,
+    creator_id int NULL,
+    highest_bidder_id int NULL,
     foreign key (highest_bidder_id) references Customers(c_id),
     foreign key (creator_id) references Customers(c_id),
     foreign key (item_id) references Items (item_id)
 );
-
-
