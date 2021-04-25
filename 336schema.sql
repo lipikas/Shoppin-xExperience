@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `alerts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alerts` (
-  `c_id` int(11) NULL,
+  `c_id` int(11),
   `message` varchar(100) NOT NULL,
   UNIQUE (`c_id`,`message`),
   CONSTRAINT `alerts_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`)
