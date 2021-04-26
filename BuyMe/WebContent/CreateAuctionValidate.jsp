@@ -25,7 +25,7 @@
 			String color = request.getParameter("color");
 			String size = request.getParameter("size");
 			String description = request.getParameter("description");
-	 		try {
+	 		 try {
 	 			
 				ApplicationDB db = new ApplicationDB();	
 				Connection con = db.getConnection();	
@@ -42,6 +42,7 @@
 				while (result.next()){
 					newItemId = (result.getString("max(item_id)"));					
 				}
+				out.println("Hi");
 				//Insert new auction into auctioncontains
 				String id = session.getAttribute("id").toString();
  				ps = con.prepareStatement("INSERT INTO AuctionContains " +
@@ -49,6 +50,7 @@
  						"VALUES ('"+ initialprice +"','" + initialprice+"', '"+curTime+"' ,'"+ endtime +"','"+ bidinc +"','"+ minprice +"','"+ newItemId +"','"+ id +"',TRUE);");
  				ps.executeUpdate();
  				//Alert users who have the new item as a WishListed item
+ 			
  				Statement alertstmt = con.createStatement();
  				ResultSet alertrs = alertstmt.executeQuery("SELECT c_id FROM wanteditems WHERE category='"+category+"' AND color='"+color+"' AND size='"+size+"';");
  				while (alertrs.next()){
@@ -56,9 +58,10 @@
  						"New auction opened with WishListed item [ "+category+", "+color+", "+size+" ]');");
  					 newalertstmt.executeUpdate();
  				}
+ 				
 				con.close();
 				out.println("Auction created");
-			} catch (Exception e) {
+			   } catch (Exception e) {
 				out.println("Error creating auction!");
 				//e.printStackTrace();
 			}

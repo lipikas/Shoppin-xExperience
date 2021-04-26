@@ -9,12 +9,12 @@
 	<title>BuyMe</title>
 	</head>
 	<body>
-		<%	
+		<%
 		
 			String cid = request.getParameter("Customer ID");
 		
 			
-	 		try {	
+	 		 try {
 	 			
 	 			ApplicationDB db = new ApplicationDB();	
 				Connection con = db.getConnection();
@@ -152,7 +152,7 @@
 						pre.executeUpdate();
 						
 					}
-					PreparedStatement ps = con.prepareStatement("DELETE FROM auctioncontains WHERE active = 1 AND creator_id='"+cid+"';");;
+					 PreparedStatement ps = con.prepareStatement("DELETE FROM auctioncontains WHERE active = 1 AND creator_id='"+cid+"';");;
 					ps.executeUpdate();
 				}	
 				
@@ -171,9 +171,10 @@
 				
 				PreparedStatement preps7 = con.prepareStatement("UPDATE wanteditems SET c_id = NULL WHERE c_id='"+ cid +"';");
 				preps7.executeUpdate();
-				
+				out.print("Hi");
 				PreparedStatement ps6 = con.prepareStatement("DELETE FROM customers WHERE c_id='"+cid+"';");;
 				ps6.executeUpdate();
+				out.print("Hello");
 				
 				out.println("<p>Account Deleted</p>");
 				con.close(); 
