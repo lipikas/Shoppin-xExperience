@@ -37,12 +37,29 @@
 					Statement stt = con.createStatement();
 					String que = "SELECT bid_id, auction_id, price FROM bids WHERE creator_id = '" +cid+"'";
 					ResultSet re = stt.executeQuery(que);
+					
 					while(re.next()){
 						String bidid = re.getString("bid_id");
 						String aucid = re.getString("auction_id");
 						String str = re.getString("price");
 						double bidprice = Double.parseDouble(str);
 						
+
+						Statement bids = con.createStatement();
+						String bidq = "SELECT COUNT(*) FROM auctioncontains WHERE active = 1 AND auction_id ='" +aucid+"'";
+						ResultSet b_res = bids.executeQuery(bidq);
+						int ac_count = 0;
+						while(b_res.next()){
+							String b = b_res.getString("COUNT(*)");
+							ac_count = Integer.parseInt(b);
+						}
+						if(ac_count == 0){
+							
+							PreparedStatement ps1 = con.prepareStatement("DELETE FROM bids WHERE bid_id ='"+bidid+"' AND auction_id='"+aucid+"';");;
+							ps1.executeUpdate();
+							
+							continue;
+						}
 						//get curr price of auction
 						Statement st1 = con.createStatement();
 						String query1 = "SELECT current_price FROM auctioncontains WHERE auction_id ='" + aucid + "'";
@@ -132,7 +149,7 @@
 				//maybe need to delete all bids placed by others for this auction? 
 				//delete any auctions that are active created by this account
 				Statement st = con.createStatement();
-				String query = "SELECT COUNT(*) FROM auctioncontains WHERE creator_id = '" +cid+"'";
+				String query = "SELECT COUNT(*) FROM auctioncontains WHERE active != 0 AND creator_id = '" +cid+"'";
 				ResultSet result = st.executeQuery(query);
 				int a_count = 0;
 				while(result.next()){
@@ -171,18 +188,28 @@
 				
 				PreparedStatement preps7 = con.prepareStatement("UPDATE wanteditems SET c_id = NULL WHERE c_id='"+ cid +"';");
 				preps7.executeUpdate();
-				out.print("Hi");
-				PreparedStatement ps6 = con.prepareStatement("DELETE FROM customers WHERE c_id='"+cid+"';");;
+			
+				PreparedStatement preps8 = con.prepareStatement("UPDATE auctioncontains SET highest_bidder_id = NULL WHERE highest_bidder_id='"+ cid +"';");
+				preps8.executeUpdate();
+				
+				PreparedStatement preps9 = con.prepareStatement("UPDATE auctioncontains SET creator_id = NULL WHERE creator_id='"+ cid +"';");
+				preps9.executeUpdate();
+				
+				PreparedStatement preps10 = con.prepareStatement("UPDATE bids SET creator_id = NULL WHERE creator_id='"+ cid +"';");
+				preps8.executeUpdate();
+					
+				
+				
+			   PreparedStatement ps6 = con.prepareStatement("DELETE FROM customers WHERE c_id='"+cid+"';");;
 				ps6.executeUpdate();
-				out.print("Hello");
 				
 				out.println("<p>Account Deleted</p>");
 				con.close(); 
 				
-			}catch (Exception e) {
+			 }catch (Exception e) {
 				out.println("<p>Error Deleting Account</p>");
 				e.printStackTrace();
-			}
+			}  
 	 		
 		%>
 		<br>
