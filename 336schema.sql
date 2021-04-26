@@ -25,9 +25,10 @@ DROP TABLE IF EXISTS `alerts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `alerts` (
-  `c_id` int(11) NOT NULL,
-  `message` varchar(100) NOT NULL,
-  PRIMARY KEY (`c_id`,`message`),
+`a_id` int(11) AUTO_INCREMENT,
+`c_id` int(11) ,
+`message` varchar(100) NOT NULL,
+PRIMARY KEY (`a_id`),
   CONSTRAINT `alerts_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -58,7 +59,7 @@ CREATE TABLE `auctioncontains` (
   `min_price` float DEFAULT NULL,
   `active` tinyint(1) DEFAULT NULL,
   `item_id` int(11) NOT NULL,
-  `creator_id` int(11) NOT NULL,
+  `creator_id` int(11) DEFAULT NULL,
   `highest_bidder_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`auction_id`),
   KEY `highest_bidder_id` (`highest_bidder_id`),
@@ -116,13 +117,13 @@ DROP TABLE IF EXISTS `customers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customers` (
-  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_id` int(11) NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `phone` varchar(13) DEFAULT NULL,
   `login` varchar(50) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `password` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`c_id`)
+   UNIQUE  (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -169,8 +170,8 @@ DROP TABLE IF EXISTS `questions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `questions` (
-	`q_id` int(11) NOT NULL AUTO_INCREMENT,
-  `c_id` int(11) NOT NULL,
+  `q_id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_id` int(11) NULL,
   `staff_id` int(11) DEFAULT NULL,
   `message` varchar(100) NOT NULL,
   `answer` varchar(100) DEFAULT NULL,
@@ -199,12 +200,12 @@ DROP TABLE IF EXISTS `sells`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sells` (
-  `bc_id` int(11) NOT NULL,
-  `sc_id` int(11) NOT NULL,
+  `bc_id` int(11) NULL,
+  `sc_id` int(11) NULL,
   `date` datetime NOT NULL,
   `item_id` int(11) DEFAULT NULL,
   `price` float DEFAULT NULL,
-  PRIMARY KEY (`bc_id`,`sc_id`,`date`),
+   UNIQUE  (`bc_id`,`sc_id`,`date`),
   KEY `sc_id` (`sc_id`),
   KEY `item_id` (`item_id`),
   CONSTRAINT `sells_ibfk_1` FOREIGN KEY (`bc_id`) REFERENCES `customers` (`c_id`),
@@ -260,18 +261,18 @@ DROP TABLE IF EXISTS `wanteditems`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `wanteditems` (
-  `c_id` int(11) NOT NULL,
+  `c_id` int(11) NULL,
   `category` varchar(50) NOT NULL,
   `color` varchar(50) NOT NULL,
   `size` int(11) NOT NULL,
-  PRIMARY KEY (`c_id`,`category`,`color`,`size`),
+   UNIQUE  (`c_id`,`category`,`color`,`size`),
   CONSTRAINT `wanteditems_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `customers` (`c_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `wanteditems`
---
+-- 
 
 LOCK TABLES `wanteditems` WRITE;
 /*!40000 ALTER TABLE `wanteditems` DISABLE KEYS */;
