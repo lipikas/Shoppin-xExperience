@@ -50,7 +50,7 @@
 	
 	</style>
 	<body>
-    <p>Remove Bid</p>
+    <p>Remove Auctions</p>
     <div>
       <form method="POST" action="RemoveAuctionValidate.jsp">
         <p >Auction ID you wish to remove: <input type="text" name="Auction ID" id="auc_id" required /></p>
