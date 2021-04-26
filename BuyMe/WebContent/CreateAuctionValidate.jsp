@@ -42,7 +42,7 @@
 				while (result.next()){
 					newItemId = (result.getString("max(item_id)"));					
 				}
-				out.println("Hi");
+				
 				//Insert new auction into auctioncontains
 				String id = session.getAttribute("id").toString();
  				ps = con.prepareStatement("INSERT INTO AuctionContains " +
@@ -71,10 +71,6 @@
 	</body>
 	
 </html>
-
-
-
-
 
 
 
