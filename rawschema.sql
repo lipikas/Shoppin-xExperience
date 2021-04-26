@@ -77,7 +77,7 @@ CREATE TABLE Bids (
 
 DROP TABLE IF EXISTS Alerts;
 CREATE TABLE Alerts (
-	c_id int NULL,
+	c_id int,
     message varchar(100),
     UNIQUE  (c_id, message),
     foreign key (c_id) references Customers (c_id)
